@@ -6,6 +6,12 @@
 <title>Жестянщик — Сыктывкар: отливы, планки и доборные элементы на заказ</title>
 <meta name="description" content="Изготовление отливов, планок, коньков, откосов и других доборных элементов из металла по вашим размерам. От 600 ₽/м² + 100 ₽ за деталь. Калькулятор цены, примеры работ, заявка онлайн.">
 <meta name="theme-color" content="#18212b">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:image" content="https://renk11.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:title" content="Жестянщик — гнём металл точно по вашим размерам">
 <meta property="og:description" content="От 600 ₽/м² + 100 ₽ за деталь. Рассчитайте стоимость онлайн.">
 <meta property="og:type" content="website">
@@ -14,9 +20,9 @@
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;padding-bottom:76px}
 a{color:inherit}img{max-width:100%;display:block}button{font:inherit}
-.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 header.top{position:sticky;top:0;z-index:30;background:rgba(24,33,43,.97);backdrop-filter:blur(6px);color:#fff}
-header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:56px;max-width:1040px}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:60px}
 .logo{font-weight:800;font-size:17px;text-decoration:none;min-width:0}.logo b{color:var(--acc)}
 nav{display:flex;gap:4px;font-size:14px}nav button{background:none;border:0;color:#c6d0da;padding:8px 10px;border-radius:8px;cursor:pointer}nav button:hover{background:rgba(255,255,255,.1);color:#fff}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:12px;border:0;background:var(--acc);color:#fff;font-weight:700;font-size:16px;text-decoration:none;cursor:pointer;white-space:nowrap}
@@ -26,7 +32,23 @@ nav{display:flex;gap:4px;font-size:14px}nav button{background:none;border:0;colo
 .hero{background:radial-gradient(900px 420px at 88% -10%,#3d5166 0%,rgba(61,81,102,0) 60%),radial-gradient(600px 300px at 0% 110%,rgba(240,120,36,.22) 0%,rgba(240,120,36,0) 65%),linear-gradient(160deg,#141b23 0%,#1f2b37 55%,#18212b 100%)}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/32px 32px;-webkit-mask-image:linear-gradient(100deg,transparent 15%,#000 75%);mask-image:linear-gradient(100deg,transparent 15%,#000 75%)}
 .hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--acc) 30%,#ffb27a 50%,var(--acc) 70%,transparent)}
-.hero-art{position:absolute;right:0;bottom:-4px;width:min(470px,38%);height:auto;opacity:.95;pointer-events:none}
+.hero-art{position:absolute;right:max(8px,calc((100vw - 1080px)/2));bottom:-4px;width:min(520px,42%);height:auto;opacity:.95;pointer-events:none}
+@media(min-width:1000px){
+ .hero .wrap{padding-top:54px;padding-bottom:54px}
+ .hero h1{font-size:clamp(38px,3.6vw,52px);max-width:680px}
+ .hero p{font-size:18px;max-width:600px}
+ .kicker{font-size:14px}
+ .badge b{font-size:28px}.badge span{font-size:15px}
+ main.wrap{padding-top:22px}
+ #acc{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+ #acc .acc{margin:0}.acc.open{grid-column:1/-1}
+ .acc-h{min-height:76px}
+ .grid{grid-template-columns:repeat(3,1fr)!important}.gal{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))!important}
+ .steps{grid-template-columns:repeat(4,1fr)!important}.step{flex-direction:column}
+ .acc-in{padding:6px 22px 22px}
+ body{padding-bottom:0!important}.fab{display:none!important}
+}
+@media(min-width:641px) and (max-width:999px){main.wrap{max-width:760px}}
 .hero-art text{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;fill:#9fb0c1}
 @media(max-width:900px){.hero-art{width:min(430px,60%)}}
 @media(max-width:640px){.hero-art{opacity:.3;right:-70px;bottom:-34px;width:125%}}
@@ -89,6 +111,33 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
 .fi img,.fi .doc{width:48px;height:48px;border-radius:8px;object-fit:cover;flex:none;background:#e6ebf0;display:grid;place-items:center;font-size:22px}
 .fi span{flex:1;min-width:0;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fi small{display:block;color:var(--mut)}
 .fi button{border:0;background:#fbe9e7;color:#a52b20;border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer}
+
+/* ===== логотип и эффекты ===== */
+.logo{display:flex;align-items:center;gap:10px}
+.logo .mark{flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.lt b{display:block;font-size:18px;line-height:1.05;letter-spacing:.3px;color:#fff}
+.lt small{display:block;font-size:9.5px;letter-spacing:1.8px;text-transform:uppercase;color:#9fb0c1;margin-top:3px}
+.hero h1 em{background:linear-gradient(100deg,#f07824 0%,#ffd2ad 45%,#f07824 90%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shimmer 4.5s linear infinite}
+.spot{position:absolute;inset:0;pointer-events:none;background:radial-gradient(440px circle at var(--mx,72%) var(--my,30%),rgba(255,190,130,.17),transparent 62%);opacity:0;transition:opacity .4s}
+.hero:hover .spot{opacity:1}
+.sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.rot{font-size:17px;color:#d3dbe3;margin:0 0 14px;display:flex;gap:8px;align-items:baseline}
+.rot span:first-child{color:#9fb0c1}
+.rw{display:inline-block;color:#ffb27a;font-weight:800;min-width:10ch;border-bottom:2px solid rgba(255,178,122,.45)}
+.rw.swap{animation:swap .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes swap{0%{transform:translateY(70%);opacity:0;filter:blur(3px)}100%{transform:none;opacity:1;filter:none}}
+@keyframes glint{from{stroke-dashoffset:.07}to{stroke-dashoffset:-1.4}}
+.glint{stroke-dasharray:.07 1.4;stroke-dashoffset:.07;opacity:0;animation:fadein .1s ease 2.6s forwards,glint 3.4s linear 2.6s infinite}
+@keyframes sweep{0%{left:-60%}40%,100%{left:130%}}
+.cta .btn:first-child,#fb{position:relative;overflow:hidden}
+.cta .btn:first-child:after,#fb:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:sweep 3.8s ease-in-out 3s infinite;pointer-events:none}
+#prog{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--acc),#ffb27a);z-index:60;box-shadow:0 0 8px rgba(240,120,36,.7);transition:width .1s}
+.logo .lm{animation-delay:.15s}
+.hero-art{will-change:transform}
+.mini,.gal figure{transform-style:preserve-3d;will-change:transform}
+@media(max-width:380px){.lt small{display:none}}
+@media(prefers-reduced-motion:reduce){.rw.swap,.glint,.spot,.sparks{animation:none!important;display:none}.hero h1 em{animation:none}}
+
 /* ===== анимации ===== */
 @keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes draw{0%{opacity:0;stroke-dashoffset:1}6%{opacity:1}100%{opacity:1;stroke-dashoffset:0}}
@@ -119,6 +168,7 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
 </style>
 </head>
 <body>
+<div id="prog"></div>
 <header class="top"><div class="wrap">
  <a class="logo" href="#" id="logo"></a>
  <nav id="nav"></nav>
@@ -142,6 +192,7 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
   <path class="draw" pathLength="1" d="M170 176 V128 H330 V176 H470 V92" stroke="#000" stroke-opacity=".35" stroke-width="12" transform="translate(5 7)"/>
   <path class="draw d2" pathLength="1" d="M170 176 V128 H330 V176 H470 V92" stroke="url(#steel)" stroke-width="9"/>
   <path class="draw d3" pathLength="1" d="M170 176 V128 H330 V176 H470 V92" stroke="#fff" stroke-opacity=".35" stroke-width="1.6" transform="translate(0 -2.5)"/>
+  <path class="glint" pathLength="1" d="M170 176 V128 H330 V176 H470 V92" stroke="#fff" stroke-width="3.2" stroke-linecap="round" transform="translate(0 -1)"/>
   <g class="dim" stroke="#9fb0c1" stroke-width="1" stroke-opacity=".75">
    <path d="M170 196 H330 M170 190 V202 M330 190 V202"/><path d="M350 176 H470 M350 170 V182 M470 170 V182" transform="translate(0 20)"/><path d="M492 92 V176 M486 92 H498 M486 176 H498"/>
   </g>
@@ -151,7 +202,7 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
  </g>
 </svg>
 <div class="wrap">
- <div class="kicker" id="kicker"></div><h1 id="h1"></h1><p id="tagline"></p>
+ <div class="kicker" id="kicker"></div><h1 id="h1"></h1><p id="tagline"></p><div class="rot"><span>Изготовим:</span><span class="rw" id="rw">отливы</span></div>
  <div class="badge"><b id="bPrice"></b><span id="bMake"></span></div>
  <div class="cta"><button class="btn" data-open="s-price">Рассчитать цену</button><a class="btn ghost" id="heroCall" href="#">Позвонить</a></div>
 </div></section>
@@ -198,6 +249,7 @@ const CONFIG={
   {t:'Изготовление',d:'Режем и гнём на оборудовании мастерской.'},
   {t:'Выдача',d:'Забираете в мастерской или договариваемся о доставке.'}
  ],
+ rotWords:['отливы','планки','коньки','откосы','парапеты','изделия по эскизу'],
  items:['Отливы','Планки','Коньки','Откосы','Парапет','Другое'],
  // Приём заявок: те же Firebase-данные, что и у приложения (это публичный ключ, не пароль)
  firebase:{apiKey:'AIzaSyDXA2vFEZgu4i0Aa4rZmS-jWbZ4bemaTSM',authDomain:'metall-cc71f.firebaseapp.com',projectId:'metall-cc71f',appId:'1:677558043511:web:5d83b5a39f59c1644a1772'},
@@ -209,7 +261,7 @@ const RAL={'3005':['Винно-красный','#5e2129'],'3011':['Коричн�
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const C=CONFIG,tel=C.phone.replace(/[^\d+]/g,''),money=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',f2=n=>(Math.round(n*100)/100).toLocaleString('ru-RU');
 document.title=C.name+' — '+C.city+': отливы, планки и доборные элементы на заказ';
-$('logo').innerHTML=esc(C.name.split(' ')[0])+(C.name.includes(' ')?' <b>'+esc(C.name.split(' ').slice(1).join(' '))+'</b>':'');
+$('logo').innerHTML='<svg class="mark" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true"><defs><linearGradient id="lgS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd2ad"/><stop offset=".5" stop-color="#f07824"/><stop offset="1" stop-color="#c4580e"/></linearGradient><linearGradient id="lgB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#31445a"/><stop offset="1" stop-color="#121920"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#lgB)"/><path d="M13 43V27H30V43H50V17" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(1.5 2.5)"/><path class="draw lm" pathLength="1" d="M13 43V27H30V43H50V17" fill="none" stroke="url(#lgS)" stroke-width="6.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 25.2H30" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-linecap="round"/></svg>'+'<span class="lt"><b>'+esc(C.name)+'</b><small>металл на заказ</small></span>';
 $('kicker').textContent=C.name+' · '+C.slogan;
 $('h1').innerHTML='Доборные элементы из металла <em>на заказ</em> — '+esc(C.city);
 $('tagline').textContent=C.tagline;
@@ -267,17 +319,65 @@ document.addEventListener('click',e=>{
  const h=e.target.closest('.acc-h');if(h){openSec(h.parentElement.id);return}
  const o=e.target.closest('[data-open]');if(o){openSec(o.dataset.open,true,true)}});
 if(location.hash&&$(location.hash.slice(1)))openSec(location.hash.slice(1),false,true);
+else if(window.innerWidth>=1000)openSec('s-price',false,true);
 /* калькулятор */
 const rows=[{a:'',b:'',q:1}];
 function calcDraw(){$('crows').innerHTML=rows.map((r,i)=>`<div class="crow"><div><label>Длина, мм</label><input inputmode="decimal" data-i="${i}" data-k="a" value="${esc(r.a)}" placeholder="2000"></div><div><label>Развёртка, мм</label><input inputmode="decimal" data-i="${i}" data-k="b" value="${esc(r.b)}" placeholder="300"></div><div><label>Шт.</label><input inputmode="numeric" data-i="${i}" data-k="q" value="${esc(r.q)}"></div><button class="rm" type="button" data-rm="${i}" aria-label="Удалить" ${rows.length<2?'hidden':''}>×</button></div>`).join('');calcOut()}
 function calcTot(){let t=0,m=0,n=0;rows.forEach(r=>{const a=+String(r.a).replace(',','.'),b=+String(r.b).replace(',','.'),q=Math.max(1,Math.round(+r.q||1));if(a>0&&b>0){const s=a*b/1e6*q;m+=s;n+=q;t+=s*C.ppm+q*C.make}});return{t,m,n}}
-function calcOut(){const {t,m,n}=calcTot();const o0=$('cout');o0.classList.remove('flash');if(n){void o0.offsetWidth;o0.classList.add('flash')}$('cout').innerHTML=n?`Площадь ${f2(m)} м² · деталей ${n} шт.<br><b>≈ ${money(t)}</b> <small>(ориентировочно, точнее — по заявке)</small>`:'<small>Введите размеры деталей — получите ориентировочную цену.</small>'}
+function calcOut(){const {t,m,n}=calcTot();const o0=$('cout');o0.classList.remove('flash');if(n){void o0.offsetWidth;o0.classList.add('flash')}$('cout').innerHTML=n?`Площадь ${f2(m)} м² · деталей ${n} шт.<br><b id="cbig">≈ ${money(t)}</b> <small>(ориентировочно, точнее — по заявке)</small>`:'<small>Введите размеры деталей — получите ориентировочную цену.</small>';if(n)tweenTotal(t);else lastTotal=0}
 $('crows').addEventListener('input',e=>{const i=e.target.dataset.i;if(i!==undefined){rows[i][e.target.dataset.k]=e.target.value;calcOut()}});
 $('crows').addEventListener('click',e=>{const r=e.target.closest('[data-rm]');if(r){rows.splice(+r.dataset.rm,1);calcDraw()}});
 $('cadd').onclick=()=>{rows.push({a:'',b:'',q:1});calcDraw()};
 $('cgo').onclick=()=>{const {t,n}=calcTot();const ls=rows.filter(r=>+String(r.a).replace(',','.')>0&&+String(r.b).replace(',','.')>0).map((r,i)=>`${i+1}) ${r.a} × ${r.b} мм — ${Math.max(1,Math.round(+r.q||1))} шт.`);
  if(ls.length)$('fs').value=ls.join('\n')+'\nОриентировочный расчёт на сайте: '+money(t);openSec('s-form',true,true);setTimeout(()=>$('fn').focus({preventScroll:true}),420)};
 calcDraw();
+
+/* ===== эффекты: искры, подсветка, параллакс, слова, наклон карточек, прогресс ===== */
+(function(){
+ const reduce=matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,hover=matchMedia&&matchMedia('(hover:hover)').matches,hero=document.querySelector('.hero'),art=hero.querySelector('.hero-art');
+ /* бегущее слово */
+ const rw=$('rw'),W=C.rotWords||[];let wi=0;
+ if(rw&&W.length&&!reduce)setInterval(()=>{if(document.hidden)return;wi=(wi+1)%W.length;rw.textContent=W[wi];rw.classList.remove('swap');void rw.offsetWidth;rw.classList.add('swap')},2200);
+ /* полоса прокрутки */
+ const prog=$('prog'),upd=()=>{const h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%'};
+ addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+ if(reduce)return;
+ /* подсветка за курсором и параллакс профиля */
+ const spot=document.createElement('div');spot.className='spot';hero.insertBefore(spot,hero.firstChild);
+ if(hover)hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  spot.style.setProperty('--mx',(x*100)+'%');spot.style.setProperty('--my',(y*100)+'%');if(art)art.style.translate=((x-.5)*-26)+'px '+((y-.5)*-18)+'px'});
+ hero.addEventListener('pointerleave',()=>{if(art)art.style.translate='0 0'});
+ if(art)art.style.transition='translate .25s ease-out';
+ /* искры (как от болгарки) */
+ const cv=document.createElement('canvas');cv.className='sparks';hero.insertBefore(cv,hero.firstChild);
+ const ctx=cv.getContext('2d'),N=innerWidth<640?16:40,P=[];let w=0,h=0,dpr=1,run=false,vis=true;
+ function size(){const r=hero.getBoundingClientRect();dpr=Math.min(2,devicePixelRatio||1);w=r.width;h=r.height;cv.width=w*dpr;cv.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+ function born(i){const o=P[i]||(P[i]={});o.x=w*(.05+Math.random()*.9);o.y=h+Math.random()*30;o.vx=(Math.random()-.4)*.5;o.vy=-(.35+Math.random()*1.1);o.r=.6+Math.random()*1.9;o.life=0;o.max=140+Math.random()*190;o.p=Math.random()*6.28;return o}
+ function frame(){
+  if(!run)return;if(document.hidden||!vis){run=false;return}
+  ctx.clearRect(0,0,w,h);ctx.globalCompositeOperation='lighter';
+  for(let i=0;i<N;i++){const o=P[i]||born(i);o.life++;o.p+=.04;o.x+=o.vx+Math.sin(o.p)*.25;o.y+=o.vy;
+   if(o.life>o.max||o.y<-10){born(i);continue}
+   const k=o.life/o.max,a=Math.sin(Math.PI*Math.min(1,k*1.15))*.85;
+   ctx.fillStyle='rgba(255,'+(150+80*(1-k)|0)+',60,'+a*.18+')';ctx.beginPath();ctx.arc(o.x,o.y,o.r*3.2,0,6.283);ctx.fill();
+   ctx.fillStyle='rgba(255,'+(190+60*(1-k)|0)+',120,'+a+')';ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,6.283);ctx.fill()}
+  requestAnimationFrame(frame)}
+ function start(){if(!run&&vis&&!document.hidden){run=true;requestAnimationFrame(frame)}}
+ size();for(let i=0;i<N;i++){born(i);P[i].life=Math.random()*P[i].max;P[i].y=h*Math.random()}
+ addEventListener('resize',size);document.addEventListener('visibilitychange',start);
+ if('IntersectionObserver' in window)new IntersectionObserver(es=>{vis=es[0].isIntersecting;start()}).observe(hero);
+ start();
+ /* наклон карточек за курсором */
+ if(hover)document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.mini,.gal figure');
+  document.querySelectorAll('.tilted').forEach(x=>{if(x!==c){x.style.transform='';x.classList.remove('tilted')}});
+  if(!c)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  c.classList.add('tilted');c.style.transform='perspective(700px) rotateX('+(-y*9)+'deg) rotateY('+(x*11)+'deg) translateY(-3px)'});
+})();
+/* плавный счёт суммы в калькуляторе */
+var lastTotal=0;
+function tweenTotal(to){const el=document.getElementById('cbig');if(!el)return;const from=lastTotal;lastTotal=to;
+ if(matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent='≈ '+money(to);return}
+ const t0=performance.now(),d=420;const st=t=>{const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent='≈ '+money(from+(to-from)*e);if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
 /* счётчик цены в шапке */
 (function(){if(matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;const el=$('bPrice'),end=C.ppm,t0=performance.now()+350,fin='от '+end+' ₽/м²';el.textContent='от 0 ₽/м²';
  const step=t=>{const k=Math.min(1,Math.max(0,(t-t0)/1100)),v=Math.round(end*(1-Math.pow(1-k,3)));el.textContent='от '+v+' ₽/м²';if(k<1)requestAnimationFrame(step);else el.textContent=fin};requestAnimationFrame(step)})();
