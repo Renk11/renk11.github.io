@@ -221,7 +221,7 @@ const CONFIG={
  slogan:'Гнём металл точно по вашим размерам',  // ← слоган
  city:'Сыктывкар',                    // ← город
  phone:'8 950 567-77-78',            // ← телефон
- telegram:'Zestyanshik11',                         // ← ник в Telegram без @, например 'metalmaster'
+ telegram:'',                         // ← ник в Telegram без @, например 'metalmaster'
  whatsapp:'',                         // ← номер для WhatsApp цифрами, например '79000000000'
  email:'',
  address:'',                          // ← адрес мастерской (необязательно)
@@ -253,7 +253,7 @@ const CONFIG={
  items:['Отливы','Планки','Коньки','Откосы','Парапет','Другое'],
  // Приём заявок: те же Firebase-данные, что и у приложения (это публичный ключ, не пароль)
  firebase:{apiKey:'AIzaSyDXA2vFEZgu4i0Aa4rZmS-jWbZ4bemaTSM',authDomain:'metall-cc71f.firebaseapp.com',projectId:'metall-cc71f',appId:'1:677558043511:web:5d83b5a39f59c1644a1772'},
- notifyUrl:'https://zayavki.pavvvlik66.workers.dev'   // ← адрес Cloudflare Worker для Telegram (см. инструкцию), пока пусто
+ notifyUrl:''   // ← адрес Cloudflare Worker для Telegram (см. инструкцию), пока пусто
 };
 
 /* ================= дальше менять не нужно ================= */
@@ -299,7 +299,7 @@ const SECS=[
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan);
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 8 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -411,7 +411,7 @@ $('ff').addEventListener('change',async e=>{
    else if(f.type==='application/pdf'||/\.pdf$/i.test(f.name)){if(f.size>PDFMAX){msg('PDF «'+esc(f.name)+'» больше 600 КБ. Пришлите фото или скриншот схемы.');continue}item={name:f.name,type:'application/pdf',data:await readURL(f)}}
    else{msg('Поддерживаются фото и PDF-файлы.');continue}
    if(files.reduce((a,x)=>a+x.data.length,0)+item.data.length>MAXTOT){msg('Слишком большой объём вложений. Уберите один файл или пришлите фото меньшего размера.');continue}
-   files.push(item);$('fm').innerHTML=''
+   files.push(item);msg('Прикреплено файлов: '+files.length+'. Они отправятся вместе с заявкой.',true)
   }catch(err){console.warn(err);msg('Не удалось обработать файл «'+esc(f.name)+'». Попробуйте другое фото.')}}
  drawFiles()});
 function msg(t,ok){$('fm').innerHTML=`<div class="msg ${ok?'ok':'err'}">${t}</div>`}
@@ -434,7 +434,7 @@ $('f').addEventListener('submit',async e=>{
   await fs.addDoc(fs.collection(db,'requests'),Object.assign({},data,{createdAt:fs.serverTimestamp()}));
   if(C.notifyUrl){try{await fetch(C.notifyUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:!files.length})}catch(_){}}
   try{localStorage.setItem(LK,String(Date.now()))}catch(_){}
-  $('f').reset();files=[];drawFiles();msg('Спасибо! Заявка отправлена — мы свяжемся с вами в ближайшее время.',true);
+  const nf=files.length;$('f').reset();files=[];drawFiles();msg('Спасибо! Заявка отправлена'+(nf?' (файлов: '+nf+')':'')+' — мы свяжемся с вами в ближайшее время.',true);
  }catch(err){console.warn(err);msg('Не удалось отправить заявку. Пожалуйста, позвоните: <a href="tel:'+tel+'">'+esc(C.phone)+'</a>')}
  $('fb').disabled=false;$('fb').textContent='Отправить заявку'});
 </script>
