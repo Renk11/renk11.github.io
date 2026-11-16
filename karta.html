@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Каталог изделий — Жестянщик</title>
+<meta name="description" content="Каталог готовых изделий из металла с размерами и развёрткой: планки, отливы, ендовы, коньки, угловые элементы. Сыктывкар.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{--ink:#18212b;--mut:#5b6672;--acc:#f07824;--acc2:#c4580e;--line:#dce2e8}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:#eef1f4;line-height:1.4}
+header{background:#18212b;color:#fff;padding:14px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+header b{font-size:20px}header a{color:#fff}.btn{background:var(--acc);color:#fff;border:0;border-radius:12px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+main{max-width:1180px;margin:0 auto;padding:18px}p.n{color:var(--mut);margin:0 0 14px}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.c{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;break-inside:avoid}
+.c h2{font-size:16px;margin:0 0 4px}.c svg{width:100%;height:auto;display:block;background:#fafbfc;border-radius:8px}
+.c table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}.c td,.c th{padding:3px 6px;border-bottom:1px solid var(--line);text-align:left}.c th{color:var(--mut);font-weight:600}
+.dev{margin-top:6px;font-weight:800;color:var(--acc2)}.w{color:#b3261e;font-size:12px}
+footer{text-align:center;color:var(--mut);padding:16px;font-size:13px}
+@media print{body{background:#fff}header .btn,.noprint{display:none}header{background:#fff;color:#000;padding:0 0 8px}main{padding:0}.g{grid-template-columns:repeat(3,1fr);gap:8px}.c{border:1px solid #999;padding:8px}}
+</style></head><body>
+<header><div><b>Жестянщик — каталог изделий</b><div style="opacity:.8;font-size:13px">Сыктывкар · 8 950 567-77-78 · от 600 ₽/м² + 100 ₽ за деталь</div></div><div class="noprint"><button class="btn" onclick="window.print()">🖨 Печать / сохранить в PDF</button> <a class="btn" style="background:#2b3948" href="index.html#s-build">Конструктор</a></div></header>
+<main><p class="n">Размеры в миллиметрах, углы загиба в градусах. Развёртка — ширина плоской заготовки (сумма всех полок). Цену и заявку удобнее оформить в <a href="index.html#s-build">конструкторе на сайте</a>.</p><div class="g" id="g"></div></main>
+<footer>© Жестянщик, Сыктывкар · <a href="index.html">Главная</a></footer>
+<script>
+/* ===== шаблоны изделий (из технологической карты мастерской) ===== */
+const TPL=[
+ {id:'konek',n:'Планка конька',item:'Коньки',t:417,s:[[17,70],[152,35],[18,90],[40,0],[18,-90],[152,-35],[20,-70]]},
+ {id:'torc',n:'Торцевая',item:'Планки',t:250,s:[[17,45],[115,0],[85,-90],[18,-135],[15,-90]]},
+ {id:'karn',n:'Карнизная',item:'Планки',t:178,s:[[95,-5],[65,-55],[18,-100]]},
+ {id:'endv',n:'Ендова верхняя',item:'Коньки',t:312,s:[[16,-45],[80,-25],[18,-90],[80,0],[18,90],[80,25],[20,45]]},
+ {id:'endn',n:'Ендова нижняя',item:'Коньки',t:625,s:[[20,-55],[293,-34],[293,34],[20,55]],tn:'на карте 0,625 (сумма 626)'},
+ {id:'primv',n:'Примыкание верхнее',item:'Планки',t:417,s:[[20,-70],[130,-90],[250,0],[17,-30]]},
+ {id:'ugn',n:'Угол наружный',item:'Планки',t:0,s:[[18,60],[100,0],[100,-90],[15,-120]],free:[1,2],note:'длины полок — любые, укажите свои'},
+ {id:'ugv',n:'Угол внутренний',item:'Планки',t:0,s:[[18,-135],[100,-90],[100,0],[15,45]],free:[1,2],note:'длины полок — любые, укажите свои'},
+ {id:'primn',n:'Примыкание нижнее',item:'Планки',t:417,s:[[20,0],[122,-90],[250,0],[25,20]]},
+ {id:'ugns',n:'Угол наружный сложный',item:'Планки',t:0,s:[[22,-90],[75,0],[75,-90],[40,90],[18,180]],free:[0],cx:1,note:'N зависит от обшивки'},
+ {id:'ugvs',n:'Угол внутренний сложный',item:'Планки',t:0,s:[[40,-90],[75,-45],[40,0]],cx:1},
+ {id:'stks',n:'Стыковочная сложная',item:'Планки',t:0,s:[[40,0],[18,90],[75,0],[18,-90],[40,0]],cx:1},
+ {id:'zav1',n:'Планка завершающая',item:'Планки',t:0,s:[[15,105],[25,90],[22,0],[40,-90]],free:[2],note:'N (верхняя полка) зависит от обшивки'},
+ {id:'stk',n:'Планка стыковочная',item:'Планки',t:90,s:[[15,20],[60,0],[15,-20]]},
+ {id:'snez',n:'Снегозадержатель',item:'Планки',t:208,s:[[30,0],[65,90],[95,-27],[18,0]]},
+ {id:'otl',n:'Отлив',item:'Отливы',t:0,s:[[20,-90],[150,-10],[15,-90]],free:[1],note:'длина полки — любая, укажите свою'},
+ {id:'zob',n:'Зобная планка',item:'Планки',t:85,s:[[15,120],[20,90],[15,0],[20,-90],[15,-120]]},
+ {id:'torcg',n:'Торцевая ГЧ',item:'Планки',t:250,s:[[115,0],[20,50],[85,-75],[15,-105],[15,-90]]},
+ {id:'zav2',n:'Планка завершающая (блокхаус ИЖ)',item:'Планки',t:125,s:[[15,105],[30,90],[30,0],[50,-90]]},
+ {id:'st1',n:'Стартовая (экобрус GL/ИЖ, евробрус)',item:'Планки',t:115,s:[[60,-90],[20,30],[15,150],[20,30]],cx:1},
+ {id:'st2',n:'Стартовая (блокхаус GL)',item:'Планки',t:75,s:[[60,-90],[15,80]]},
+ {id:'st3',n:'Планка стартовая (кор. доска)',item:'Планки',t:75,s:[[40,-90],[20,-65],[15,65]]},
+ {id:'st4',n:'Планка стартовая Т-сайдинг',item:'Планки',t:0,s:[[40,-90],[15,0],[15,90],[15,30]]},
+ {id:'vox',n:'VOX',item:'Планки',t:0,s:[[38,-90],[12,0],[15,90]]}
+];
+function tplSegs(t){const s=t.s,n=s.length;return s.map((p,i)=>{if(i===n-1)return{l:p[0]};let d=s[i+1][1]-p[1];while(d>180)d-=360;while(d<=-180)d+=360;return{l:p[0],a:Math.abs(d),d:d>=0?1:-1}})}
+function tplDev(t){return t.s.reduce((a,p)=>a+p[0],0)}
+
+function draw(t){const sg=tplSegs(t),n=sg.length;let th=t.s[0][1]*Math.PI/180,x=0,y=0;const P=[[0,0]];sg.forEach((s,i)=>{x+=s.l*Math.cos(th);y-=s.l*Math.sin(th);P.push([x,y]);if(i<n-1)th+=s.d*s.a*Math.PI/180});
+ const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mx=Math.min(...xs),Mx=Math.max(...xs),my=Math.min(...ys),My=Math.max(...ys),W=300,H=190,pad=38,bw=Math.max(Mx-mx,1),bh=Math.max(My-my,1),k=Math.min((W-2*pad)/bw,(H-2*pad)/bh),ox=(W-bw*k)/2-mx*k,oy=(H-bh*k)/2-my*k;
+ const Q=P.map(p=>[p[0]*k+ox,p[1]*k+oy]);let b=`<polyline points="${Q.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#f07824" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+ const T=(x,y,tx,c)=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" dominant-baseline="middle" fill="${c}" stroke="#fafbfc" stroke-width="3" paint-order="stroke">${tx}</text>`;
+ sg.forEach((s,i)=>{const a=Q[i],c=Q[i+1],dx=c[0]-a[0],dy=c[1]-a[1],L=Math.hypot(dx,dy)||1;let nx=-dy/L,ny=dx/L;if(ny<-.01||(Math.abs(ny)<=.01&&nx<0)){nx=-nx;ny=-ny}b+=T((a[0]+c[0])/2+nx*11,(a[1]+c[1])/2+ny*11,s.l,'#18212b')});
+ return`<svg viewBox="0 0 ${W} ${H}">${b}</svg>`}
+document.getElementById('g').innerHTML=TPL.map(t=>{const sg=tplSegs(t),d=tplDev(t);
+ return`<div class="c"><h2>${t.n}</h2>${draw(t)}<table><tr><th>№</th><th>Полка, мм</th><th>Загиб далее</th></tr>${sg.map((s,i)=>`<tr><td>${i+1}</td><td>${s.l}</td><td>${s.a!==undefined?s.a+'° '+(s.d>0?'↶':'↷'):'—'}</td></tr>`).join('')}</table><div class="dev">Развёртка: ${d} мм (${(d/1000).toFixed(3).replace('.',',')} м)</div>${t.cx?'<div class="w">Сложное изделие: чертёж упрощённый, сгибы уточняются.</div>':''}${t.note?'<div class="w">'+t.note+'</div>':''}</div>`}).join('');
+</script></body></html>

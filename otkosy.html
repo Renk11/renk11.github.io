@@ -250,6 +250,11 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 @media(min-width:1200px){.wrap{max-width:1180px}}
 @media(min-width:1200px){.dock{display:block}}@media(min-width:1000px){.qf{display:flex}}
 .cv{position:fixed;inset:0;z-index:300;pointer-events:none}
+.cat{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 12px}.cat summary{cursor:pointer;font-weight:700;padding:12px 0}
+.catg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:0 0 12px}
+.catg button{background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:8px 8px 10px;cursor:pointer;text-align:center;font:inherit;color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s}
+.catg button:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 6px 16px rgba(24,33,43,.1)}.catg button.on{border-color:var(--acc);background:#fff6ef}
+.catg svg{width:100%;height:54px;display:block;margin-bottom:4px}.catg b{display:block;font-size:13px;line-height:1.25}.catg small{color:var(--mut);font-size:12px}
 </style>
 </head>
 <body>
@@ -346,7 +351,7 @@ const SECS=[
 {
 const byId=id=>SECS.find(s=>s.id===id);
 const BUILD_H=`<p class="note" style="margin-top:0">Соберите профиль из полок и загибов — сразу увидите чертёж, ширину развёртки и цену. Чертёж сам прикрепится к заявке.</p>
-<div class="pre" id="bpre"></div><div class="bsvg" id="bsvg"></div><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><select id="bh1s" class="bi hs" aria-label="Сторона завальцовки в начале"><option value="in">внутрь</option><option value="out">наружу</option></select><label><input type="checkbox" id="bh2"> в конце</label><select id="bh2s" class="bi hs" aria-label="Сторона завальцовки в конце"><option value="in">внутрь</option><option value="out">наружу</option></select><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div><div id="brows"></div>
+<details class="cat" id="bcatd" open><summary>📚 Каталог изделий — выберите готовый шаблон</summary><div class="catg" id="bcat"></div></details><div class="pre" id="bpre"></div><div id="bnote"></div><div class="bsvg" id="bsvg"></div><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><select id="bh1s" class="bi hs" aria-label="Сторона завальцовки в начале"><option value="in">внутрь</option><option value="out">наружу</option></select><label><input type="checkbox" id="bh2"> в конце</label><select id="bh2s" class="bi hs" aria-label="Сторона завальцовки в конце"><option value="in">внутрь</option><option value="out">наружу</option></select><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div><div id="brows"></div>
 <button class="btn out sm" id="badd" type="button">＋ Добавить полку</button>
 <div class="row" style="margin-top:12px"><div><label for="blen">Длина изделия, мм</label><input id="blen" class="bi" inputmode="numeric" value="2000"></div><div><label for="bqty">Количество, шт.</label><input id="bqty" class="bi" inputmode="numeric" value="1"></div></div>
 <div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>`;
@@ -376,7 +381,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 11 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 12 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -535,13 +540,43 @@ $('cbb').onclick=async()=>{
  $('cbb').disabled=false};
 
 /* ===== конструктор ===== */
+/* ===== шаблоны изделий (из технологической карты мастерской) ===== */
+const TPL=[
+ {id:'konek',n:'Планка конька',item:'Коньки',t:417,s:[[17,70],[152,35],[18,90],[40,0],[18,-90],[152,-35],[20,-70]]},
+ {id:'torc',n:'Торцевая',item:'Планки',t:250,s:[[17,45],[115,0],[85,-90],[18,-135],[15,-90]]},
+ {id:'karn',n:'Карнизная',item:'Планки',t:178,s:[[95,-5],[65,-55],[18,-100]]},
+ {id:'endv',n:'Ендова верхняя',item:'Коньки',t:312,s:[[16,-45],[80,-25],[18,-90],[80,0],[18,90],[80,25],[20,45]]},
+ {id:'endn',n:'Ендова нижняя',item:'Коньки',t:625,s:[[20,-55],[293,-34],[293,34],[20,55]],tn:'на карте 0,625 (сумма 626)'},
+ {id:'primv',n:'Примыкание верхнее',item:'Планки',t:417,s:[[20,-70],[130,-90],[250,0],[17,-30]]},
+ {id:'ugn',n:'Угол наружный',item:'Планки',t:0,s:[[18,60],[100,0],[100,-90],[15,-120]],free:[1,2],note:'длины полок — любые, укажите свои'},
+ {id:'ugv',n:'Угол внутренний',item:'Планки',t:0,s:[[18,-135],[100,-90],[100,0],[15,45]],free:[1,2],note:'длины полок — любые, укажите свои'},
+ {id:'primn',n:'Примыкание нижнее',item:'Планки',t:417,s:[[20,0],[122,-90],[250,0],[25,20]]},
+ {id:'ugns',n:'Угол наружный сложный',item:'Планки',t:0,s:[[22,-90],[75,0],[75,-90],[40,90],[18,180]],free:[0],cx:1,note:'N зависит от обшивки'},
+ {id:'ugvs',n:'Угол внутренний сложный',item:'Планки',t:0,s:[[40,-90],[75,-45],[40,0]],cx:1},
+ {id:'stks',n:'Стыковочная сложная',item:'Планки',t:0,s:[[40,0],[18,90],[75,0],[18,-90],[40,0]],cx:1},
+ {id:'zav1',n:'Планка завершающая',item:'Планки',t:0,s:[[15,105],[25,90],[22,0],[40,-90]],free:[2],note:'N (верхняя полка) зависит от обшивки'},
+ {id:'stk',n:'Планка стыковочная',item:'Планки',t:90,s:[[15,20],[60,0],[15,-20]]},
+ {id:'snez',n:'Снегозадержатель',item:'Планки',t:208,s:[[30,0],[65,90],[95,-27],[18,0]]},
+ {id:'otl',n:'Отлив',item:'Отливы',t:0,s:[[20,-90],[150,-10],[15,-90]],free:[1],note:'длина полки — любая, укажите свою'},
+ {id:'zob',n:'Зобная планка',item:'Планки',t:85,s:[[15,120],[20,90],[15,0],[20,-90],[15,-120]]},
+ {id:'torcg',n:'Торцевая ГЧ',item:'Планки',t:250,s:[[115,0],[20,50],[85,-75],[15,-105],[15,-90]]},
+ {id:'zav2',n:'Планка завершающая (блокхаус ИЖ)',item:'Планки',t:125,s:[[15,105],[30,90],[30,0],[50,-90]]},
+ {id:'st1',n:'Стартовая (экобрус GL/ИЖ, евробрус)',item:'Планки',t:115,s:[[60,-90],[20,30],[15,150],[20,30]],cx:1},
+ {id:'st2',n:'Стартовая (блокхаус GL)',item:'Планки',t:75,s:[[60,-90],[15,80]]},
+ {id:'st3',n:'Планка стартовая (кор. доска)',item:'Планки',t:75,s:[[40,-90],[20,-65],[15,65]]},
+ {id:'st4',n:'Планка стартовая Т-сайдинг',item:'Планки',t:0,s:[[40,-90],[15,0],[15,90],[15,30]]},
+ {id:'vox',n:'VOX',item:'Планки',t:0,s:[[38,-90],[12,0],[15,90]]}
+];
+function tplSegs(t){const s=t.s,n=s.length;return s.map((p,i)=>{if(i===n-1)return{l:p[0]};let d=s[i+1][1]-p[1];while(d>180)d-=360;while(d<=-180)d+=360;return{l:p[0],a:Math.abs(d),d:d>=0?1:-1}})}
+function tplDev(t){return t.s.reduce((a,p)=>a+p[0],0)}
+
 const PRESETS=[
  {n:'Уголок',item:'Планки',s:[{l:50,a:90,d:1},{l:50}]},
  {n:'П-образная',item:'Планки',s:[{l:30,a:90,d:1},{l:100,a:90,d:1},{l:30}]},
  {n:'Отлив',item:'Отливы',s:[{l:20,a:90,d:1},{l:150,a:90,d:-1},{l:30}]},
  {n:'Z-профиль',item:'Планки',s:[{l:30,a:90,d:1},{l:100,a:90,d:-1},{l:30}]},
  {n:'Плоская',item:'Другое',s:[{l:300}]}];
-const B={color:'',segs:JSON.parse(JSON.stringify(PRESETS[1].s)),item:PRESETS[1].item,preset:1};let bn=0;
+const B={h0:null,tpl:'',color:'',segs:JSON.parse(JSON.stringify(PRESETS[1].s)),item:PRESETS[1].item,preset:1};let bn=0;
 const num=v=>+String(v).replace(',','.');
 function geo(sg,th0){let th=th0,x=0,y=0;const P=[[0,0]],H=[];sg.forEach((s,i)=>{H.push(th);x+=s.l*Math.cos(th);y-=s.l*Math.sin(th);P.push([x,y]);if(i<sg.length-1)th+=(s.d||1)*(s.a||0)*Math.PI/180});return{P,H}}
 function bModel(){
@@ -549,12 +584,12 @@ function bModel(){
  const ok=sg.length>0&&sg.every(s=>s.l>0)&&len>0;
  const hw=Math.max(0,Math.min(50,num($('bhw').value)||0)),h1=$('bh1').checked&&hw>0,h2=$('bh2').checked&&hw>0;
  const dev=sg.reduce((a,s)=>a+(s.l||0),0)+(h1?hw:0)+(h2?hw:0),per=len*dev/1e6*C.ppm+C.make;
- return{ok,sg,len,qty,dev,hw,h1,h2,s1:$('bh1s').value,s2:$('bh2s').value,col:B.color,area:len*dev/1e6,per,tot:per*qty}}
+ return{ok,sg,h0:B.h0,len,qty,dev,hw,h1,h2,s1:$('bh1s').value,s2:$('bh2s').value,col:B.color,area:len*dev/1e6,per,tot:per*qty}}
 function bSvg(m){
  let body='';
  if(m.ok){
   let li=0;m.sg.forEach((s,i)=>{if(s.l>m.sg[li].l)li=i});
-  const th0=-geo(m.sg,0).H[li],{P}=geo(m.sg,th0);
+  const th0=(m.h0!=null)?m.h0*Math.PI/180:-geo(m.sg,0).H[li],{P}=geo(m.sg,th0);
   const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mnx=Math.min(...xs),mxx=Math.max(...xs),mny=Math.min(...ys),mxy=Math.max(...ys);
   const W=560,Hh=260,pad=52,bw=Math.max(mxx-mnx,1),bh=Math.max(mxy-mny,1),k=Math.min((W-2*pad)/bw,(Hh-2*pad-18)/bh),ox=(W-bw*k)/2-mnx*k,oy=(Hh+18-bh*k)/2-mny*k;
   const Q=P.map(p=>[p[0]*k+ox,p[1]*k+oy]);
@@ -582,7 +617,16 @@ function bRows(){
  $('brows').innerHTML=B.segs.map((s,i)=>{const last=i===B.segs.length-1;return`<div class="brow"><div><label>Полка ${i+1}, мм</label><input inputmode="decimal" data-i="${i}" data-k="l" value="${esc(s.l)}"></div>`+(last?`<div class="na dd" style="grid-column:span 2">последняя полка</div>`:`<div><label>Загиб, °</label><input inputmode="decimal" data-i="${i}" data-k="a" value="${esc(s.a)}"></div><div class="dd"><label>Направление</label><select data-i="${i}" data-k="d"><option value="1"${s.d!==-1?' selected':''}>↑ вверх</option><option value="-1"${s.d===-1?' selected':''}>↓ вниз</option></select></div>`)+`<button class="rm" type="button" data-rm="${i}" aria-label="Убрать полку"${B.segs.length<2?' disabled':''}>×</button></div>`}).join('');
  bDraw()}
 function bmsg(t,err,goto){$('bmsg').innerHTML=`<div class="bmsg${err?' err':''}">${t}${goto?'<br><button class="btn sm" type="button" id="bto">Перейти к заявке →</button>':''}</div>`;if(goto)$('bto').onclick=()=>{openSec('s-form',true,true);setTimeout(()=>$('fn').focus({preventScroll:true}),420)}}
-$('bpre').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!b)return;const p=PRESETS[+b.dataset.p];B.segs=JSON.parse(JSON.stringify(p.s));B.item=p.item;B.preset=+b.dataset.p;bRows()});
+$('bpre').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!b)return;const p=PRESETS[+b.dataset.p];B.segs=JSON.parse(JSON.stringify(p.s));B.item=p.item;B.preset=+b.dataset.p;B.tpl='';B.h0=null;$('bnote').innerHTML='';document.querySelectorAll('#bcat .on').forEach(x=>x.classList.remove('on'));bRows()});
+function thumb(sg,h0){const m={sg:sg.map(s=>({l:s.l,a:s.a||0,d:s.d||1}))};const th0=h0*Math.PI/180,P=geo(m.sg,th0).P;
+ const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mx=Math.min(...xs),Mx=Math.max(...xs),my=Math.min(...ys),My=Math.max(...ys),bw=Math.max(Mx-mx,1),bh=Math.max(My-my,1),k=Math.min(88/bw,40/bh),ox=(100-bw*k)/2-mx*k,oy=(50-bh*k)/2-my*k;
+ return`<svg viewBox="0 0 100 50"><polyline points="${P.map(p=>(p[0]*k+ox).toFixed(1)+','+(p[1]*k+oy).toFixed(1)).join(' ')}" fill="none" stroke="#f07824" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
+$('bcat').innerHTML=TPL.map(t=>`<button type="button" data-t="${t.id}" title="${esc(t.n)}">${thumb(tplSegs(t),t.s[0][1])}<b>${esc(t.n)}</b><small>развёртка ${tplDev(t)} мм</small></button>`).join('');
+$('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=TPL.find(x=>x.id===b.dataset.t);
+ B.segs=tplSegs(t).map(x=>Object.assign({},x));B.item=t.item;B.preset=-1;B.tpl=t.n;B.h0=t.s[0][1];
+ document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x===b));
+ $('bnote').innerHTML=`<div class="bmsg" style="background:#fff6ef;color:var(--ink)"><b>${esc(t.n)}</b> · развёртка ${tplDev(t)} мм${t.note?'<br>'+esc(t.note):''}${t.cx?'<br>Сложное изделие: чертёж упрощённый, точные сгибы уточним по телефону.':''}<br><small>Размеры можно менять в полях ниже.</small></div>`;
+ bRows();$('bsvg').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'})});
 $('brows').addEventListener('input',e=>{const i=e.target.dataset.i;if(i===undefined)return;const k=e.target.dataset.k;B.segs[i][k]=k==='d'?+e.target.value:e.target.value;B.preset=-1;bDraw()});
 $('brows').addEventListener('change',e=>{if(e.target.dataset.k==='d'){const i=e.target.dataset.i;B.segs[i].d=+e.target.value;bDraw()}});
 $('brows').addEventListener('click',e=>{const r=e.target.closest('[data-rm]');if(r&&B.segs.length>1){B.segs.splice(+r.dataset.rm,1);B.preset=-1;bRows()}});
@@ -592,7 +636,7 @@ function svgToJpeg(svg){return new Promise((ok,no)=>{const im=new Image();im.onl
 $('bgo').onclick=async()=>{
  const m=bModel();if(!m.ok)return bmsg('Заполните длины всех полок и длину изделия.',1);
  bn++;const ang=m.sg.slice(0,-1).map(s=>(+s.a)+'°').join(' / ');
- const text=`Изделие ${bn}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт.`+(m.h1||m.h2?` Завальцовка ${m.hw} мм: ${[m.h1?'начало ('+(m.s1==='out'?'наружу':'внутрь')+')':'',m.h2?'конец ('+(m.s2==='out'?'наружу':'внутрь')+')':''].filter(Boolean).join(', ')}.`:'')+(m.col?` Цвет RAL ${m.col}.`:'')+` Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
+ const text=`Изделие ${bn}${B.tpl?' «'+B.tpl+'»':''}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт.`+(m.h1||m.h2?` Завальцовка ${m.hw} мм: ${[m.h1?'начало ('+(m.s1==='out'?'наружу':'внутрь')+')':'',m.h2?'конец ('+(m.s2==='out'?'наружу':'внутрь')+')':''].filter(Boolean).join(', ')}.`:'')+(m.col?` Цвет RAL ${m.col}.`:'')+` Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
  const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text;
  let note='Эскиз приложен к заявке.';
  try{
@@ -672,7 +716,7 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
  if(PG){document.title=PG.title;const d=document.querySelector('meta[name=description]');if(d)d.content=PG.desc;
   $('h1').innerHTML=PG.h1;if(PG.text)$('tagline').textContent=PG.text;
   if(PG.item&&[...$('fi').options].some(o=>o.value===PG.item))$('fi').value=PG.item}
- const L=[['index.html','Главная'],['otlivy.html','Отливы'],['planki.html','Планки'],['konki.html','Коньки'],['otkosy.html','Откосы']];
+ const L=[['index.html','Главная'],['karta.html','Каталог'],['otlivy.html','Отливы'],['planki.html','Планки'],['konki.html','Коньки'],['otkosy.html','Откосы']];
  const f=document.createElement('div');f.className='pgl';f.innerHTML=L.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('·');$('foot').appendChild(f)})();
 
 /* ===== версия 10: эффекты ===== */
