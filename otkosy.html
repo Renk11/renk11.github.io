@@ -63,7 +63,7 @@ nav{display:flex;gap:4px;font-size:14px}nav button{background:none;border:0;colo
 .hero p{font-size:15.5px;color:#d3dbe3;margin:0 0 16px;max-width:560px}
 .badge{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;background:linear-gradient(rgba(240,120,36,.15),rgba(240,120,36,.15)),rgba(20,27,35,.7);border:1px solid rgba(240,120,36,.55);border-radius:14px;padding:10px 14px;margin-bottom:16px}
 .badge b{font-size:22px;color:#ffb27a}.badge span{font-size:14px;color:#f0d8c5}
-.cta{display:flex;gap:10px}.cta .btn{flex:1;padding:12px 10px;min-width:0}
+.cta{display:flex;gap:10px;flex-wrap:wrap}.cta .btn{flex:1 1 auto;padding:12px 14px;min-width:0;white-space:nowrap}@media(max-width:640px){.cta .btn:first-child{flex:1 1 100%}}
 main.wrap{padding-top:14px;padding-bottom:30px}
 .acc{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden;scroll-margin-top:66px;transition:box-shadow .2s,border-color .2s}
 .acc.open{border-color:var(--acc);box-shadow:0 4px 18px rgba(24,33,43,.10)}
@@ -232,18 +232,23 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 .acc{background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(240,120,36,0),rgba(240,120,36,0) 100%)}
 .acc:hover{background-image:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(240,120,36,.11),rgba(240,120,36,0) 70%)}
 .btn{will-change:translate}
-.rail{position:fixed;top:50%;z-index:2;display:none;transform:translateY(-50%)}
-.rail.l{left:max(14px,calc(50% - 590px - 190px));width:170px}.rail.r{right:max(14px,calc(50% - 590px - 232px));width:212px}
-.rail.l a{display:flex;align-items:center;gap:10px;padding:9px 12px;margin-bottom:6px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-decoration:none;backdrop-filter:blur(6px);transition:transform .2s,background .2s,border-color .2s}
-.rail.l a:hover{transform:translateX(5px);border-color:var(--acc)}.rail.l a.on{background:var(--acc);color:#fff;border-color:var(--acc)}
-.rail.r .qc{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 6px 24px rgba(24,33,43,.08);backdrop-filter:blur(6px)}
-.rail.r b{display:block;margin-bottom:8px}.rail.r label{display:block;font-size:12px;color:var(--mut);margin:6px 0 3px}
-.rail.r input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:9px;font:inherit}
-.rail.r .qr{margin:10px 0 8px;font-size:22px;font-weight:800;color:var(--acc2)}.rail.r small{color:var(--mut)}
-.rail.r .btn{width:100%;margin-top:6px}
+.dock{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:60;display:none;width:60px;padding:10px 8px;background:rgba(24,33,43,.94);border-radius:0 18px 18px 0;box-shadow:4px 8px 28px rgba(24,33,43,.28);overflow:hidden;transition:width .28s cubic-bezier(.2,.7,.2,1)}
+.dock:hover,.dock:focus-within{width:212px}
+.dock a{display:flex;align-items:center;gap:14px;height:46px;padding:0 11px;margin:3px 0;border-radius:12px;color:#dfe7ee;font-size:14px;font-weight:600;white-space:nowrap;cursor:pointer;text-decoration:none;transition:background .2s,color .2s}
+.dock a span{font-size:22px;width:26px;text-align:center;flex:none}.dock a em{font-style:normal;opacity:0;transition:opacity .2s}
+.dock:hover a em,.dock:focus-within a em{opacity:1}
+.dock a:hover{background:rgba(255,255,255,.1)}.dock a.on{background:var(--acc);color:#fff}
+.qf{position:fixed;right:22px;bottom:22px;z-index:70;display:none;flex-direction:column;align-items:flex-end;gap:10px}
+.qf .qb{display:flex;align-items:center;gap:8px;border:0;cursor:pointer;background:linear-gradient(135deg,#f07824,#c4580e);color:#fff;font:inherit;font-weight:800;font-size:15px;padding:14px 20px;border-radius:30px;box-shadow:0 8px 26px rgba(196,88,14,.45);transition:transform .2s,box-shadow .2s}
+.qf .qb:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(196,88,14,.55)}
+.qf .qc{width:252px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 40px rgba(24,33,43,.22);transform-origin:100% 100%;transition:transform .25s cubic-bezier(.2,.7,.2,1),opacity .2s}
+.qf:not(.open) .qc{transform:scale(.85) translateY(10px);opacity:0;pointer-events:none;position:absolute;visibility:hidden}
+.qf b{display:block;margin-bottom:6px}.qf label{display:block;font-size:12px;color:var(--mut);margin:6px 0 3px}
+.qf input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:9px;font:inherit}
+.qf .qr{margin:10px 0 6px;font-size:24px;font-weight:800;color:var(--acc2)}.qf small{color:var(--mut)}.qf .btn{width:100%;margin-top:8px}
 @media(min-width:1000px){#amb{display:block}}
 @media(min-width:1200px){.wrap{max-width:1180px}}
-@media(min-width:1620px){.rail{display:block}}
+@media(min-width:1200px){.dock{display:block}}@media(min-width:1000px){.qf{display:flex}}
 .cv{position:fixed;inset:0;z-index:300;pointer-events:none}
 </style>
 </head>
@@ -371,7 +376,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 10 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 11 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -704,15 +709,19 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
   (function st(){g.clearRect(0,0,c.width,c.height);let alive=0;ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.22;p.vx*=.985;p.l-=.016;if(p.l>0){alive++;g.globalAlpha=Math.max(0,p.l);g.fillStyle=p.c;g.fillRect(p.x,p.y,p.s,p.s*1.6)}});alive?requestAnimationFrame(st):c.remove()})()};
  const f=$('f');if(f)new MutationObserver(()=>{if($('fm').querySelector('.done')&&!f.dataset.b){f.dataset.b=1;const r=$('fm').getBoundingClientRect();burst(r.left+r.width/2,r.top+40)}else if(!$('fm').querySelector('.done'))delete f.dataset.b}).observe($('fm'),{childList:true,subtree:true});
  const bg=$('bgo');if(bg)bg.addEventListener('click',()=>{const r=bg.getBoundingClientRect();setTimeout(()=>burst(r.left+r.width/2,r.top),300)});
- /* боковые панели на широких экранах */
- const L=document.createElement('div');L.className='rail l';L.innerHTML=SECS.filter(s=>s.id!=='s-trust').map(s=>`<a data-go="${s.id}">${s.ic} ${s.t.replace('Примеры работ','Работы').replace('Конструктор изделия','Конструктор').replace('Цены и калькулятор','Цены').replace('Что изготавливаем','Услуги').replace('Частые вопросы','Вопросы').replace('Оставить заявку','Заявка')}</a>`).join('');
- L.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a)openSec(a.dataset.go,true,true)});document.body.appendChild(L);
- const syncRail=()=>L.querySelectorAll('a').forEach(a=>a.classList.toggle('on',!!$(a.dataset.go)&&$(a.dataset.go).classList.contains('open')));
+ /* левая панель-док и плавающая кнопка быстрого расчёта */
+ const short={'s-uslugi':'Услуги','s-price':'Цены','s-build':'Конструктор','s-raboty':'Работы','s-ba':'До и после','s-steps':'Как заказать','s-faq':'Вопросы','s-form':'Заявка','s-contacts':'Контакты'};
+ const D=document.createElement('nav');D.className='dock';D.setAttribute('aria-label','Разделы сайта');
+ D.innerHTML=SECS.filter(x=>short[x.id]).map(x=>`<a data-go="${x.id}" tabindex="0" title="${short[x.id]}"><span>${x.ic}</span><em>${short[x.id]}</em></a>`).join('');
+ D.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a)openSec(a.dataset.go,true,true)});
+ D.addEventListener('keydown',e=>{if(e.key==='Enter'){const a=e.target.closest('[data-go]');if(a)openSec(a.dataset.go,true,true)}});document.body.appendChild(D);
+ const syncRail=()=>D.querySelectorAll('a').forEach(a=>a.classList.toggle('on',!!$(a.dataset.go)&&$(a.dataset.go).classList.contains('open')));
  new MutationObserver(syncRail).observe($('acc'),{attributes:true,subtree:true,attributeFilter:['class']});syncRail();
- const R=document.createElement('div');R.className='rail r';R.innerHTML='<div class="qc"><b>⚡ Быстрый расчёт</b><label for="qL">Длина, мм</label><input id="qL" inputmode="numeric" value="2000"><label for="qW">Развёртка, мм</label><input id="qW" inputmode="numeric" value="300"><div class="qr" id="qR"></div><small>ориентировочно, 1 шт.</small><button class="btn sm" id="qGo" type="button">В заявку</button></div>';document.body.appendChild(R);
+ const R=document.createElement('div');R.className='qf';R.innerHTML='<div class="qc" id="qc"><b>⚡ Быстрый расчёт</b><label for="qL">Длина, мм</label><input id="qL" inputmode="numeric" value="2000"><label for="qW">Развёртка, мм</label><input id="qW" inputmode="numeric" value="300"><div class="qr" id="qR"></div><small>ориентировочно, 1 шт.</small><button class="btn sm" id="qGo" type="button">В заявку</button></div><button class="qb" id="qB" type="button" aria-expanded="false">⚡ Быстрый расчёт</button>';document.body.appendChild(R);
+ $('qB').onclick=()=>{const o=R.classList.toggle('open');$('qB').setAttribute('aria-expanded',o);$('qB').textContent=o?'✕ Закрыть':'⚡ Быстрый расчёт'};
  const qv=()=>{const l=+String($('qL').value).replace(',','.'),w=+String($('qW').value).replace(',','.');return l>0&&w>0?{l,w,p:l*w/1e6*C.ppm+C.make}:null};
  const qd=()=>{const v=qv();$('qR').textContent=v?'≈ '+money(v.p):'—'};['qL','qW'].forEach(i=>$(i).addEventListener('input',qd));qd();window.__qd=qd;
- $('qGo').onclick=()=>{const v=qv();if(!v)return;const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+'Деталь '+v.l+' × '+v.w+' мм. Ориентировочный расчёт на сайте: '+money(v.p);openSec('s-form',true,true)};
+ $('qGo').onclick=()=>{const v=qv();if(!v)return;const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+'Деталь '+v.l+' × '+v.w+' мм. Ориентировочный расчёт на сайте: '+money(v.p);R.classList.remove('open');$('qB').textContent='⚡ Быстрый расчёт';openSec('s-form',true,true)};
 })();
 </script>
 </body></html>
