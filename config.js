@@ -36,7 +36,7 @@ const CONFIG={
  items:['Отливы','Планки','Коньки','Откосы','Парапет','Другое'],
  // Приём заявок: те же Firebase-данные, что и у приложения (это публичный ключ, не пароль)
  firebase:{apiKey:'AIzaSyDXA2vFEZgu4i0Aa4rZmS-jWbZ4bemaTSM',authDomain:'metall-cc71f.firebaseapp.com',projectId:'metall-cc71f',appId:'1:677558043511:web:5d83b5a39f59c1644a1772'},
- notifyUrl:'',  // ← адрес Cloudflare Worker для Telegram (см. инструкцию), пока пусто
+ notifyUrl:'https://zayavki.pavvvlik66.workers.dev',  // ← адрес Cloudflare Worker для Telegram (см. инструкцию), пока пусто
  metrika:'',    // ← номер счётчика Яндекс.Метрики (цифры), пока пусто
  lat:'', lon:'',// ← координаты мастерской для карты (например '61.668' и '50.836'), нужен ещё адрес выше
  banner:'',     // ← текст акции в верхней полосе (можно менять и из приложения)
