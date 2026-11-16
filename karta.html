@@ -57,6 +57,6 @@ function draw(t){const sg=tplSegs(t),n=sg.length;let th=t.s[0][1]*Math.PI/180,x=
  const T=(x,y,tx,c)=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="11" font-family="Arial" font-weight="700" text-anchor="middle" dominant-baseline="middle" fill="${c}" stroke="#fafbfc" stroke-width="3" paint-order="stroke">${tx}</text>`;
  sg.forEach((s,i)=>{const a=Q[i],c=Q[i+1],dx=c[0]-a[0],dy=c[1]-a[1],L=Math.hypot(dx,dy)||1;let nx=-dy/L,ny=dx/L;if(ny<-.01||(Math.abs(ny)<=.01&&nx<0)){nx=-nx;ny=-ny}b+=T((a[0]+c[0])/2+nx*11,(a[1]+c[1])/2+ny*11,s.l,'#18212b')});
  return`<svg viewBox="0 0 ${W} ${H}">${b}</svg>`}
-document.getElementById('g').innerHTML=TPL.map(t=>{const sg=tplSegs(t),d=tplDev(t);
- return`<div class="c"><h2>${t.n}</h2>${draw(t)}<table><tr><th>№</th><th>Полка, мм</th><th>Загиб далее</th></tr>${sg.map((s,i)=>`<tr><td>${i+1}</td><td>${s.l}</td><td>${s.a!==undefined?s.a+'° '+(s.d>0?'↶':'↷'):'—'}</td></tr>`).join('')}</table><div class="dev">Развёртка: ${d} мм (${(d/1000).toFixed(3).replace('.',',')} м)</div>${t.cx?'<div class="w">Сложное изделие: чертёж упрощённый, сгибы уточняются.</div>':''}${t.note?'<div class="w">'+t.note+'</div>':''}</div>`}).join('');
+document.getElementById('g').innerHTML=TPL.map(t=>{const d=t.t||0,sum=tplDev(t);
+ return`<div class="c"><h2>${t.n}</h2><img src="tpl/${t.id}.jpg" alt="${t.n}" style="width:100%;height:auto;display:block;background:#fff;border-radius:8px"><div class="dev">${d?'Развёртка: '+(d/1000).toFixed(3).replace('.',',')+' м ('+d+' мм)':'Развёртка: сумма всех полок (зависит от размеров)'}</div>${t.note?'<div class="w">'+t.note+'</div>':''}</div>`}).join('');
 </script></body></html>

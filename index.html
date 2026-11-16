@@ -250,10 +250,10 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 @media(min-width:1200px){.dock{display:block}}@media(min-width:1000px){.qf{display:flex}}
 .cv{position:fixed;inset:0;z-index:300;pointer-events:none}
 .cat{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 12px}.cat summary{cursor:pointer;font-weight:700;padding:12px 0}
-.catg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:0 0 12px}
+.catg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;padding:0 0 12px}
 .catg button{background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:8px 8px 10px;cursor:pointer;text-align:center;font:inherit;color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s}
 .catg button:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 6px 16px rgba(24,33,43,.1)}.catg button.on{border-color:var(--acc);background:#fff6ef}
-.catg svg{width:100%;height:54px;display:block;margin-bottom:4px}.catg b{display:block;font-size:13px;line-height:1.25}.catg small{color:var(--mut);font-size:12px}
+.catg svg{width:100%;height:54px;display:block;margin-bottom:4px}.catg img{width:100%;height:auto;display:block;margin-bottom:4px;border-radius:6px;background:#fff}.nimg{width:100%;max-width:420px;height:auto;display:block;margin:8px 0 4px;border-radius:8px;background:#fff;border:1px solid var(--line)}.catg b{display:block;font-size:13px;line-height:1.25}.catg small{color:var(--mut);font-size:12px}
 </style>
 </head>
 <body>
@@ -543,22 +543,22 @@ $('cbb').onclick=async()=>{
 /* ===== шаблоны изделий (из технологической карты мастерской) ===== */
 const TPL=[
  {id:'konek',n:'Планка конька',item:'Коньки',t:417,s:[[17,70],[152,35],[18,90],[40,0],[18,-90],[152,-35],[20,-70]]},
- {id:'torc',n:'Торцевая',item:'Планки',t:250,s:[[17,45],[115,0],[85,-90],[18,-135],[15,-90]]},
+ {id:'torc',n:'Торцевая',item:'Планки',t:250,s:[[17,45],[115,0],[85,-90],[18,-125],[15,-90]]},
  {id:'karn',n:'Карнизная',item:'Планки',t:178,s:[[95,-5],[65,-55],[18,-100]]},
  {id:'endv',n:'Ендова верхняя',item:'Коньки',t:312,s:[[16,-45],[80,-25],[18,-90],[80,0],[18,90],[80,25],[20,45]]},
  {id:'endn',n:'Ендова нижняя',item:'Коньки',t:625,s:[[20,-55],[293,-34],[293,34],[20,55]],tn:'на карте 0,625 (сумма 626)'},
  {id:'primv',n:'Примыкание верхнее',item:'Планки',t:417,s:[[20,-70],[130,-90],[250,0],[17,-30]]},
- {id:'ugn',n:'Угол наружный',item:'Планки',t:0,s:[[18,60],[100,0],[100,-90],[15,-120]],free:[1,2],note:'длины полок — любые, укажите свои'},
- {id:'ugv',n:'Угол внутренний',item:'Планки',t:0,s:[[18,-135],[100,-90],[100,0],[15,45]],free:[1,2],note:'длины полок — любые, укажите свои'},
+ {id:'ugn',n:'Угол наружный',item:'Планки',t:0,s:[[18,40],[100,0],[100,-90],[15,-105]],free:[1,2],note:'длины полок — любые, укажите свои'},
+ {id:'ugv',n:'Угол внутренний',item:'Планки',t:0,s:[[18,-110],[100,-90],[100,0],[15,-20]],free:[1,2],note:'длины полок — любые, укажите свои'},
  {id:'primn',n:'Примыкание нижнее',item:'Планки',t:417,s:[[20,0],[122,-90],[250,0],[25,20]]},
- {id:'ugns',n:'Угол наружный сложный',item:'Планки',t:0,s:[[22,-90],[75,0],[75,-90],[40,90],[18,180]],free:[0],cx:1,note:'N зависит от обшивки'},
- {id:'ugvs',n:'Угол внутренний сложный',item:'Планки',t:0,s:[[40,-90],[75,-45],[40,0]],cx:1},
+ {id:'ugns',n:'Угол наружный сложный',item:'Планки',t:0,s:[[22,188],[75,0],[75,-90],[40,98],[18,180]],free:[0],cx:1,note:'N зависит от обшивки'},
+ {id:'ugvs',n:'Угол внутренний сложный',item:'Планки',t:0,s:[[40,-90],[75,-40],[40,0]],cx:1},
  {id:'stks',n:'Стыковочная сложная',item:'Планки',t:0,s:[[40,0],[18,90],[75,0],[18,-90],[40,0]],cx:1},
  {id:'zav1',n:'Планка завершающая',item:'Планки',t:0,s:[[15,105],[25,90],[22,0],[40,-90]],free:[2],note:'N (верхняя полка) зависит от обшивки'},
  {id:'stk',n:'Планка стыковочная',item:'Планки',t:90,s:[[15,20],[60,0],[15,-20]]},
  {id:'snez',n:'Снегозадержатель',item:'Планки',t:208,s:[[30,0],[65,90],[95,-27],[18,0]]},
  {id:'otl',n:'Отлив',item:'Отливы',t:0,s:[[20,-90],[150,-10],[15,-90]],free:[1],note:'длина полки — любая, укажите свою'},
- {id:'zob',n:'Зобная планка',item:'Планки',t:85,s:[[15,120],[20,90],[15,0],[20,-90],[15,-120]]},
+ {id:'zob',n:'Зобная планка',item:'Планки',t:85,s:[[15,105],[20,90],[15,0],[20,-90],[15,-105]]},
  {id:'torcg',n:'Торцевая ГЧ',item:'Планки',t:250,s:[[115,0],[20,50],[85,-75],[15,-105],[15,-90]]},
  {id:'zav2',n:'Планка завершающая (блокхаус ИЖ)',item:'Планки',t:125,s:[[15,105],[30,90],[30,0],[50,-90]]},
  {id:'st1',n:'Стартовая (экобрус GL/ИЖ, евробрус)',item:'Планки',t:115,s:[[60,-90],[20,30],[15,150],[20,30]],cx:1},
@@ -621,11 +621,11 @@ $('bpre').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!
 function thumb(sg,h0){const m={sg:sg.map(s=>({l:s.l,a:s.a||0,d:s.d||1}))};const th0=h0*Math.PI/180,P=geo(m.sg,th0).P;
  const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mx=Math.min(...xs),Mx=Math.max(...xs),my=Math.min(...ys),My=Math.max(...ys),bw=Math.max(Mx-mx,1),bh=Math.max(My-my,1),k=Math.min(88/bw,40/bh),ox=(100-bw*k)/2-mx*k,oy=(50-bh*k)/2-my*k;
  return`<svg viewBox="0 0 100 50"><polyline points="${P.map(p=>(p[0]*k+ox).toFixed(1)+','+(p[1]*k+oy).toFixed(1)).join(' ')}" fill="none" stroke="#f07824" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
-$('bcat').innerHTML=TPL.map(t=>`<button type="button" data-t="${t.id}" title="${esc(t.n)}">${thumb(tplSegs(t),t.s[0][1])}<b>${esc(t.n)}</b><small>развёртка ${tplDev(t)} мм</small></button>`).join('');
+$('bcat').innerHTML=TPL.map(t=>`<button type="button" data-t="${t.id}" title="${esc(t.n)}"><img src="tpl/${t.id}.jpg" alt="${esc(t.n)}" loading="lazy" onerror="this.style.visibility='hidden'"><b>${esc(t.n)}</b><small>развёртка ${tplDev(t)} мм</small></button>`).join('');
 $('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=TPL.find(x=>x.id===b.dataset.t);
  B.segs=tplSegs(t).map(x=>Object.assign({},x));B.item=t.item;B.preset=-1;B.tpl=t.n;B.h0=t.s[0][1];
  document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x===b));
- $('bnote').innerHTML=`<div class="bmsg" style="background:#fff6ef;color:var(--ink)"><b>${esc(t.n)}</b> · развёртка ${tplDev(t)} мм${t.note?'<br>'+esc(t.note):''}${t.cx?'<br>Сложное изделие: чертёж упрощённый, точные сгибы уточним по телефону.':''}<br><small>Размеры можно менять в полях ниже.</small></div>`;
+ $('bnote').innerHTML=`<div class="bmsg" style="background:#fff6ef;color:var(--ink)"><b>${esc(t.n)}</b> · развёртка ${tplDev(t)} мм<img class="nimg" src="tpl/${t.id}.jpg" alt="" onerror="this.remove()"><small>Эскиз с технологической карты. Чертёж ниже — приблизительный, по нему считаются развёртка и цена.</small>${t.note?'<br>'+esc(t.note):''}${t.cx?'<br>Сложное изделие: чертёж упрощённый, точные сгибы уточним по телефону.':''}<br><small>Размеры можно менять в полях ниже.</small></div>`;
  bRows();$('bsvg').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'})});
 $('brows').addEventListener('input',e=>{const i=e.target.dataset.i;if(i===undefined)return;const k=e.target.dataset.k;B.segs[i][k]=k==='d'?+e.target.value:e.target.value;B.preset=-1;bDraw()});
 $('brows').addEventListener('change',e=>{if(e.target.dataset.k==='d'){const i=e.target.dataset.i;B.segs[i].d=+e.target.value;bDraw()}});
