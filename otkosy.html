@@ -381,7 +381,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 12 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 13 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -396,13 +396,14 @@ function openSec(id,scroll=true,force){
   try{history.replaceState(null,'','#'+id)}catch(e){}
   el.querySelectorAll('.mini,.step,.tile,.contacts>*,.sw>div,.gal figure,.ex,.calc,form').forEach((c,i)=>c.style.animationDelay=(.08+Math.min(i,12)*.05)+'s');
   if(scroll)focusSec(el)}
- else if(window.innerWidth<1000){try{history.replaceState(null,'',location.pathname)}catch(e){}}
- else{el.classList.add('open');el.querySelector('.acc-h').setAttribute('aria-expanded','true')}}
+ else{try{history.replaceState(null,'',location.pathname)}catch(e){}}}
 document.addEventListener('click',e=>{
  const h=e.target.closest('.acc-h');if(h){openSec(h.parentElement.id);return}
  const o=e.target.closest('[data-open]');if(o){openSec(o.dataset.open,true,true)}});
-if(location.hash&&$(location.hash.slice(1)))openSec(location.hash.slice(1),false,true);
-else if(window.innerWidth>=1000)openSec('s-price',false,true);
+/* при загрузке все вкладки закрыты, страница в начале */
+try{history.scrollRestoration='manual'}catch(e){}
+if(location.hash){try{history.replaceState(null,'',location.pathname)}catch(e){}}
+window.scrollTo(0,0);
 /* калькулятор */
 const rows=[{a:'',b:'',q:1}];
 function calcDraw(){$('crows').innerHTML=rows.map((r,i)=>`<div class="crow"><div><label>Длина, мм</label><input inputmode="decimal" data-i="${i}" data-k="a" value="${esc(r.a)}" placeholder="2000"></div><div><label>Развёртка, мм</label><input inputmode="decimal" data-i="${i}" data-k="b" value="${esc(r.b)}" placeholder="300"></div><div><label>Шт.</label><input inputmode="numeric" data-i="${i}" data-k="q" value="${esc(r.q)}"></div><button class="rm" type="button" data-rm="${i}" aria-label="Удалить" ${rows.length<2?'hidden':''}>×</button></div>`).join('');calcOut()}
