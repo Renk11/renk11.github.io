@@ -46,7 +46,7 @@ nav{display:flex;gap:4px;font-size:14px}nav button{background:none;border:0;colo
  .badge b{font-size:28px}.badge span{font-size:15px}
  main.wrap{padding-top:22px}
  #acc{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
- #acc .acc{margin:0}.acc.open{grid-column:1/-1}
+ #acc .acc{margin:0}.acc.open{grid-column:1/-1;order:-1}
  .acc-h{min-height:76px}
  .grid{grid-template-columns:repeat(3,1fr)!important}.gal{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))!important}
  .steps{grid-template-columns:repeat(4,1fr)!important}.step{flex-direction:column}
@@ -214,7 +214,36 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
 .done{line-height:1.6}.done .btn{margin-top:8px}
 @media(max-width:640px){.brow{grid-template-columns:1fr 1fr 40px}.brow .dd{grid-column:1/3}.cbr{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.hc,.hk{transition:none}}
-.bopt{margin:10px 0;font-size:14px}.bopt small{color:var(--acc2);font-weight:700}.hemr{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px}.hemr label{display:flex;gap:6px;align-items:center}.hemr input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc)}
+.bopt{margin:10px 0;font-size:14px}.bopt small{color:var(--acc2);font-weight:700}.hemr{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px}.hemr label{display:flex;gap:6px;align-items:center}.hemr select.hs{width:auto;min-height:38px;padding:6px 8px}.hemr input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc)}
+/* ===== версия 10: фон, ленты, свечение, боковые панели ===== */
+#amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;display:none}
+#amb .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(24,33,43,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(24,33,43,.045) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,transparent 38%,#000 85%);mask-image:radial-gradient(ellipse at 50% 40%,transparent 38%,#000 85%)}
+#amb .glow{position:absolute;width:620px;height:620px;border-radius:50%;left:0;top:0;background:radial-gradient(circle,rgba(240,120,36,.14),rgba(240,120,36,0) 65%);transform:translate(var(--gx,60vw),var(--gy,30vh)) translate(-50%,-50%);will-change:transform}
+#amb .sh{position:absolute;width:var(--w,170px);color:#2b3948;opacity:.5;animation:fl var(--t,9s) ease-in-out infinite;animation-delay:var(--d,0s);will-change:transform}
+#amb .sh svg{width:100%;height:auto;overflow:visible;display:block}
+#amb .sh path.f{stroke:url(#ambSteel)}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-22px) rotate(calc(var(--r,0deg) + 5deg))}}
+main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top{z-index:50}
+.ribbon{background:linear-gradient(90deg,#c4580e,#f07824 50%,#c4580e);color:#fff;overflow:hidden;white-space:nowrap;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.ribbon div{display:inline-block;padding:9px 0;animation:rib 38s linear infinite}
+.ribbon span{margin:0 18px}.ribbon i{font-style:normal;opacity:.7}
+@keyframes rib{to{transform:translateX(-50%)}}
+.acc{background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(240,120,36,0),rgba(240,120,36,0) 100%)}
+.acc:hover{background-image:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(240,120,36,.11),rgba(240,120,36,0) 70%)}
+.btn{will-change:translate}
+.rail{position:fixed;top:50%;z-index:2;display:none;transform:translateY(-50%)}
+.rail.l{left:max(14px,calc(50% - 590px - 190px));width:170px}.rail.r{right:max(14px,calc(50% - 590px - 232px));width:212px}
+.rail.l a{display:flex;align-items:center;gap:10px;padding:9px 12px;margin-bottom:6px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-decoration:none;backdrop-filter:blur(6px);transition:transform .2s,background .2s,border-color .2s}
+.rail.l a:hover{transform:translateX(5px);border-color:var(--acc)}.rail.l a.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.rail.r .qc{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 6px 24px rgba(24,33,43,.08);backdrop-filter:blur(6px)}
+.rail.r b{display:block;margin-bottom:8px}.rail.r label{display:block;font-size:12px;color:var(--mut);margin:6px 0 3px}
+.rail.r input{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:9px;font:inherit}
+.rail.r .qr{margin:10px 0 8px;font-size:22px;font-weight:800;color:var(--acc2)}.rail.r small{color:var(--mut)}
+.rail.r .btn{width:100%;margin-top:6px}
+@media(min-width:1000px){#amb{display:block}}
+@media(min-width:1200px){.wrap{max-width:1180px}}
+@media(min-width:1620px){.rail{display:block}}
+.cv{position:fixed;inset:0;z-index:300;pointer-events:none}
 </style>
 </head>
 <body>
@@ -311,7 +340,7 @@ const SECS=[
 {
 const byId=id=>SECS.find(s=>s.id===id);
 const BUILD_H=`<p class="note" style="margin-top:0">Соберите профиль из полок и загибов — сразу увидите чертёж, ширину развёртки и цену. Чертёж сам прикрепится к заявке.</p>
-<div class="pre" id="bpre"></div><div class="bsvg" id="bsvg"></div><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><label><input type="checkbox" id="bh2"> в конце</label><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div><div id="brows"></div>
+<div class="pre" id="bpre"></div><div class="bsvg" id="bsvg"></div><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><select id="bh1s" class="bi hs" aria-label="Сторона завальцовки в начале"><option value="in">внутрь</option><option value="out">наружу</option></select><label><input type="checkbox" id="bh2"> в конце</label><select id="bh2s" class="bi hs" aria-label="Сторона завальцовки в конце"><option value="in">внутрь</option><option value="out">наружу</option></select><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div><div id="brows"></div>
 <button class="btn out sm" id="badd" type="button">＋ Добавить полку</button>
 <div class="row" style="margin-top:12px"><div><label for="blen">Длина изделия, мм</label><input id="blen" class="bi" inputmode="numeric" value="2000"></div><div><label for="bqty">Количество, шт.</label><input id="bqty" class="bi" inputmode="numeric" value="1"></div></div>
 <div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>`;
@@ -341,7 +370,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 9 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 10 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -513,8 +542,8 @@ function bModel(){
  const sg=B.segs.map(s=>({l:num(s.l),a:num(s.a)||0,d:s.d||1})),len=num($('blen').value),qty=Math.max(1,Math.round(num($('bqty').value)||1));
  const ok=sg.length>0&&sg.every(s=>s.l>0)&&len>0;
  const hw=Math.max(0,Math.min(50,num($('bhw').value)||0)),h1=$('bh1').checked&&hw>0,h2=$('bh2').checked&&hw>0;
- const dev=sg.reduce((a,s)=>a+(s.l||0),0)+(h1?2*hw:0)+(h2?2*hw:0),per=len*dev/1e6*C.ppm+C.make;
- return{ok,sg,len,qty,dev,hw,h1,h2,col:B.color,area:len*dev/1e6,per,tot:per*qty}}
+ const dev=sg.reduce((a,s)=>a+(s.l||0),0)+(h1?hw:0)+(h2?hw:0),per=len*dev/1e6*C.ppm+C.make;
+ return{ok,sg,len,qty,dev,hw,h1,h2,s1:$('bh1s').value,s2:$('bh2s').value,col:B.color,area:len*dev/1e6,per,tot:per*qty}}
 function bSvg(m){
  let body='';
  if(m.ok){
@@ -525,9 +554,11 @@ function bSvg(m){
   const Q=P.map(p=>[p[0]*k+ox,p[1]*k+oy]);
   const pts=Q.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '),rc=m.col&&RAL[m.col]?RAL[m.col][1]:'#f07824';
   body+=`<polyline points="${pts}" fill="none" stroke="#18212b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${pts}" fill="none" stroke="${rc}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
-  const hemD=(a,b,t)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,len=Math.min(L*.8,Math.max(12,m.hw*k)),nx=uy,ny=-ux;
-   return `<line x1="${(a[0]+nx*9).toFixed(1)}" y1="${(a[1]+ny*9).toFixed(1)}" x2="${(a[0]+ux*len+nx*9).toFixed(1)}" y2="${(a[1]+uy*len+ny*9).toFixed(1)}" stroke="#18212b" stroke-width="3" stroke-dasharray="5 3"/>`};
-  if(m.h1)body+=hemD(Q[0],Q[1]);if(m.h2)body+=hemD(Q[Q.length-1],Q[Q.length-2]);
+  const hemD=(a,b,r,side)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,len=Math.min(L*.8,Math.max(22,m.hw*k));let nx=uy,ny=-ux;
+   if(r&&(nx*(r[0]-a[0])+ny*(r[1]-a[1]))<0){nx=-nx;ny=-ny}if(side==='out'){nx=-nx;ny=-ny}
+   return `<line x1="${(a[0]+nx*9).toFixed(1)}" y1="${(a[1]+ny*9).toFixed(1)}" x2="${(a[0]+ux*len+nx*9).toFixed(1)}" y2="${(a[1]+uy*len+ny*9).toFixed(1)}" stroke="#18212b" stroke-width="3" stroke-linecap="round"/>`};
+  const nq=Q.length;
+  if(m.h1)body+=hemD(Q[0],Q[1],Q[2]||null,m.s1);if(m.h2)body+=hemD(Q[nq-1],Q[nq-2],nq>2?Q[nq-3]:null,m.s2);
   Q.forEach(p=>{body+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3" fill="#18212b"/>`});
   const T=(x,y,t,c)=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="15" font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" dominant-baseline="middle" fill="${c}" stroke="#fff" stroke-width="4" paint-order="stroke">${t}</text>`;
   m.sg.forEach((s,i)=>{const a=Q[i],b=Q[i+1],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;let nx=-dy/L,ny=dx/L;if(ny<-.01||(Math.abs(ny)<=.01&&nx<0)){nx=-nx;ny=-ny}
@@ -535,7 +566,7 @@ function bSvg(m){
   for(let i=0;i<m.sg.length-1;i++){const a=m.sg[i].a;if(!(a>0))continue;const p=Q[i+1],q0=Q[i],q1=Q[i+2];
    let ux=(q1[0]-p[0])/(Math.hypot(q1[0]-p[0],q1[1]-p[1])||1)+(q0[0]-p[0])/(Math.hypot(q0[0]-p[0],q0[1]-p[1])||1),uy=(q1[1]-p[1])/(Math.hypot(q1[0]-p[0],q1[1]-p[1])||1)+(q0[1]-p[1])/(Math.hypot(q0[1]-p[1],q0[0]-p[0])||1);
    const ul=Math.hypot(ux,uy);if(ul<.2)continue;ux/=ul;uy/=ul;body+=T(p[0]+ux*26,p[1]+uy*26,a+'°','#c4580e')}}
- const hm=m.ok&&(m.h1||m.h2)?` · завальцовка ${m.hw} мм (${[m.h1?'начало':'',m.h2?'конец':''].filter(Boolean).join(', ')})`:'',cm=m.ok&&m.col&&RAL[m.col]?` · RAL ${m.col}`:'';
+ const hs=x=>x==='out'?'наружу':'внутрь',hl=m.ok?[m.h1?'начало, '+hs(m.s1):'',m.h2?'конец, '+hs(m.s2):''].filter(Boolean).join('; '):'',hm=m.ok&&(m.h1||m.h2)?` · завальцовка ${m.hw} мм (${hl})`:'',cm=m.ok&&m.col&&RAL[m.col]?` · RAL ${m.col}`:'';
  const title=m.ok?`Развёртка ${+m.dev.toFixed(1)} мм · длина ${m.len} мм · ${m.qty} шт.`:'Введите размеры',title2=(hm+cm).replace(/^ · /,'');
  return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 260" width="1120" height="520"><rect width="560" height="260" fill="#fff"/><text x="14" y="26" font-size="13" font-family="Arial,sans-serif" font-weight="700" fill="#18212b">${title}</text>${title2?`<text x="14" y="44" font-size="12" font-family="Arial,sans-serif" fill="#c4580e">${title2}</text>`:''}<text x="546" y="248" font-size="11" font-family="Arial,sans-serif" text-anchor="end" fill="#8a96a3">${esc(C.name)} · эскиз с сайта</text>${body}</svg>`}
 function bDraw(){const m=bModel();$('bsvg').innerHTML=bSvg(m);
@@ -555,7 +586,7 @@ function svgToJpeg(svg){return new Promise((ok,no)=>{const im=new Image();im.onl
 $('bgo').onclick=async()=>{
  const m=bModel();if(!m.ok)return bmsg('Заполните длины всех полок и длину изделия.',1);
  bn++;const ang=m.sg.slice(0,-1).map(s=>(+s.a)+'°').join(' / ');
- const text=`Изделие ${bn}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт.`+(m.h1||m.h2?` Завальцовка ${m.hw} мм: ${[m.h1?'начало':'',m.h2?'конец':''].filter(Boolean).join(' и ')}.`:'')+(m.col?` Цвет RAL ${m.col}.`:'')+` Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
+ const text=`Изделие ${bn}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт.`+(m.h1||m.h2?` Завальцовка ${m.hw} мм: ${[m.h1?'начало ('+(m.s1==='out'?'наружу':'внутрь')+')':'',m.h2?'конец ('+(m.s2==='out'?'наружу':'внутрь')+')':''].filter(Boolean).join(', ')}.`:'')+(m.col?` Цвет RAL ${m.col}.`:'')+` Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
  const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text;
  let note='Эскиз приложен к заявке.';
  try{
@@ -569,7 +600,7 @@ $('bsw').innerHTML='<div data-k="" class="on"><i style="background:#f07824"></i>
 function pickColor(d){B.color=d.dataset.k;document.querySelectorAll('#bsw>div').forEach(x=>x.classList.toggle('on',x===d));const r=RAL[B.color];$('bcn').textContent=r?'RAL '+B.color+' · '+r[0]:'';bDraw()}
 $('bsw').addEventListener('click',e=>{const d=e.target.closest('[data-k]');if(d)pickColor(d)});
 $('bsw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d=e.target.closest('[data-k]');if(d){e.preventDefault();pickColor(d)}}});
-['bh1','bh2'].forEach(i=>$(i).addEventListener('change',bDraw));$('bhw').addEventListener('input',bDraw);
+['bh1','bh2','bh1s','bh2s'].forEach(i=>$(i).addEventListener('change',bDraw));$('bhw').addEventListener('input',bDraw);
 bRows();
 
 /* ===== анимация «от листа до изделия» ===== */
@@ -620,7 +651,7 @@ function applySite(g){
  if(typeof g.banner==='string')C.banner=g.banner.trim().slice(0,200);
  if(Array.isArray(g.reviews))C.reviews=g.reviews.slice(0,12).filter(r=>r&&r.t).map(r=>({n:String(r.n||'').slice(0,60),t:String(r.t).slice(0,400)}));
  if(Array.isArray(g.facts))C.facts=g.facts.slice(0,6).filter(f=>f&&f.v).map(f=>({v:String(f.v).slice(0,20),l:String(f.l||'').slice(0,40)}));
- renderPrices();renderHours();renderBanner();renderTrust()}
+ renderPrices();renderHours();renderBanner();renderTrust();if(window.__qd)__qd()}
 renderTrust();renderBanner();
 try{const c=JSON.parse(localStorage.getItem('mc_site')||'null');if(c)applySite(c)}catch(_){}
 (window.requestIdleCallback||(f=>setTimeout(f,1500)))(async()=>{
@@ -637,5 +668,50 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
   if(PG.item&&[...$('fi').options].some(o=>o.value===PG.item))$('fi').value=PG.item}
  const L=[['index.html','Главная'],['otlivy.html','Отливы'],['planki.html','Планки'],['konki.html','Коньки'],['otkosy.html','Откосы']];
  const f=document.createElement('div');f.className='pgl';f.innerHTML=L.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('·');$('foot').appendChild(f)})();
+
+/* ===== версия 10: эффекты ===== */
+(function(){
+ const RM=matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ /* фон: сетка, свечение за курсором, плывущие профили */
+ const amb=document.createElement('div');amb.id='amb';amb.setAttribute('aria-hidden','true');
+ const P=[ 'M0 40 V0 H90','M0 0 V50 H70 V0','M0 0 H50 V40 H100 V0','M0 50 V0 H60 V50 H100 V10','M0 0 H80 V40','M0 30 H40 V0 H80 V30 H120' ];
+ const spots=[[2,12,150,-8,9,0],[1,48,120,10,11,1.5],[3,78,170,-4,8,.7],[93,20,130,12,10,.4],[94,55,160,-10,12,2],[91,84,120,6,9,1.1],[8,32,90,20,13,.9],[86,38,90,-16,14,2.4]];
+ amb.innerHTML='<div class="grid"></div><div class="glow"></div><svg width="0" height="0" style="position:absolute"><defs><linearGradient id="ambSteel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fb0c1"/><stop offset=".5" stop-color="#f07824"/><stop offset="1" stop-color="#c4580e"/></linearGradient></defs></svg>'+
+  spots.map((s,i)=>`<div class="sh" data-p="${(i%3)+1}" style="left:${s[0]}%;top:${s[1]}%;--w:${s[2]}px;--r:${s[3]}deg;--t:${s[4]}s;--d:${s[5]}s"><svg viewBox="-6 -6 132 66" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="${P[i%P.length]}" stroke="#18212b" stroke-opacity=".22" stroke-width="9" transform="translate(3 4)"/><path class="f" d="${P[i%P.length]}" stroke-width="6"/></svg></div>`).join('');
+ document.body.insertBefore(amb,document.body.firstChild);
+ const glow=amb.querySelector('.glow'),shs=[...amb.querySelectorAll('.sh')];
+ let tx=innerWidth*.6,ty=innerHeight*.3,cx=tx,cy=ty,sy=0,run=false;
+ function loop(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;glow.style.setProperty('--gx',cx+'px');glow.style.setProperty('--gy',cy+'px');
+  const y=window.pageYOffset||0;shs.forEach(s=>{s.style.translate='0 '+(-y*.04*(+s.dataset.p))+'px'});
+  if(Math.abs(tx-cx)>.5||Math.abs(ty-cy)>.5||y!==sy){sy=y;requestAnimationFrame(loop)}else run=false}
+ const kick=()=>{if(!run&&!RM){run=true;requestAnimationFrame(loop)}};
+ addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;kick()},{passive:true});addEventListener('scroll',kick,{passive:true});kick();
+ /* бегущая лента */
+ const words=['Отливы','Планки','Коньки','Откосы','Парапеты','Изделия по эскизу','Любой цвет RAL','Гнём металл точно по вашим размерам'];
+ const rb=document.createElement('div');rb.className='ribbon';rb.setAttribute('aria-hidden','true');
+ const seq=words.map(w=>`<span>${w}</span><i>◆</i>`).join('');rb.innerHTML='<div>'+seq+seq+seq+seq+'</div>';
+ document.querySelector('.hero').after(rb);
+ /* свечение карточек за курсором */
+ document.addEventListener('mousemove',e=>{const a=e.target.closest&&e.target.closest('.acc');if(a){const r=a.getBoundingClientRect();a.style.setProperty('--mx',(e.clientX-r.left)+'px');a.style.setProperty('--my',(e.clientY-r.top)+'px')}},{passive:true});
+ /* «магнитные» кнопки */
+ if(!RM)document.addEventListener('mousemove',e=>{const b=e.target.closest&&e.target.closest('.cta .btn,header .btn,.hero .btn');
+  document.querySelectorAll('.btn[data-mg]').forEach(x=>{if(x!==b){x.style.translate='';delete x.dataset.mg}});
+  if(b){const r=b.getBoundingClientRect(),dx=(e.clientX-(r.left+r.width/2))*.12,dy=(e.clientY-(r.top+r.height/2))*.22;b.style.translate=dx.toFixed(1)+'px '+dy.toFixed(1)+'px';b.dataset.mg=1}},{passive:true});
+ /* салют из искр */
+ window.burst=function(x,y){if(RM)return;const c=document.createElement('canvas');c.className='cv';c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);const g=c.getContext('2d');
+  const ps=Array.from({length:70},()=>{const a=Math.random()*Math.PI*2,v=3+Math.random()*7;return{x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,l:1,c:['#f07824','#ffb47a','#ffd9b8','#fff'][Math.random()*4|0],s:2+Math.random()*3}});
+  (function st(){g.clearRect(0,0,c.width,c.height);let alive=0;ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.22;p.vx*=.985;p.l-=.016;if(p.l>0){alive++;g.globalAlpha=Math.max(0,p.l);g.fillStyle=p.c;g.fillRect(p.x,p.y,p.s,p.s*1.6)}});alive?requestAnimationFrame(st):c.remove()})()};
+ const f=$('f');if(f)new MutationObserver(()=>{if($('fm').querySelector('.done')&&!f.dataset.b){f.dataset.b=1;const r=$('fm').getBoundingClientRect();burst(r.left+r.width/2,r.top+40)}else if(!$('fm').querySelector('.done'))delete f.dataset.b}).observe($('fm'),{childList:true,subtree:true});
+ const bg=$('bgo');if(bg)bg.addEventListener('click',()=>{const r=bg.getBoundingClientRect();setTimeout(()=>burst(r.left+r.width/2,r.top),300)});
+ /* боковые панели на широких экранах */
+ const L=document.createElement('div');L.className='rail l';L.innerHTML=SECS.filter(s=>s.id!=='s-trust').map(s=>`<a data-go="${s.id}">${s.ic} ${s.t.replace('Примеры работ','Работы').replace('Конструктор изделия','Конструктор').replace('Цены и калькулятор','Цены').replace('Что изготавливаем','Услуги').replace('Частые вопросы','Вопросы').replace('Оставить заявку','Заявка')}</a>`).join('');
+ L.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a)openSec(a.dataset.go,true,true)});document.body.appendChild(L);
+ const syncRail=()=>L.querySelectorAll('a').forEach(a=>a.classList.toggle('on',!!$(a.dataset.go)&&$(a.dataset.go).classList.contains('open')));
+ new MutationObserver(syncRail).observe($('acc'),{attributes:true,subtree:true,attributeFilter:['class']});syncRail();
+ const R=document.createElement('div');R.className='rail r';R.innerHTML='<div class="qc"><b>⚡ Быстрый расчёт</b><label for="qL">Длина, мм</label><input id="qL" inputmode="numeric" value="2000"><label for="qW">Развёртка, мм</label><input id="qW" inputmode="numeric" value="300"><div class="qr" id="qR"></div><small>ориентировочно, 1 шт.</small><button class="btn sm" id="qGo" type="button">В заявку</button></div>';document.body.appendChild(R);
+ const qv=()=>{const l=+String($('qL').value).replace(',','.'),w=+String($('qW').value).replace(',','.');return l>0&&w>0?{l,w,p:l*w/1e6*C.ppm+C.make}:null};
+ const qd=()=>{const v=qv();$('qR').textContent=v?'≈ '+money(v.p):'—'};['qL','qW'].forEach(i=>$(i).addEventListener('input',qd));qd();window.__qd=qd;
+ $('qGo').onclick=()=>{const v=qv();if(!v)return;const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+'Деталь '+v.l+' × '+v.w+' мм. Ориентировочный расчёт на сайте: '+money(v.p);openSec('s-form',true,true)};
+})();
 </script>
 </body></html>
