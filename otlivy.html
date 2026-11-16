@@ -6,8 +6,8 @@
 <title>Отливы на заказ в Сыктывкаре — оконные, цокольные, парапетные — Жестянщик</title>
 <meta name="description" content="Изготовление отливов на заказ в Сыктывкаре: оконные, цокольные и парапетные, из оцинкованной и окрашенной стали, любой цвет RAL. От 600 ₽/м² + 100 ₽ за деталь.">
 <meta name="theme-color" content="#18212b">
-<link rel="canonical" href="https://renk11.github.io/otlivy.html">
-<meta property="og:url" content="https://renk11.github.io/otlivy.html">
+<link rel="canonical" href="https://xn--11-mlcdlmt5aj5e2c.xn--p1ai/otlivy.html">
+<meta property="og:url" content="https://xn--11-mlcdlmt5aj5e2c.xn--p1ai/otlivy.html">
 <!-- Подтверждение прав (вставьте код из Яндекс.Вебмастера / Google Search Console, см. инструкцию):
 <meta name="yandex-verification" content="КОД">
 <meta name="google-site-verification" content="КОД">
@@ -15,7 +15,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:image" content="https://renk11.github.io/og-image.jpg">
+<meta property="og:image" content="https://xn--11-mlcdlmt5aj5e2c.xn--p1ai/og-image.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:title" content="Отливы на заказ в Сыктывкаре — оконные, цокольные, парапетные">
@@ -215,6 +215,7 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
 .done{line-height:1.6}.done .btn{margin-top:8px}
 @media(max-width:640px){.brow{grid-template-columns:1fr 1fr 40px}.brow .dd{grid-column:1/3}.cbr{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.hc,.hk{transition:none}}
+.bopt{margin:10px 0;font-size:14px}.bopt small{color:var(--acc2);font-weight:700}.hemr{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:6px}.hemr label{display:flex;gap:6px;align-items:center}.hemr input[type=checkbox]{width:20px;height:20px;accent-color:var(--acc)}
 </style>
 </head>
 <body>
@@ -311,13 +312,10 @@ const SECS=[
 {
 const byId=id=>SECS.find(s=>s.id===id);
 const BUILD_H=`<p class="note" style="margin-top:0">Соберите профиль из полок и загибов — сразу увидите чертёж, ширину развёртки и цену. Чертёж сам прикрепится к заявке.</p>
-<div class="pre" id="bpre"></div><div class="bsvg" id="bsvg"></div><div id="brows"></div>
+<div class="pre" id="bpre"></div><div class="bsvg" id="bsvg"></div><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><label><input type="checkbox" id="bh2"> в конце</label><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div><div id="brows"></div>
 <button class="btn out sm" id="badd" type="button">＋ Добавить полку</button>
 <div class="row" style="margin-top:12px"><div><label for="blen">Длина изделия, мм</label><input id="blen" class="bi" inputmode="numeric" value="2000"></div><div><label for="bqty">Количество, шт.</label><input id="bqty" class="bi" inputmode="numeric" value="1"></div></div>
 <div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>`;
-const swHtml=C.colors.map(k=>{const r=RAL[k];return r?`<div data-k="${esc(k)}" tabindex="0" role="button"><i style="background:${r[1]}"></i>RAL ${esc(k)} · ${r[0]}</div>`:`<div><i style="background:#bbb"></i>RAL ${esc(k)}</div>`}).join('');
-const HOUSE=`<div class="hbox"><svg id="house" viewBox="0 0 360 230" role="img" aria-label="Дом: примерка цвета кровли и доборных элементов"><rect width="360" height="230" fill="#dce8f1"/><rect y="196" width="360" height="34" fill="#9db58a"/><rect x="60" y="100" width="240" height="96" fill="#ebe4d4"/><polygon class="hc" points="40,102 180,28 320,102" fill="#474b4e" stroke="rgba(0,0,0,.25)"/><polyline class="hk" points="40,102 180,28 320,102" fill="none" stroke="#2c2f31" stroke-width="5" stroke-linejoin="round"/><rect class="hc" x="60" y="100" width="9" height="96" fill="#474b4e"/><rect class="hc" x="291" y="100" width="9" height="96" fill="#474b4e"/><rect x="100" y="122" width="58" height="54" fill="#fff" stroke="#c9c9c9"/><rect x="106" y="128" width="46" height="42" fill="#a9c4d8"/><path d="M129 128v42M106 149h46" stroke="#fff" stroke-width="3"/><rect class="hc" x="92" y="176" width="74" height="7" rx="1" fill="#474b4e" stroke="rgba(0,0,0,.2)"/><rect x="200" y="128" width="48" height="68" fill="#8b6b4a"/><circle cx="240" cy="164" r="2.5" fill="#e8d9a8"/></svg><div class="hcap"><span id="hname"></span><button class="btn sm" id="hpick" type="button">Выбрать этот цвет в заявке</button></div></div>`;
-byId('s-colors').h=`<p class="note" style="margin-top:0">Нажмите на цвет — кровля, отлив и планки на картинке перекрасятся. Нужного нет в списке — укажите номер RAL в заявке.</p>${HOUSE}<div class="sw" id="sw">${swHtml}</div>`;
 byId('s-steps').h=`<div class="proc"><svg id="proc" viewBox="0 0 520 150" role="img" aria-label="Как делаем: лист, раскрой, гибка, готовое изделие"><rect id="pa" x="20" y="20" width="230" height="110" rx="4" fill="#cdd5dc" stroke="#9aa6b2"/><rect id="pb" x="20" y="86" width="0" height="24" fill="#f07824" opacity=".85"/><line id="pc" x1="20" y1="76" x2="20" y2="120" stroke="#18212b" stroke-width="2" stroke-dasharray="4 3" opacity="0"/><polyline id="ps" points="300,100 335,100 435,100 470,100" fill="none" stroke="#f07824" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><text id="pk" x="380" y="40" font-size="30" fill="#1e7a46" text-anchor="middle" opacity="0">✓</text></svg><div class="pc" id="pcap"></div></div>`+byId('s-steps').h;
 if(C.beforeAfter&&C.beforeAfter.length){
  SECS.push({id:'s-ba',ic:'🔍',t:'До и после',s:'потяните ползунок, чтобы сравнить',nav:'',h:C.beforeAfter.map(b=>`<figure class="baw"><div class="bab"><img class="ba-a" src="${esc(b.after)}" alt="После" onerror="baFail(this)"><img class="ba-b" src="${esc(b.before)}" alt="До" onerror="baFail(this)"><span class="bat l">ДО</span><span class="bat r">ПОСЛЕ</span><i class="bah"></i></div><input type="range" min="0" max="100" value="50" aria-label="Сравнить до и после"><figcaption>${esc(b.cap||'')}</figcaption></figure>`).join('')})}
@@ -337,7 +335,7 @@ SECS.push({id:'s-faq',ic:'❓',t:'Частые вопросы',s:'замеры, 
   if(C.lat&&C.lon)m+=`<iframe class="mapf" loading="lazy" title="Карта" src="https://yandex.ru/map-widget/v1/?ll=${encodeURIComponent(C.lon)}%2C${encodeURIComponent(C.lat)}&z=16&pt=${encodeURIComponent(C.lon)}%2C${encodeURIComponent(C.lat)}%2Cpm2rdm"></iframe>`}
  m+=`<div class="cb"><b>Не хотите заполнять форму? Оставьте только телефон:</b><div class="cbr"><input id="cbp" type="tel" inputmode="tel" placeholder="Ваш телефон" maxlength="30" autocomplete="tel"><button class="btn sm" id="cbb" type="button">Перезвоните мне</button></div><div id="cbm" role="status"></div></div>`;
  c.h+=m}
-const order=['s-uslugi','s-price','s-build','s-raboty','s-ba','s-colors','s-steps','s-trust','s-faq','s-form','s-contacts'];
+const order=['s-uslugi','s-price','s-build','s-raboty','s-ba','s-steps','s-trust','s-faq','s-form','s-contacts'];
 SECS.splice(0,SECS.length,...order.map(id=>byId(id)).filter(Boolean));
 }
 function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.querySelector('.baw')){const s=document.getElementById('s-ba');if(s)s.remove()}}
@@ -359,7 +357,8 @@ function openSec(id,scroll=true,force){
   try{history.replaceState(null,'','#'+id)}catch(e){}
   el.querySelectorAll('.mini,.step,.tile,.contacts>*,.sw>div,.gal figure,.ex,.calc,form').forEach((c,i)=>c.style.animationDelay=(.08+Math.min(i,12)*.05)+'s');
   if(scroll)focusSec(el)}
- else{try{history.replaceState(null,'',location.pathname)}catch(e){}}}
+ else if(window.innerWidth<1000){try{history.replaceState(null,'',location.pathname)}catch(e){}}
+ else{el.classList.add('open');el.querySelector('.acc-h').setAttribute('aria-expanded','true')}}
 document.addEventListener('click',e=>{
  const h=e.target.closest('.acc-h');if(h){openSec(h.parentElement.id);return}
  const o=e.target.closest('[data-open]');if(o){openSec(o.dataset.open,true,true)}});
@@ -508,14 +507,15 @@ const PRESETS=[
  {n:'Отлив',item:'Отливы',s:[{l:20,a:90,d:1},{l:150,a:90,d:-1},{l:30}]},
  {n:'Z-профиль',item:'Планки',s:[{l:30,a:90,d:1},{l:100,a:90,d:-1},{l:30}]},
  {n:'Плоская',item:'Другое',s:[{l:300}]}];
-const B={segs:JSON.parse(JSON.stringify(PRESETS[1].s)),item:PRESETS[1].item,preset:1};let bn=0;
+const B={color:'',segs:JSON.parse(JSON.stringify(PRESETS[1].s)),item:PRESETS[1].item,preset:1};let bn=0;
 const num=v=>+String(v).replace(',','.');
 function geo(sg,th0){let th=th0,x=0,y=0;const P=[[0,0]],H=[];sg.forEach((s,i)=>{H.push(th);x+=s.l*Math.cos(th);y-=s.l*Math.sin(th);P.push([x,y]);if(i<sg.length-1)th+=(s.d||1)*(s.a||0)*Math.PI/180});return{P,H}}
 function bModel(){
  const sg=B.segs.map(s=>({l:num(s.l),a:num(s.a)||0,d:s.d||1})),len=num($('blen').value),qty=Math.max(1,Math.round(num($('bqty').value)||1));
  const ok=sg.length>0&&sg.every(s=>s.l>0)&&len>0;
- const dev=sg.reduce((a,s)=>a+(s.l||0),0),per=len*dev/1e6*C.ppm+C.make;
- return{ok,sg,len,qty,dev,area:len*dev/1e6,per,tot:per*qty}}
+ const hw=Math.max(0,Math.min(50,num($('bhw').value)||0)),h1=$('bh1').checked&&hw>0,h2=$('bh2').checked&&hw>0;
+ const dev=sg.reduce((a,s)=>a+(s.l||0),0)+(h1?2*hw:0)+(h2?2*hw:0),per=len*dev/1e6*C.ppm+C.make;
+ return{ok,sg,len,qty,dev,hw,h1,h2,col:B.color,area:len*dev/1e6,per,tot:per*qty}}
 function bSvg(m){
  let body='';
  if(m.ok){
@@ -524,7 +524,11 @@ function bSvg(m){
   const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mnx=Math.min(...xs),mxx=Math.max(...xs),mny=Math.min(...ys),mxy=Math.max(...ys);
   const W=560,Hh=260,pad=52,bw=Math.max(mxx-mnx,1),bh=Math.max(mxy-mny,1),k=Math.min((W-2*pad)/bw,(Hh-2*pad-18)/bh),ox=(W-bw*k)/2-mnx*k,oy=(Hh+18-bh*k)/2-mny*k;
   const Q=P.map(p=>[p[0]*k+ox,p[1]*k+oy]);
-  body+=`<polyline points="${Q.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="#f07824" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const pts=Q.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '),rc=m.col&&RAL[m.col]?RAL[m.col][1]:'#f07824';
+  body+=`<polyline points="${pts}" fill="none" stroke="#18212b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${pts}" fill="none" stroke="${rc}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const hemD=(a,b,t)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,len=Math.min(L*.8,Math.max(12,m.hw*k)),nx=uy,ny=-ux;
+   return `<line x1="${(a[0]+nx*9).toFixed(1)}" y1="${(a[1]+ny*9).toFixed(1)}" x2="${(a[0]+ux*len+nx*9).toFixed(1)}" y2="${(a[1]+uy*len+ny*9).toFixed(1)}" stroke="#18212b" stroke-width="3" stroke-dasharray="5 3"/>`};
+  if(m.h1)body+=hemD(Q[0],Q[1]);if(m.h2)body+=hemD(Q[Q.length-1],Q[Q.length-2]);
   Q.forEach(p=>{body+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3" fill="#18212b"/>`});
   const T=(x,y,t,c)=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" font-size="15" font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" dominant-baseline="middle" fill="${c}" stroke="#fff" stroke-width="4" paint-order="stroke">${t}</text>`;
   m.sg.forEach((s,i)=>{const a=Q[i],b=Q[i+1],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1;let nx=-dy/L,ny=dx/L;if(ny<-.01||(Math.abs(ny)<=.01&&nx<0)){nx=-nx;ny=-ny}
@@ -532,8 +536,9 @@ function bSvg(m){
   for(let i=0;i<m.sg.length-1;i++){const a=m.sg[i].a;if(!(a>0))continue;const p=Q[i+1],q0=Q[i],q1=Q[i+2];
    let ux=(q1[0]-p[0])/(Math.hypot(q1[0]-p[0],q1[1]-p[1])||1)+(q0[0]-p[0])/(Math.hypot(q0[0]-p[0],q0[1]-p[1])||1),uy=(q1[1]-p[1])/(Math.hypot(q1[0]-p[0],q1[1]-p[1])||1)+(q0[1]-p[1])/(Math.hypot(q0[1]-p[1],q0[0]-p[0])||1);
    const ul=Math.hypot(ux,uy);if(ul<.2)continue;ux/=ul;uy/=ul;body+=T(p[0]+ux*26,p[1]+uy*26,a+'°','#c4580e')}}
- const title=m.ok?`Развёртка ${+m.dev.toFixed(1)} мм · длина ${m.len} мм · ${m.qty} шт.`:'Введите размеры';
- return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 260" width="1120" height="520"><rect width="560" height="260" fill="#fff"/><text x="14" y="26" font-size="15" font-family="Arial,sans-serif" font-weight="700" fill="#18212b">${title}</text><text x="546" y="248" font-size="11" font-family="Arial,sans-serif" text-anchor="end" fill="#8a96a3">${esc(C.name)} · эскиз с сайта</text>${body}</svg>`}
+ const hm=m.ok&&(m.h1||m.h2)?` · завальцовка ${m.hw} мм (${[m.h1?'начало':'',m.h2?'конец':''].filter(Boolean).join(', ')})`:'',cm=m.ok&&m.col&&RAL[m.col]?` · RAL ${m.col}`:'';
+ const title=m.ok?`Развёртка ${+m.dev.toFixed(1)} мм · длина ${m.len} мм · ${m.qty} шт.`:'Введите размеры',title2=(hm+cm).replace(/^ · /,'');
+ return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 260" width="1120" height="520"><rect width="560" height="260" fill="#fff"/><text x="14" y="26" font-size="13" font-family="Arial,sans-serif" font-weight="700" fill="#18212b">${title}</text>${title2?`<text x="14" y="44" font-size="12" font-family="Arial,sans-serif" fill="#c4580e">${title2}</text>`:''}<text x="546" y="248" font-size="11" font-family="Arial,sans-serif" text-anchor="end" fill="#8a96a3">${esc(C.name)} · эскиз с сайта</text>${body}</svg>`}
 function bDraw(){const m=bModel();$('bsvg').innerHTML=bSvg(m);
  $('bout').innerHTML=m.ok?`Развёртка <b>${f2(m.dev)} мм</b> · площадь детали ${f2(m.area)} м²<br><b id="bbig">≈ ${money(m.tot)}</b> <small>за ${m.qty} шт. (${money(m.per)} за деталь, ориентировочно)</small>`:'<small>Укажите длины всех полок и длину изделия.</small>'}
 function bRows(){
@@ -551,26 +556,22 @@ function svgToJpeg(svg){return new Promise((ok,no)=>{const im=new Image();im.onl
 $('bgo').onclick=async()=>{
  const m=bModel();if(!m.ok)return bmsg('Заполните длины всех полок и длину изделия.',1);
  bn++;const ang=m.sg.slice(0,-1).map(s=>(+s.a)+'°').join(' / ');
- const text=`Изделие ${bn}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт. Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
+ const text=`Изделие ${bn}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт.`+(m.h1||m.h2?` Завальцовка ${m.hw} мм: ${[m.h1?'начало':'',m.h2?'конец':''].filter(Boolean).join(' и ')}.`:'')+(m.col?` Цвет RAL ${m.col}.`:'')+` Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
  const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text;
  let note='Эскиз приложен к заявке.';
  try{
   if(files.length>=MAXF)note='Эскиз не приложен: уже максимум файлов ('+MAXF+'), но размеры записаны в текст заявки.';
   else{const url=await svgToJpeg(bSvg(m));if(files.reduce((a,x)=>a+x.data.length,0)+url.length>MAXTOT)note='Эскиз не приложен (большой объём вложений), размеры записаны в текст заявки.';else{files.push({name:'eskiz-'+bn+'.jpg',type:'image/jpeg',data:url});drawFiles()}}
  }catch(e){console.warn(e);note='Эскиз не удалось приложить, размеры записаны в текст заявки.'}
+ if(B.color&&[...$('fc').options].some(o=>o.value==='RAL '+B.color))$('fc').value='RAL '+B.color;
  if(B.item&&[...$('fi').options].some(o=>o.value===B.item))$('fi').value=B.item;
  bmsg('Изделие '+bn+' добавлено в заявку. '+note+' Можно собрать ещё одно изделие.',0,1)};
+$('bsw').innerHTML='<div data-k="" class="on"><i style="background:#f07824"></i>не выбран</div>'+C.colors.map(k=>{const r=RAL[k];return r?`<div data-k="${esc(k)}" tabindex="0" role="button"><i style="background:${r[1]}"></i>RAL ${esc(k)} · ${r[0]}</div>`:''}).join('');
+function pickColor(d){B.color=d.dataset.k;document.querySelectorAll('#bsw>div').forEach(x=>x.classList.toggle('on',x===d));const r=RAL[B.color];$('bcn').textContent=r?'RAL '+B.color+' · '+r[0]:'';bDraw()}
+$('bsw').addEventListener('click',e=>{const d=e.target.closest('[data-k]');if(d)pickColor(d)});
+$('bsw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d=e.target.closest('[data-k]');if(d){e.preventDefault();pickColor(d)}}});
+['bh1','bh2'].forEach(i=>$(i).addEventListener('change',bDraw));$('bhw').addEventListener('input',bDraw);
 bRows();
-
-/* ===== примерка цвета ===== */
-function shade(h,k){const n=parseInt(h.slice(1),16);const f=v=>Math.max(0,Math.min(255,Math.round(v*k)));return'#'+[(n>>16)&255,(n>>8)&255,n&255].map(f).map(v=>v.toString(16).padStart(2,'0')).join('')}
-let curK=null;
-function setColor(k){const r=RAL[k];if(!r)return;curK=k;const h=$('house');h.querySelectorAll('.hc').forEach(e=>e.style.fill=r[1]);h.querySelectorAll('.hk').forEach(e=>e.style.stroke=shade(r[1],.7));
- document.querySelectorAll('#sw [data-k]').forEach(d=>d.classList.toggle('on',d.dataset.k===k));$('hname').innerHTML='<b>RAL '+esc(k)+'</b> · '+r[0]}
-$('sw').addEventListener('click',e=>{const d=e.target.closest('[data-k]');if(d)setColor(d.dataset.k)});
-$('sw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d=e.target.closest('[data-k]');if(d){e.preventDefault();setColor(d.dataset.k)}}});
-$('hpick').onclick=()=>{if(!curK)return;const v='RAL '+curK;if([...$('fc').options].some(o=>o.value===v))$('fc').value=v;openSec('s-form',true,true)};
-setColor(C.colors.includes('7024')?'7024':(C.colors.find(k=>RAL[k])||''));
 
 /* ===== анимация «от листа до изделия» ===== */
 (function(){const svg=$('proc');if(!svg)return;
