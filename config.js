@@ -4,7 +4,7 @@ const CONFIG={
  slogan:'Гнём металл точно по вашим размерам',  // ← слоган
  city:'Сыктывкар',                    // ← город
  phone:'8 950 567-77-78',            // ← телефон
- telegram:'',                         // ← ник в Telegram без @, например 'metalmaster'
+ telegram:'Zestyanshik11',                         // ← ник в Telegram без @, например 'metalmaster'
  whatsapp:'',                         // ← номер для WhatsApp цифрами, например '79000000000'
  email:'',
  address:'',                          // ← адрес мастерской (необязательно)
