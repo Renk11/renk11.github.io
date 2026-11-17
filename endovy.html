@@ -225,8 +225,8 @@ dialog{border:0;border-radius:14px;max-width:560px;padding:22px;font-size:14px;l
 .hcap{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 12px;border-top:1px solid var(--line);font-size:14px}
 .sw>div[data-k]{cursor:pointer;transition:transform .15s,box-shadow .15s}.sw>div[data-k]:hover{transform:translateY(-2px)}
 .sw>div.on{outline:2px solid var(--acc);outline-offset:1px;font-weight:700}
-.proc{background:#fff;border:1px solid var(--line);border-radius:12px;margin:0 0 14px;overflow:hidden}
-.proc svg{width:100%;height:auto;display:block}.proc .pc{text-align:center;font-weight:700;font-size:14px;padding:6px 10px 10px;color:var(--acc2)}
+.proc{background:radial-gradient(600px 260px at 50% 0%,#3a4c5f 0%,rgba(58,76,95,0) 70%),linear-gradient(160deg,#18212b,#26323f);border:1px solid #2f3d4b;border-radius:16px;margin:0 0 14px;overflow:hidden;position:relative;box-shadow:0 10px 30px rgba(24,33,43,.25)}.proc:before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/28px 28px;pointer-events:none}
+.proc canvas{width:100%;max-width:1000px;aspect-ratio:1200/430;margin:0 auto;display:block;position:relative}.proc .pc{text-align:center;font-weight:800;font-size:17px;padding:2px 10px 16px;color:#ffd2ad;letter-spacing:.3px;position:relative}
 .baw{margin:0 0 14px}.bab{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#dfe5ea;user-select:none}
 .bab img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .bab .ba-b{clip-path:inset(0 calc(100% - var(--p,50%)) 0 0)}
@@ -388,7 +388,7 @@ const BUILD_H=`<p class="note" style="margin-top:0">Соберите профи�
 <button class="btn out sm" id="badd" type="button">＋ Добавить полку</button><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><select id="bh1s" class="bi hs" aria-label="Сторона завальцовки в начале"><option value="in">внутрь</option><option value="out">наружу</option></select><label><input type="checkbox" id="bh2"> в конце</label><select id="bh2s" class="bi hs" aria-label="Сторона завальцовки в конце"><option value="in">внутрь</option><option value="out">наружу</option></select><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div>
 <div class="row" style="margin-top:12px"><div><label for="blen">Длина изделия, мм</label><input id="blen" class="bi" inputmode="numeric" value="2000"></div><div><label for="bqty">Количество, шт.</label><input id="bqty" class="bi" inputmode="numeric" value="1"></div></div>
 <div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>`;
-byId('s-steps').h=`<div class="proc"><svg id="proc" viewBox="0 0 520 150" role="img" aria-label="Как делаем: лист, раскрой, гибка, готовое изделие"><rect id="pa" x="20" y="20" width="230" height="110" rx="4" fill="#cdd5dc" stroke="#9aa6b2"/><rect id="pb" x="20" y="86" width="0" height="24" fill="#f07824" opacity=".85"/><line id="pc" x1="20" y1="76" x2="20" y2="120" stroke="#18212b" stroke-width="2" stroke-dasharray="4 3" opacity="0"/><polyline id="ps" points="300,100 335,100 435,100 470,100" fill="none" stroke="#f07824" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0"/><text id="pk" x="380" y="40" font-size="30" fill="#1e7a46" text-anchor="middle" opacity="0">✓</text></svg><div class="pc" id="pcap"></div></div>`+byId('s-steps').h;
+byId('s-steps').h=`<div class="proc"><canvas id="proc" role="img" aria-label="Как делаем: лист металла, раскрой по размеру, гибка на станке, готовое изделие"></canvas><div class="pc" id="pcap"></div></div>`+byId('s-steps').h;
 if(C.beforeAfter&&C.beforeAfter.length){
  SECS.push({id:'s-ba',ic:'🔍',t:'До и после',s:'потяните ползунок, чтобы сравнить',nav:'',h:C.beforeAfter.map(b=>`<figure class="baw"><div class="bab"><img class="ba-a" src="${esc(b.after)}" alt="После" onerror="baFail(this)"><img class="ba-b" src="${esc(b.before)}" alt="До" onerror="baFail(this)"><span class="bat l">ДО</span><span class="bat r">ПОСЛЕ</span><i class="bah"></i></div><input type="range" min="0" max="100" value="50" aria-label="Сравнить до и после"><figcaption>${esc(b.cap||'')}</figcaption></figure>`).join('')})}
 SECS.push({id:'s-build',ic:'🧩',t:'Конструктор изделия',s:'соберите профиль — получите чертёж и цену',nav:'Конструктор',h:BUILD_H});
@@ -414,7 +414,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 19 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 20 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -714,23 +714,105 @@ $('bsw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d
 ['bh1','bh2','bh1s','bh2s','bface'].forEach(i=>$(i).addEventListener('change',bDraw));$('bhw').addEventListener('input',bDraw);
 bRows();
 
-/* ===== анимация «от листа до изделия» ===== */
-(function(){const svg=$('proc');if(!svg)return;
- const g=id=>svg.querySelector('#'+id),pa=g('pa'),pb=g('pb'),pc=g('pc'),ps=g('ps'),pk=g('pk'),cap=$('pcap');
- const FL=[[300,100],[335,100],[435,100],[470,100]],BE=[[335,62],[335,100],[435,100],[435,62]],CAPS=['1 · Лист металла','2 · Раскрой по размеру','3 · Гибка на станке','4 · Готовое изделие'];
- const lerp=(a,b,t)=>a+(b-a)*t,cl=t=>Math.max(0,Math.min(1,t)),ez=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
- function frame(T){let st=0,bw=0,cx=20,co=0,so=.0,bo=1,ps_=1,bt=0,sh=1,ko=0,col='#f07824';
-  if(T<1.6){st=0;sh=T<.3?lerp(.3,1,T/.3):1}
-  else if(T<3.6){st=1;const p=(T-1.6)/2;bw=230*p;cx=20+230*p;co=1}
-  else if(T<4.6){st=1;bw=230;const p=T-3.6;bo=1-p;so=p;sh=lerp(1,.3,p)}
-  else if(T<6.6){st=2;bw=230;bo=0;so=1;sh=.3;bt=ez((T-4.6)/2)}
-  else if(T<8.6){st=3;bw=230;bo=0;so=1;sh=.3;bt=1;ko=cl((T-6.6)/.5);col='#1e7a46'}
-  else{st=3;bw=230;bo=0;sh=.3;bt=1;so=1-cl((T-8.6)/.4);ko=so;col='#1e7a46'}
-  pa.setAttribute('opacity',sh);pb.setAttribute('width',bw);pb.setAttribute('opacity',bo);pc.setAttribute('x1',cx);pc.setAttribute('x2',cx);pc.setAttribute('opacity',co);
-  ps.setAttribute('points',FL.map((p,i)=>lerp(p[0],BE[i][0],bt).toFixed(1)+','+lerp(p[1],BE[i][1],bt).toFixed(1)).join(' '));ps.setAttribute('opacity',so);ps.setAttribute('stroke',col);pk.setAttribute('opacity',ko);
-  if(cap.textContent!==CAPS[st])cap.textContent=CAPS[st]}
- if(matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){frame(7.5);return}
- const sec=$('s-steps');(function loop(ms){if(sec.classList.contains('open')){frame(ms%9500/1000);requestAnimationFrame(loop)}else setTimeout(()=>requestAnimationFrame(loop),400)})(0)})();
+/* ===== анимация «от листа до изделия» (canvas) ===== */
+(function(){const cv=$('proc');if(!cv||!cv.getContext)return;const c=cv.getContext('2d'),W=1200,H=430,D=4.6,TOT=D*4;
+ const cl=t=>Math.max(0,Math.min(1,t)),pr=(T,a,b)=>cl((T-a)/(b-a)),lerp=(a,b,t)=>a+(b-a)*t,eo=t=>1-Math.pow(1-t,3),eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+ const FONT='system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif',OR='#f07824',INK='#18212b';
+ let k=1,dt=.016,pt=0;
+ /* текстура шлифованного металла */
+ const tex=document.createElement('canvas');tex.width=512;tex.height=256;{const t=tex.getContext('2d');let r=7;const rnd=()=>{r=(r*16807)%2147483647;return r/2147483647};
+  for(let i=0;i<520;i++){const y=rnd()*256,x=rnd()*512,l=60+rnd()*320;t.strokeStyle=i%2?'rgba(255,255,255,'+(.03+rnd()*.08)+')':'rgba(20,30,40,'+(.03+rnd()*.07)+')';t.lineWidth=.5+rnd()*.8;t.beginPath();t.moveTo(x,y);t.lineTo(x+l,y+(rnd()-.5)*1.5);t.stroke()}}
+ const pat=c.createPattern(tex,'repeat');
+ const rs=()=>{const dpr=Math.min(2,window.devicePixelRatio||1),w=cv.clientWidth||600;cv.width=Math.round(w*dpr);cv.height=Math.round(w*H/W*dpr);k=cv.width/W};
+ const metal=(path,x0,y0,x1,y1)=>{c.save();c.beginPath();path();c.clip();const g=c.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,'#f1f5f8');g.addColorStop(.45,'#b7c4d1');g.addColorStop(1,'#7d90a3');c.fillStyle=g;c.fill();c.globalAlpha=.9;c.fillStyle=pat;c.fill();c.restore()};
+ const poly=pts=>()=>{c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.closePath()};
+ const txt=(t,x,y,sz,col,al,w)=>{c.font=(w||700)+' '+sz+'px '+FONT;c.fillStyle=col;c.textAlign=al||'left';c.textBaseline='middle';c.fillText(t,x,y)};
+ const title=(n,t,sub,s)=>{const a=eo(pr(s,.1,.8));c.save();c.globalAlpha*=a;c.translate((1-a)*-18,0);txt('0'+n,40,58,56,'rgba(240,120,36,.95)','left',800);txt(t,118,46,28,'#fff','left',800);txt(sub,118,76,15,'#9fb0c1','left',500);c.restore()};
+ const sweep=(x,w)=>{c.save();c.transform(1,0,-.32,1,0,0);const g=c.createLinearGradient(x-w,0,x+w,0);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(.5,'rgba(255,255,255,.7)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(x-w,0,2*w,H);c.restore()};
+ const dim=(x0,y0,x1,y1,p,label,lx,ly,al)=>{if(p<=0)return;const ex=lerp(x0,x1,p),ey=lerp(y0,y1,p);c.save();c.strokeStyle='#9fb0c1';c.lineWidth=1.6;c.beginPath();c.moveTo(x0,y0);c.lineTo(ex,ey);c.stroke();const nx=y1===y0?0:1,ny=y1===y0?1:0;[[x0,y0],[ex,ey]].forEach(q=>{c.beginPath();c.moveTo(q[0]-nx*7,q[1]-ny*7);c.lineTo(q[0]+nx*7,q[1]+ny*7);c.stroke()});c.restore();if(label)txt(label,lx,ly,15,'#cfd8e0',al||'center',600)};
+ const SP=[];
+ /* ---- сцена 1: лист ---- */
+ function S1(s){title(1,'Лист металла','оцинкованная или окрашенная сталь',s);
+  const sl=1-eo(pr(s,0,1.4)),ox=sl*560,fy=Math.sin(s*1.5)*3,A=[330+ox,118+fy],B=[880+ox,118+fy],C=[970+ox,252+fy],Dd=[420+ox,252+fy],th=15;
+  c.save();c.shadowColor='rgba(0,0,0,.55)';c.shadowBlur=30;c.shadowOffsetY=30;c.fillStyle='#4c5a68';c.beginPath();poly([Dd,C,[C[0],C[1]+th],[Dd[0],Dd[1]+th]])();c.fill();c.restore();
+  c.fillStyle='#4a5866';c.beginPath();poly([Dd,C,[C[0],C[1]+th],[Dd[0],Dd[1]+th]])();c.fill();c.fillStyle='#3a4754';c.beginPath();poly([B,C,[C[0],C[1]+th],[B[0],B[1]+th]])();c.fill();
+  metal(poly([A,B,C,Dd]),A[0],A[1],C[0],C[1]);
+  c.save();c.beginPath();poly([A,B,C,Dd])();c.clip();sweep(lerp(A[0]-260,C[0]+260,pr(s,1,3.8)),70);c.restore();
+  c.strokeStyle='rgba(255,255,255,.75)';c.lineWidth=1.5;c.beginPath();poly([A,B,C,Dd])();c.stroke();
+  dim(A[0],A[1]-34,B[0],B[1]-34,eo(pr(s,1.3,2.2)),'ширина листа',(A[0]+B[0])/2,A[1]-52);
+  dim(C[0]+42,B[1]+4,C[0]+42,C[1],eo(pr(s,1.7,2.6)),'',0,0);if(s>2.2)txt('длина',C[0]+58,(B[1]+C[1])/2,15,'#cfd8e0','left',600)}
+ /* ---- сцена 2: раскрой ---- */
+ function S2(s){title(2,'Раскрой по вашему размеру','точная резка заготовки по ширине',s);
+  const X0=300,X1=900,Y0=110,Y1=340,yA=170,yB=250,p1=pr(s,.5,1.8),p2=pr(s,2,3.3),rel=eo(pr(s,3.4,4.2));
+  c.save();c.shadowColor='rgba(0,0,0,.5)';c.shadowBlur=26;c.shadowOffsetY=18;c.fillStyle='#6f8194';c.fillRect(X0,Y0,X1-X0,Y1-Y0);c.restore();
+  metal(poly([[X0,Y0],[X1,Y0],[X1,Y1],[X0,Y1]]),X0,Y0,X1,Y1);
+  c.strokeStyle='rgba(255,255,255,.7)';c.lineWidth=1.5;c.strokeRect(X0,Y0,X1-X0,Y1-Y0);
+  const kerf=(y,xa,xb,dir)=>{if(Math.abs(xb-xa)<1)return;c.strokeStyle='#0d1217';c.lineWidth=3;c.beginPath();c.moveTo(xa,y);c.lineTo(xb,y);c.stroke();const ge=xb-dir*110,g=c.createLinearGradient(xb,0,ge,0);g.addColorStop(0,'rgba(255,190,120,1)');g.addColorStop(.4,'rgba(240,120,36,.75)');g.addColorStop(1,'rgba(240,120,36,0)');c.strokeStyle=g;c.lineWidth=3.5;c.beginPath();c.moveTo(xb,y);c.lineTo(dir>0?Math.max(xa,ge):Math.min(xa,ge),y);c.stroke()};
+  const hx1=lerp(X0,X1,eio(p1)),hx2=lerp(X1,X0,eio(p2));
+  if(p1>0)kerf(yA,X0,hx1,1);if(p2>0)kerf(yB,X1,hx2,-1);
+  /* полоса */
+  if(s>3.3){const a=eo(pr(s,3.3,3.8));c.save();c.globalAlpha*=a;c.translate(0,rel*40);c.shadowColor='rgba(0,0,0,.5)';c.shadowBlur=18;c.shadowOffsetY=10;const g=c.createLinearGradient(0,yA,0,yB);g.addColorStop(0,'#ffb27a');g.addColorStop(.5,OR);g.addColorStop(1,'#b8480b');c.fillStyle=g;c.fillRect(X0+1,yA+2,X1-X0-2,yB-yA-3);c.restore()}
+  let act=null;if(p1>0&&p1<1)act=[hx1,yA];else if(p2>0&&p2<1)act=[hx2,yB];
+  if(act){const x=act[0],y=act[1];
+   if(Math.random()<dt*70)for(let i=0;i<3;i++)SP.push({x,y,vx:(Math.random()-.5)*160,vy:-60-Math.random()*140,l:.5+Math.random()*.35,m:.85});
+   c.save();c.globalCompositeOperation='lighter';const g=c.createRadialGradient(x,y,0,x,y,46);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.25,'rgba(255,190,120,.85)');g.addColorStop(1,'rgba(240,120,36,0)');c.fillStyle=g;c.beginPath();c.arc(x,y,46,0,7);c.fill();c.restore();
+   c.fillStyle='#fff';c.beginPath();c.arc(x,y,3.5,0,7);c.fill();
+   const ng=c.createLinearGradient(0,y-46,0,y-8);ng.addColorStop(0,'#53626f');ng.addColorStop(1,'#232c35');c.fillStyle=ng;c.beginPath();poly([[x-14,y-48],[x+14,y-48],[x+5,y-9],[x-5,y-9]])();c.fill();c.strokeStyle='rgba(255,255,255,.35)';c.lineWidth=1;c.stroke();
+   c.strokeStyle='rgba(255,230,200,.9)';c.lineWidth=1.6;c.beginPath();c.moveTo(x,y-9);c.lineTo(x,y);c.stroke()}
+  c.save();c.globalCompositeOperation='lighter';for(let i=SP.length-1;i>=0;i--){const p=SP[i];p.l-=dt;if(p.l<=0){SP.splice(i,1);continue}p.vy+=520*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;c.fillStyle='rgba(255,'+(170+p.l*120|0)+',90,'+Math.min(1,p.l*2)+')';c.beginPath();c.arc(p.x,p.y,1+p.l*2.4,0,7);c.fill()}c.restore();
+  if(s>3.5){const q=eo(pr(s,3.5,4.2));dim(X1+56,yA+40*rel,X1+56,yB+40*rel,q,'',0,0);txt(Math.round(250*q)+' мм',X1+72,(yA+yB)/2+40*rel,17,'#ffd2ad','left',700)}}
+ /* ---- сцена 3: гибка ---- */
+ function S3(s){title(3,'Гибка на станке','угол и размеры полок — по чертежу',s);
+  const gx=600,top=300,steel=(x0,y0,x1,y1)=>{const g=c.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,'#5a6a79');g.addColorStop(.5,'#8497a8');g.addColorStop(1,'#3a4854');return g};
+  const p1=pr(s,.2,.9),b1=pr(s,.9,1.6),u1=pr(s,1.6,1.95),sh=pr(s,1.95,2.5),p2=pr(s,2.5,3),b2=pr(s,3,3.7),u2=pr(s,3.7,4.1);
+  /* матрица */
+  c.save();c.shadowColor='rgba(0,0,0,.5)';c.shadowBlur=24;c.shadowOffsetY=16;c.fillStyle=steel(250,top,950,top+90);c.beginPath();poly([[250,top],[gx-48,top],[gx,top+48],[gx+48,top],[950,top],[950,top+90],[250,top+90]])();c.fill();c.restore();
+  c.fillStyle='rgba(255,255,255,.18)';c.fillRect(250,top,gx-48-250,2);c.fillRect(gx+48,top,950-gx-48,2);
+  /* заготовка */
+  const sink1=14*eio(b1)*(1-eo(u1)),sink2=14*eio(b2)*(1-eo(u2)),off=-200*eio(sh),phi1=90*eio(b1)*Math.PI/180,phi2=90*eio(b2)*Math.PI/180,y0=top-5;
+  const P1=[gx+off,y0+(s<2.5?sink1:0)],P2=[gx+200+off,y0+(s>=2.5?sink2:0)];
+  const F1=[P1[0]-70*Math.cos(phi1),P1[1]-70*Math.sin(phi1)],F2=[P2[0]+70*Math.cos(phi2),P2[1]-70*Math.sin(phi2)];
+  c.lineCap='round';c.lineJoin='round';c.save();c.shadowColor='rgba(0,0,0,.4)';c.shadowBlur=10;c.shadowOffsetY=6;c.strokeStyle=INK;c.lineWidth=12;c.beginPath();c.moveTo(F1[0],F1[1]);c.lineTo(P1[0],P1[1]);c.lineTo(P2[0],P2[1]);c.lineTo(F2[0],F2[1]);c.stroke();c.restore();
+  const og=c.createLinearGradient(0,y0-60,0,y0+10);og.addColorStop(0,'#ffb27a');og.addColorStop(1,'#d4610f');c.strokeStyle=OR;c.lineWidth=7;c.beginPath();c.moveTo(F1[0],F1[1]);c.lineTo(P1[0],P1[1]);c.lineTo(P2[0],P2[1]);c.lineTo(F2[0],F2[1]);c.stroke();
+  c.strokeStyle='rgba(255,255,255,.45)';c.lineWidth=1.5;c.beginPath();c.moveTo(F1[0],F1[1]-2);c.lineTo(P1[0],P1[1]-2);c.lineTo(P2[0],P2[1]-2);c.lineTo(F2[0],F2[1]-2);c.stroke();
+  /* пуансон */
+  const py=s<2.5?150+140*eo(p1)+14*eio(b1)-154*eo(u1):150+140*eo(p2)+14*eio(b2)-154*eo(u2);
+  const pg=c.createLinearGradient(gx-60,0,gx+60,0);pg.addColorStop(0,'#3a4854');pg.addColorStop(.45,'#9db0c1');pg.addColorStop(1,'#475766');c.fillStyle=pg;c.save();c.shadowColor='rgba(0,0,0,.45)';c.shadowBlur=18;c.shadowOffsetY=10;c.beginPath();poly([[gx-4,py],[gx+4,py],[gx+22,py-70],[gx+62,py-70],[gx+62,py-360],[gx-62,py-360],[gx-62,py-70],[gx-22,py-70]])();c.fill();c.restore();
+  /* угол */
+  const act=s<2.5?phi1:phi2,deg=Math.round(act*180/Math.PI),side=s<2.5?-1:1;
+  if(deg>0){const bp=s<2.5?P1:P2;c.save();c.strokeStyle='#ffd2ad';c.lineWidth=2;c.setLineDash([4,4]);c.beginPath();if(side<0)c.arc(bp[0],bp[1],34,Math.PI+0,Math.PI+ (0),false);else{}c.restore();
+   c.save();c.strokeStyle='#ffd2ad';c.lineWidth=2;c.setLineDash([4,4]);c.beginPath();if(side>0)c.arc(bp[0],bp[1],38,-act,0,false);else c.arc(bp[0],bp[1],38,Math.PI,Math.PI+act,false);c.stroke();c.restore();
+   txt(deg+'°',bp[0]+side*74,bp[1]-62,24,'#ffd2ad','center',800)}
+  [b1,b2].forEach((b,i)=>{const t=b===b1?s-1.6:s-3.7;if(t>0&&t<.7){c.save();c.globalAlpha*=1-t/.7;c.strokeStyle='#ffb27a';c.lineWidth=3;const bp=i?P2:P1;c.beginPath();c.arc(bp[0],bp[1],14+t*70,0,7);c.stroke();c.restore()}})}
+ /* ---- сцена 4: готово ---- */
+ function S4(s){title(4,'Готовое изделие','нужная длина и цвет по RAL',s);
+  const ent=eo(pr(s,0,1)),ox=78+16*Math.sin(s*.9),oy=-42+5*Math.cos(s*.9),Pn=[[420,160],[420,282],[720,282],[720,160]],O=[ox,oy],dy=(1-ent)*50;
+  c.save();c.translate(0,dy);c.globalAlpha*=ent;
+  c.save();c.shadowColor='rgba(0,0,0,.55)';c.shadowBlur=34;c.shadowOffsetY=36;c.fillStyle='#000';c.beginPath();poly([[420,282],[720,282],[720+ox,282+oy],[420+ox,282+oy]])();c.fill();c.restore();
+  const cols=[['#a24208','#6f2a05'],['#ffb27a','#e6711a'],['#8a3507','#5a2203']];
+  for(let i=0;i<3;i++){const a=Pn[i],b=Pn[i+1],g=c.createLinearGradient(a[0],a[1],a[0]+ox,a[1]+oy);g.addColorStop(0,cols[i][0]);g.addColorStop(1,cols[i][1]);c.fillStyle=g;c.beginPath();poly([a,b,[b[0]+ox,b[1]+oy],[a[0]+ox,a[1]+oy]])();c.fill()}
+  c.lineJoin='round';c.lineCap='round';c.strokeStyle='#14100c';c.lineWidth=15;c.beginPath();c.moveTo(Pn[0][0],Pn[0][1]);for(let i=1;i<4;i++)c.lineTo(Pn[i][0],Pn[i][1]);c.stroke();
+  const fg=c.createLinearGradient(420,160,720,282);fg.addColorStop(0,'#ffcfa6');fg.addColorStop(.5,OR);fg.addColorStop(1,'#c4580e');c.strokeStyle=fg;c.lineWidth=10;c.beginPath();c.moveTo(Pn[0][0],Pn[0][1]);for(let i=1;i<4;i++)c.lineTo(Pn[i][0],Pn[i][1]);c.stroke();
+  c.save();c.beginPath();for(let i=0;i<3;i++){const a=Pn[i],b=Pn[i+1];poly([a,b,[b[0]+ox,b[1]+oy],[a[0]+ox,a[1]+oy]])()}c.clip();sweep(lerp(300,900,pr(s,.9,3.4)),60);c.restore();c.restore();
+  /* галочка */
+  const bp=eo(pr(s,.7,1.2)),cx=878,cy=116;if(bp>0){c.save();c.translate(cx,cy);c.scale(bp,bp);const rp=(s*1.1)%1;c.strokeStyle='rgba(60,207,122,'+(1-rp)+')';c.lineWidth=3;c.beginPath();c.arc(0,0,32+rp*22,0,7);c.stroke();c.fillStyle='#1e7a46';c.beginPath();c.arc(0,0,32,0,7);c.fill();c.strokeStyle='rgba(255,255,255,.35)';c.lineWidth=2;c.stroke();
+   const q=eo(pr(s,1,1.6));c.strokeStyle='#fff';c.lineWidth=6;c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(-14,1);const m1=Math.min(1,q*2),m2=Math.max(0,q*2-1);c.lineTo(lerp(-14,-4,m1),lerp(1,12,m1));if(m2>0)c.lineTo(lerp(-4,15,m2),lerp(12,-11,m2));c.stroke();c.restore()}
+  const ta=eo(pr(s,1.1,1.8));c.save();c.globalAlpha*=ta;txt('Готово к установке',W/2,338,24,'#fff','center',800);txt('точно по размеру · любой цвет RAL',W/2,366,15,'#ffd2ad','center',600);c.restore()}
+ const SC=[S1,S2,S3,S4],NAMES=['Лист','Раскрой','Гибка','Готово'];
+ function hud(T){const xs=[150,450,750,1050],y=402,f=cl((T-.3)/(3*D)),fx=xs[0]+(xs[3]-xs[0])*f,st=Math.min(3,Math.floor(T/D));
+  c.lineCap='round';c.strokeStyle='#3b4958';c.lineWidth=3;c.beginPath();c.moveTo(xs[0],y);c.lineTo(xs[3],y);c.stroke();c.strokeStyle=OR;c.beginPath();c.moveTo(xs[0],y);c.lineTo(fx,y);c.stroke();
+  xs.forEach((x,i)=>{const on=i<=st;c.fillStyle=on?OR:'#3b4958';c.beginPath();c.arc(x,y,i===st?8:6,0,7);c.fill();if(i===st){c.strokeStyle='rgba(240,120,36,.4)';c.lineWidth=2;c.beginPath();c.arc(x,y,13,0,7);c.stroke()}txt(NAMES[i],x,y+22,12,on?'#ffd2ad':'#7d8c9b','center',700)})}
+ function draw(T){c.setTransform(k,0,0,k,0,0);c.clearRect(0,0,W,H);T=((T%TOT)+TOT)%TOT;dt=Math.min(.05,Math.max(.001,T-pt>0?T-pt:dt));pt=T;
+  for(let i=0;i<4;i++){const a=Math.min(cl((T-i*D)/.5+.0),cl(((i+1)*D-T)/.5));if(a<=0.001&&!(i===0&&T<.5)&&!(i===3&&T>TOT-.5))continue;c.save();c.globalAlpha=a;SC[i](T-i*D);c.restore()}
+  hud(T);const cap=$('pcap');if(cap){const n=Math.min(3,Math.floor(T/D)),t=['1 · Лист металла','2 · Раскрой по размеру','3 · Гибка на станке','4 · Готовое изделие'][n];if(cap.textContent!==t)cap.textContent=t}}
+ window.__procDraw=draw;
+ let vis=false,raf=0,t0=0;const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function loop(now){raf=0;if(!vis||document.hidden)return;if(!t0)t0=now;if(cv.offsetParent!==null){if(!cv.width||Math.abs(cv.width/Math.min(2,window.devicePixelRatio||1)-cv.clientWidth)>2)rs();draw((now-t0)/1000)}raf=requestAnimationFrame(loop)}
+ rs();
+ if(RM){const go=()=>{rs();draw(3*D+3.2)};go();addEventListener('resize',go)}
+ else{addEventListener('resize',()=>{rs()});if('IntersectionObserver' in window)new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(loop)},{threshold:.05}).observe(cv);else{vis=true;raf=requestAnimationFrame(loop)}
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&vis&&!raf){t0=0;raf=requestAnimationFrame(loop)}})}
+})();
 
 /* ===== до/после ===== */
 document.querySelectorAll('.baw input[type=range]').forEach(r=>r.addEventListener('input',()=>r.closest('.baw').style.setProperty('--p',r.value+'%')));
