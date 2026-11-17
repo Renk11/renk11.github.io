@@ -392,7 +392,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 14 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 15 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -512,12 +512,15 @@ $('ff').addEventListener('change',async e=>{
 function msg(t,ok){$('fm').innerHTML=`<div class="msg ${ok?'ok':'err'}">${t}</div>`}
 /* ===== версия 9: Firebase (общая загрузка) ===== */
 let FB=null;
-function fb(){return FB||(FB=(async()=>{const SDK='https://www.gstatic.com/firebasejs/10.14.1/';const [a,fs]=await Promise.all([import(SDK+'firebase-app.js'),import(SDK+'firebase-firestore.js')]);const app=a.initializeApp(C.firebase);return {fs,db:fs.getFirestore(app)}})().catch(e=>{FB=null;throw e}))}
+function fb(){return FB||(FB=(async()=>{const SDK='https://www.gstatic.com/firebasejs/10.14.1/';const [a,fs]=await Promise.all([import(SDK+'firebase-app.js'),import(SDK+'firebase-firestore.js')]);const app=a.initializeApp(C.firebase);let db;try{db=fs.initializeFirestore?fs.initializeFirestore(app,{experimentalAutoDetectLongPolling:true}):fs.getFirestore(app)}catch(_){db=fs.getFirestore(app)}return {fs,db}})().catch(e=>{FB=null;throw e}))}
+setTimeout(()=>{try{fb().catch(()=>{})}catch(_){}},1200);
 function lead(){try{if(window.ym&&C.metrika)ym(+C.metrika,'reachGoal','lead')}catch(e){}}
 async function sendReq(data){
- const {fs,db}=await fb();
- await fs.addDoc(fs.collection(db,'requests'),Object.assign({},data,{createdAt:fs.serverTimestamp()}));
- if(C.notifyUrl){try{await fetch(C.notifyUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:!(data.files&&data.files.length)})}catch(_){}}
+ /* Telegram-уведомление и запись в базу идут параллельно; успех — когда дошло хотя бы одно */
+ const tg=C.notifyUrl?fetch(C.notifyUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:!(data.files&&data.files.length)}).then(r=>{if(!r.ok)throw new Error('notify '+r.status);return 'tg'}):Promise.reject(new Error('no notify'));
+ const db1=(async()=>{const {fs,db}=await fb();await fs.addDoc(fs.collection(db,'requests'),Object.assign({},data,{createdAt:fs.serverTimestamp()}));return 'db'})();
+ tg.catch(()=>{});db1.catch(()=>{});
+ await Promise.any([tg,db1]);
  try{localStorage.setItem(LK,String(Date.now()))}catch(_){}
  lead()}
 function coolLeft(){let last=0;try{last=+localStorage.getItem(LK)||0}catch(_){}return Date.now()-last<COOL}
