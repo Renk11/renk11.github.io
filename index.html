@@ -446,8 +446,8 @@ const SECS=[
 /* ===== версия 9: новые разделы (HTML) ===== */
 {
 const byId=id=>SECS.find(s=>s.id===id);
-const BUILD_H=`<p class="note" style="margin-top:0">Выберите готовое изделие из каталога или нарисуйте профиль на сетке — сразу увидите эскиз, развёртку и цену. Эскиз сам прикрепится к заявке.</p>
-<details class="cat" id="bcatd"><summary>📚 Каталог изделий — выберите готовый шаблон</summary><div class="catg" id="bcat"></div></details>
+const BUILD_H=`<p class="note" style="margin-top:0">Выберите готовое изделие в разделе «Каталог изделий» или нарисуйте профиль на сетке — сразу увидите эскиз, развёртку и цену. Эскиз сам прикрепится к заявке.</p>
+
 <div id="bnote"></div>
 <div class="pf" id="bpf"></div>
 <div class="pf" id="bsk"></div>
@@ -458,6 +458,7 @@ const BUILD_H=`<p class="note" style="margin-top:0">Выберите готов�
 byId('s-steps').h=`<div class="proc"><canvas id="proc" role="img" aria-label="Как делаем: лист металла, раскрой по размеру, гибка на станке, готовое изделие"></canvas><div class="pc" id="pcap"></div></div>`+byId('s-steps').h;
 if(C.beforeAfter&&C.beforeAfter.length){
  SECS.push({id:'s-ba',ic:'🔍',t:'До и после',s:'потяните ползунок, чтобы сравнить',nav:'',h:C.beforeAfter.map(b=>`<figure class="baw"><div class="bab"><img class="ba-a" src="${esc(b.after)}" alt="После" onerror="baFail(this)"><img class="ba-b" src="${esc(b.before)}" alt="До" onerror="baFail(this)"><span class="bat l">ДО</span><span class="bat r">ПОСЛЕ</span><i class="bah"></i></div><input type="range" min="0" max="100" value="50" aria-label="Сравнить до и после"><figcaption>${esc(b.cap||'')}</figcaption></figure>`).join('')})}
+SECS.push({id:'s-cat',ic:'📚',t:'Каталог изделий',s:'готовые шаблоны из технологической карты',nav:'Каталог',h:'<p class="note" style="margin-top:0">Нажмите на изделие — оно откроется в конструкторе, где можно поменять размеры, цвет и сразу увидеть цену.</p><div class="catg" id="bcat"></div>'});
 SECS.push({id:'s-build',ic:'🧩',t:'Конструктор изделия',s:'соберите профиль — получите чертёж и цену',nav:'Конструктор',h:BUILD_H});
 SECS.push({id:'s-trust',ic:'⭐',t:'Нам доверяют',s:'отзывы и факты',nav:'',h:'<div class="facts" id="tfacts"></div><div class="revs" id="trevs"></div>'});
 const faq=[
@@ -474,14 +475,14 @@ SECS.push({id:'s-faq',ic:'❓',t:'Частые вопросы',s:'замеры, 
   if(C.lat&&C.lon)m+=`<iframe class="mapf" loading="lazy" title="Карта" src="https://yandex.ru/map-widget/v1/?ll=${encodeURIComponent(C.lon)}%2C${encodeURIComponent(C.lat)}&z=16&pt=${encodeURIComponent(C.lon)}%2C${encodeURIComponent(C.lat)}%2Cpm2rdm"></iframe>`}
  m+=`<div class="cb"><b>Не хотите заполнять форму? Оставьте только телефон:</b><div class="cbr"><input id="cbp" type="tel" inputmode="tel" placeholder="Ваш телефон" maxlength="30" autocomplete="tel"><button class="btn sm" id="cbb" type="button">Перезвоните мне</button></div><div id="cbm" role="status"></div></div>`;
  c.h+=m}
-const order=['s-uslugi','s-price','s-build','s-raboty','s-ba','s-steps','s-trust','s-faq','s-form','s-contacts'];
+const order=['s-uslugi','s-price','s-cat','s-build','s-raboty','s-ba','s-steps','s-trust','s-faq','s-form','s-contacts'];
 SECS.splice(0,SECS.length,...order.map(id=>byId(id)).filter(Boolean));
 }
 function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.querySelector('.baw')){const s=document.getElementById('s-ba');if(s)s.remove()}}
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 24 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 25 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -901,7 +902,7 @@ function selCard(){
  let h='<div class="bsel"><div>Выбрано: <b>'+esc(B.tpl||(B.segs.length?'свой профиль':'пока ничего'))+'</b>'+(ok?' · развёртка <b>'+fl(bendInfo(B).total)+' мм</b>':'')+'</div>';
  if(t){h+='<span class="nimgw"><img class="nimg" src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" onerror="this.parentNode.remove()"><small>Готовая схема из технологической карты мастерской. Размеры можно менять ниже или перерисовать на сетке.</small></span>';
   if(t.note)h+='<br><small>'+esc(t.note)+'</small>';if(t.cx)h+='<br><small>Сложное изделие: точные сгибы уточним по телефону.</small>'}
- else if(!B.segs.length)h+='<small>Выберите изделие в каталоге выше или нарисуйте профиль на сетке.</small>';
+ else if(!B.segs.length)h+='<small>Выберите изделие в разделе «Каталог изделий» или нарисуйте профиль на сетке.</small>';
  return h+'</div>'}
 function hemEditor(){
  const H=getHems(B),row=(w,t,lab)=>'<div class="h2"><div><label>Завальцовка '+lab+'</label><select data-h="'+w+'" data-hk="t"><option value=""'+(!t.t?' selected':'')+'>нет</option><option value="closed"'+(t.t==='closed'?' selected':'')+'>закрытая (плотно)</option><option value="open"'+(t.t==='open'?' selected':'')+'>открытая (с зазором)</option></select></div><div><label>Полка, мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(t.len)+'" data-h="'+w+'" data-hk="len"'+(t.t?'':' disabled')+'></div></div>';
@@ -949,7 +950,7 @@ $('bpf').addEventListener('change',e=>{const el=e.target;
 $('bcat').innerHTML=TPL.map(t=>'<button type="button" data-t="'+t.id+'" title="'+esc(t.n)+'"><img src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" loading="lazy" onerror="thumbFix(this)"><b>'+esc(t.n)+'</b><small>развёртка '+tplDev(t)+' мм</small></button>').join('');
 $('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;
  document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x===b));applyTpl(b.dataset.t);
- $('bnote').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+ openSec('s-build',true,true);setTimeout(()=>$('bnote').scrollIntoView({behavior:'auto',block:'start'}),480)});
 $('blen').addEventListener('input',bDraw);$('bqty').addEventListener('input',bDraw);
 /* цвет */
 function bswBuild(){$('bsw').innerHTML='<div data-k="" class="'+(B.color?'':'on')+'"><i style="background:#f07824"></i>не выбран</div>'+C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?'<div data-k="'+esc(k)+'" class="'+(B.color===k?'on':'')+'" tabindex="0" role="button"><i style="background:'+r[1]+'"></i>'+esc(colLabel(k))+esc(colName(k))+(p>0?' · '+p+' ₽/м²':'')+'</div>':''}).join('')}bswBuild();
@@ -1272,7 +1273,7 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
  const f=$('f');if(f)new MutationObserver(()=>{if($('fm').querySelector('.done')&&!f.dataset.b){f.dataset.b=1;const r=$('fm').getBoundingClientRect();burst(r.left+r.width/2,r.top+40)}else if(!$('fm').querySelector('.done'))delete f.dataset.b}).observe($('fm'),{childList:true,subtree:true});
  const bg=$('bgo');if(bg)bg.addEventListener('click',()=>{const r=bg.getBoundingClientRect();setTimeout(()=>burst(r.left+r.width/2,r.top),300)});
  /* левая панель-док и плавающая кнопка быстрого расчёта */
- const short={'s-uslugi':'Услуги','s-price':'Цены','s-build':'Конструктор','s-raboty':'Работы','s-ba':'До и после','s-steps':'Как заказать','s-faq':'Вопросы','s-form':'Заявка','s-contacts':'Контакты'};
+ const short={'s-uslugi':'Услуги','s-price':'Цены','s-cat':'Каталог','s-build':'Конструктор','s-raboty':'Работы','s-ba':'До и после','s-steps':'Как заказать','s-faq':'Вопросы','s-form':'Заявка','s-contacts':'Контакты'};
  const D=document.createElement('nav');D.className='dock';D.setAttribute('aria-label','Разделы сайта');
  D.innerHTML=SECS.filter(x=>short[x.id]).map(x=>`<a data-go="${x.id}" tabindex="0" title="${short[x.id]}"><span>${x.ic}</span><em>${short[x.id]}</em></a>`).join('');
  D.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a)openSec(a.dataset.go,true,true)});
