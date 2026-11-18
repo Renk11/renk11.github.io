@@ -413,7 +413,7 @@ $('h1').innerHTML='Доборные элементы из металла <em>н�
 $('tagline').textContent=C.tagline;
 $('bPrice').textContent='от '+C.ppm+' ₽/м²';$('bMake').textContent='+ '+C.make+' ₽ за изготовление одной детали';
 ['heroCall','fabCall'].forEach(id=>$(id).href='tel:'+tel);
-const colSw=()=>C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?`<div><i style="background:${r[1]}"></i>${esc(colLabel(k))}${esc(colName(k))}${p>0?' · '+p+' ₽/м²':''}</div>`:`<div>${esc(colLabel(k))}</div>`}).join('');
+const colSw=()=>C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?`<div><i style="background:${r[1]}"></i>${esc(colLabel(k))}${esc(colName(k))}</div>`:`<div>${esc(colLabel(k))}</div>`}).join('');
 const fcOpts=()=>C.colors.map(k=>`<option value="${esc(colLabel(k))}">${esc(colLabel(k))}${esc(colName(k))}</option>`).join('');
 const ex=(()=>{const a=2000,b=300,m=a*b/1e6;return{m,p:m*C.ppm+C.make}})();
 const contacts=[`<a href="tel:${tel}"><b>Телефон</b><span>${esc(C.phone)}</span></a>`];
@@ -483,7 +483,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 26 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 27 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -954,7 +954,7 @@ $('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!
  openSec('s-build',true,true);setTimeout(()=>$('bnote').scrollIntoView({behavior:'auto',block:'start'}),480)});
 $('blen').addEventListener('input',bDraw);$('bqty').addEventListener('input',bDraw);
 /* цвет */
-function bswBuild(){$('bsw').innerHTML='<div data-k="" class="'+(B.color?'':'on')+'"><i style="background:#f07824"></i>не выбран</div>'+C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?'<div data-k="'+esc(k)+'" class="'+(B.color===k?'on':'')+'" tabindex="0" role="button"><i style="background:'+r[1]+'"></i>'+esc(colLabel(k))+esc(colName(k))+(p>0?' · '+p+' ₽/м²':'')+'</div>':''}).join('')}bswBuild();
+function bswBuild(){$('bsw').innerHTML='<div data-k="" class="'+(B.color?'':'on')+'"><i style="background:#f07824"></i>не выбран</div>'+C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?'<div data-k="'+esc(k)+'" class="'+(B.color===k?'on':'')+'" tabindex="0" role="button"><i style="background:'+r[1]+'"></i>'+esc(colLabel(k))+esc(colName(k))+'</div>':''}).join('')}bswBuild();
 function setColor(k){B.color=RAL[k]?k:'';document.querySelectorAll('#bsw>div').forEach(x=>x.classList.toggle('on',x.dataset.k===B.color));const r=RAL[B.color];$('bcn').textContent=r?colLabel(B.color)+colName(B.color):'';edRal();bDraw();if(E)edRender()}
 $('bsw').addEventListener('click',e=>{const d=e.target.closest('[data-k]');if(d)setColor(d.dataset.k)});
 $('bsw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d=e.target.closest('[data-k]');if(d){e.preventDefault();setColor(d.dataset.k)}}});
