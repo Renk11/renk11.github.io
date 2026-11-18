@@ -288,6 +288,47 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 .catg button{background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:8px 8px 10px;cursor:pointer;text-align:center;font:inherit;color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s}
 .catg button:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 6px 16px rgba(24,33,43,.1)}.catg button.on{border-color:var(--acc);background:#fff6ef}
 .catg svg{width:100%;height:54px;display:block;margin-bottom:4px}.catg img{width:100%;height:auto;display:block;margin-bottom:4px;border-radius:6px;background:#fff}.nimgw{display:block;margin-top:6px}.nimg{width:100%;max-width:420px;height:auto;display:block;margin:8px 0 4px;border-radius:8px;background:#fff;border:1px solid var(--line)}.catg b{display:block;font-size:13px;line-height:1.25}.catg small{color:var(--mut);font-size:12px}
+/* ===== конструктор как в приложении ===== */
+#bnote{scroll-margin-top:84px;margin:10px 0}
+.bsel{background:#fff6ef;border:1.5px solid var(--acc);border-radius:12px;padding:10px 12px;font-size:15px}
+.bsel .nimgw{display:block;margin-top:8px}.bsel .nimg{width:100%;max-width:460px;height:auto;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.bsel small{color:var(--mut)}
+.pf label,#ed label{display:block;font-size:12px;color:#5b6672;margin:0 0 4px;font-weight:400}
+.pf input,.pf select,#ed input,#ed select{width:100%;min-height:44px;padding:9px 10px;border:1px solid #cbd3dc;border-radius:8px;font-size:16px;background:#fff;color:var(--ink);font-family:inherit}
+.pf input:disabled{background:#eef1f4;color:#6b7785}
+.pf button,#ed button{border:0;border-radius:10px;min-height:44px;padding:10px 16px;font-weight:700;cursor:pointer;background:#f07824;color:#fff;font-family:inherit;font-size:15px;white-space:normal}
+.pf button.secondary,#ed button.secondary{background:#e9edf1;color:#273443}
+.pf button.danger,#ed button.danger{background:#fbe9e7;color:#a52b20;min-width:44px;padding:8px}
+.pf button.sm,#ed button.sm{min-height:36px;padding:6px 11px;font-size:13px}
+.pf .actions,#ed .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.pf .actions button{flex:1 1 140px}
+.pf .bigdraw{width:100%;min-height:54px;font-size:17px;border-radius:12px;box-shadow:0 6px 16px rgba(240,120,36,.3)}
+.pf .muted,#ed .muted{color:#697583;font-size:12px;line-height:1.5}
+.pf .seg,#ed .seg{display:grid;grid-template-columns:20px 1fr 1fr 1.5fr 40px;gap:6px;align-items:end;margin:6px 0}
+.pf .sn,#ed .sn{font-weight:700;color:#6b7785;text-align:center;padding-bottom:12px}
+.pf .seg button{min-width:40px;padding:6px}
+.pf .bd{display:grid;gap:6px;margin:8px 0}.pf .bd svg{max-width:100%;height:auto;background:#fff;border:1px solid #dce2e8;border-radius:6px}
+.pf .bt{border-collapse:collapse;font-size:13px;width:100%;max-width:560px}.pf .bt th,.pf .bt td{border:1px solid #cfd6dd;padding:5px 8px;text-align:left}.pf .bt th{background:#f1f4f7}
+.hemb{margin-top:8px;padding:8px;border:1px dashed #b89ad8;border-radius:8px;background:#faf7fd}
+.hemb .h2{display:grid;grid-template-columns:1.3fr 1fr;gap:8px;margin-top:6px}
+.ed{position:fixed;inset:0;background:#fff;z-index:200;overflow:auto;padding:10px 12px 24px;display:flex;flex-direction:column;gap:8px;color:var(--ink)}
+.ed[hidden]{display:none!important}
+.ed>*{flex:none}.edh{display:flex;justify-content:space-between;align-items:center;gap:8px;position:sticky;top:0;background:#fff;padding:4px 0;z-index:2}.edh>div{display:flex;gap:8px}
+.edin{max-width:780px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.edt{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.edb{border:1px solid #cbd3dc;border-radius:10px;overflow:hidden;background:#fbfcfd;max-width:760px;width:100%;margin:0 auto}
+.tb{display:grid;gap:8px}.tb4{grid-template-columns:1fr 1fr 1.4fr 1.4fr}.tb3{grid-template-columns:1.2fr 1.2fr 1fr}.tb button{padding:8px 6px;font-size:14px;min-height:46px}
+#ed button.tgl.on{background:#f07824;color:#fff}#edSvg{display:block;width:100%;height:auto;touch-action:none;user-select:none;-webkit-user-select:none}
+.ed .segc{border:1px solid #e3e8ed;border-radius:10px;padding:6px 8px 8px;margin:8px 0;background:#fbfcfd}.ed .segc .seg{margin:2px 0}
+.ed .angrow{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:2px 0 6px}.ed .angrow button{min-height:44px;padding:6px;font-size:15px}
+.ed .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0}.ed .chips.c6{grid-template-columns:repeat(6,1fr)}.ed .chips .muted{grid-column:1/-1;margin-bottom:-2px}.ed .chips button{min-height:42px;padding:6px 2px;font-size:14px}
+.ed .ralrow{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.ed .rb,#ed .rb{display:flex;flex-direction:column;align-items:center;gap:3px;width:52px;min-height:60px;padding:6px 2px;background:#fff;border:2px solid #dce2e8;border-radius:10px;color:#33414f;font-size:11px;font-weight:700;flex:none}
+#ed .rb{background:#fff;color:#33414f;min-height:60px;padding:6px 2px;font-size:11px;border:2px solid #dce2e8}#ed .rb.on{background:#fff1e6;border-color:#f07824}
+.ed .rb i{width:26px;height:26px;border-radius:50%;border:1px solid #9aa6b2;display:block}.ed .rb.on{border-color:#f07824;background:#fff1e6}
+.ed h3{margin:6px 0;font-size:16px}
+@media(max-width:640px){.pf .seg,#ed .seg{grid-template-columns:16px minmax(0,1fr) minmax(0,.85fr) minmax(0,1.25fr) 36px;gap:5px}.pf .seg select{padding:9px 2px;font-size:15px}.pf .seg input{padding:9px 6px}.pf .seg button{min-width:36px;padding:6px 2px}}
+#bpf,#bsk{max-width:760px}
+
 </style>
 </head>
 <body>
@@ -383,11 +424,15 @@ const SECS=[
 /* ===== версия 9: новые разделы (HTML) ===== */
 {
 const byId=id=>SECS.find(s=>s.id===id);
-const BUILD_H=`<p class="note" style="margin-top:0">Соберите профиль из полок и загибов — сразу увидите чертёж, ширину развёртки и цену. Чертёж сам прикрепится к заявке.</p>
-<details class="cat" id="bcatd" open><summary>📚 Каталог изделий — выберите готовый шаблон</summary><div class="catg" id="bcat"></div></details><div class="pre" id="bpre"></div><div id="bnote"></div><div class="bsvg" id="bsvg"></div><div class="bleg">Стрелка — лицевая (окрашенная) сторона · <span style="color:#d93025">красные кружки</span> — гибы и углы · <span style="color:#6b3fa0">фиолетовые</span> — завальцовка · зелёная точка — начало</div><div class="bopt bfc"><b>Лицо</b> <select id="bface" class="bi" aria-label="Лицевая сторона"><option value="l">слева от линии</option><option value="r">справа от линии</option></select></div><div id="brows"></div>
-<button class="btn out sm" id="badd" type="button">＋ Добавить полку</button><div class="bopt"><b>Завальцовка кромки</b> (загиб края «в ноль»)<div class="hemr"><label><input type="checkbox" id="bh1"> в начале</label><select id="bh1s" class="bi hs" aria-label="Сторона завальцовки в начале"><option value="in">внутрь</option><option value="out">наружу</option></select><label><input type="checkbox" id="bh2"> в конце</label><select id="bh2s" class="bi hs" aria-label="Сторона завальцовки в конце"><option value="in">внутрь</option><option value="out">наружу</option></select><label>ширина, мм <input id="bhw" class="bi" inputmode="numeric" value="10" style="width:76px;min-height:38px;padding:6px 8px"></label></div></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div>
+const BUILD_H=`<p class="note" style="margin-top:0">Выберите готовое изделие из каталога или нарисуйте профиль на сетке — сразу увидите эскиз, развёртку и цену. Эскиз сам прикрепится к заявке.</p>
+<details class="cat" id="bcatd" open><summary>📚 Каталог изделий — выберите готовый шаблон</summary><div class="catg" id="bcat"></div></details>
+<div id="bnote"></div>
+<div class="pf" id="bpf"></div>
+<div class="pf" id="bsk"></div>
+<div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div>
 <div class="row" style="margin-top:12px"><div><label for="blen">Длина изделия, мм</label><input id="blen" class="bi" inputmode="numeric" value="2000"></div><div><label for="bqty">Количество, шт.</label><input id="bqty" class="bi" inputmode="numeric" value="1"></div></div>
-<div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>`;
+<div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>
+`;
 byId('s-steps').h=`<div class="proc"><canvas id="proc" role="img" aria-label="Как делаем: лист металла, раскрой по размеру, гибка на станке, готовое изделие"></canvas><div class="pc" id="pcap"></div></div>`+byId('s-steps').h;
 if(C.beforeAfter&&C.beforeAfter.length){
  SECS.push({id:'s-ba',ic:'🔍',t:'До и после',s:'потяните ползунок, чтобы сравнить',nav:'',h:C.beforeAfter.map(b=>`<figure class="baw"><div class="bab"><img class="ba-a" src="${esc(b.after)}" alt="После" onerror="baFail(this)"><img class="ba-b" src="${esc(b.before)}" alt="До" onerror="baFail(this)"><span class="bat l">ДО</span><span class="bat r">ПОСЛЕ</span><i class="bah"></i></div><input type="range" min="0" max="100" value="50" aria-label="Сравнить до и после"><figcaption>${esc(b.cap||'')}</figcaption></figure>`).join('')})}
@@ -414,7 +459,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 20 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 21 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -607,112 +652,356 @@ const TPL=[
 function tplSegs(t){const s=t.s,n=s.length;return s.map((p,i)=>{if(i===n-1)return{l:p[0]};let d=s[i+1][1]-p[1];while(d>180)d-=360;while(d<=-180)d+=360;return{l:p[0],a:Math.abs(d),d:d>=0?1:-1}})}
 function tplDev(t){return t.s.reduce((a,p)=>a+p[0],0)}
 
-const PRESETS=[
- {n:'Уголок',item:'Планки',s:[{l:50,a:90,d:1},{l:50}]},
- {n:'П-образная',item:'Планки',s:[{l:30,a:90,d:1},{l:100,a:90,d:1},{l:30}]},
- {n:'Отлив',item:'Отливы',s:[{l:20,a:90,d:1},{l:150,a:90,d:-1},{l:30}]},
- {n:'Z-профиль',item:'Планки',s:[{l:30,a:90,d:1},{l:100,a:90,d:-1},{l:30}]},
- {n:'Плоская',item:'Другое',s:[{l:300}]}];
-const B={h0:null,tpl:'',color:'',segs:JSON.parse(JSON.stringify(PRESETS[1].s)),item:PRESETS[1].item,preset:1};let bn=0;
 const num=v=>+String(v).replace(',','.');
 function geo(sg,th0){let th=th0,x=0,y=0;const P=[[0,0]],H=[];sg.forEach((s,i)=>{H.push(th);x+=s.l*Math.cos(th);y-=s.l*Math.sin(th);P.push([x,y]);if(i<sg.length-1)th+=(s.d||1)*(s.a||0)*Math.PI/180});return{P,H}}
-function bModel(){
- const sg=B.segs.map(s=>({l:num(s.l),a:num(s.a)||0,d:s.d||1})),len=num($('blen').value),qty=Math.max(1,Math.round(num($('bqty').value)||1));
- const ok=sg.length>0&&sg.every(s=>s.l>0)&&len>0;
- const hw=Math.max(0,Math.min(50,num($('bhw').value)||0)),h1=$('bh1').checked&&hw>0,h2=$('bh2').checked&&hw>0;
- const dev=sg.reduce((a,s)=>a+(s.l||0),0)+(h1?hw:0)+(h2?hw:0),per=len*dev/1e6*C.ppm+C.make;
- return{ok,sg,h0:B.h0,tpl:!!B.tpl,face:($('bface')&&$('bface').value==='r')?-1:1,len,qty,dev,hw,h1,h2,s1:$('bh1s').value,s2:$('bh2s').value,col:B.color,area:len*dev/1e6,per,tot:per*qty}}
-function bSvg(m){
- let body='';const RED='#d93025',PUR='#6b3fa0',INK='#18212b';
- if(m.ok){
-  let li=0;m.sg.forEach((s,i)=>{if(s.l>m.sg[li].l)li=i});
-  const th0=(m.h0!=null)?m.h0*Math.PI/180:-geo(m.sg,0).H[li],{P}=geo(m.sg,th0);
-  const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mnx=Math.min(...xs),mxx=Math.max(...xs),mny=Math.min(...ys),mxy=Math.max(...ys);
-  const W=560,Hh=300,pad=74,bw=Math.max(mxx-mnx,1),bh=Math.max(mxy-mny,1),k=Math.min((W-2*pad)/bw,(Hh-2*pad-16)/bh),ox=(W-bw*k)/2-mnx*k,oy=(Hh+16-bh*k)/2-mny*k;
-  const Q=P.map(p=>[p[0]*k+ox,p[1]*k+oy]),nq=Q.length;
-  const pts=Q.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '),rc=m.col&&RAL[m.col]?RAL[m.col][1]:'#f07824';
-  const f1=x=>x.toFixed(1),placed=[];
-  const T=(x,y,t,c,fs)=>`<text x="${f1(x)}" y="${f1(y)}" font-size="${fs||15}" font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" dominant-baseline="middle" fill="${c}" stroke="#fff" stroke-width="4" paint-order="stroke">${t}</text>`;
-  const circ=(x,y,n,c)=>{placed.push([x,y,26]);return`<circle cx="${f1(x)}" cy="${f1(y)}" r="11" fill="${c}" stroke="#fff" stroke-width="2"/><text x="${f1(x)}" y="${f1(y)}" font-size="13" font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#fff">${n}</text>`};
-  body+=`<polyline points="${pts}" fill="none" stroke="${INK}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${pts}" fill="none" stroke="${rc}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
-  const hemD=(a,b,r,side)=>{const dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,len=Math.min(L*.8,Math.max(22,m.hw*k));let nx=uy,ny=-ux;
-   if(r&&(nx*(r[0]-a[0])+ny*(r[1]-a[1]))<0){nx=-nx;ny=-ny}if(side==='out'){nx=-nx;ny=-ny}
-   return `<line x1="${f1(a[0]+nx*9)}" y1="${f1(a[1]+ny*9)}" x2="${f1(a[0]+ux*len+nx*9)}" y2="${f1(a[1]+uy*len+ny*9)}" stroke="${PUR}" stroke-width="4" stroke-linecap="round"/>`};
-  if(m.h1)body+=hemD(Q[0],Q[1],Q[2]||null,m.s1);if(m.h2)body+=hemD(Q[nq-1],Q[nq-2],nq>2?Q[nq-3]:null,m.s2);
-  if(!m.tpl){
-   /* стрелки лицевой стороны */
-   const face=m.face||1,seg=m.sg.map((s,i)=>i).filter(i=>Math.hypot(Q[i+1][0]-Q[i][0],Q[i+1][1]-Q[i][1])>=60).sort((a,b)=>m.sg[b].l-m.sg[a].l).slice(0,3);
-   seg.forEach(i=>{const a=Q[i],b=Q[i+1],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,n0=face>0?dy/L:-dy/L,n1=face>0?-dx/L:dx/L,mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;
-    const x0=mx+n0*46,y0=my+n1*46,x1=mx+n0*15,y1=my+n1*15,ux=-n0,uy=-n1,bx=x1-ux*13,by=y1-uy*13,wx=-uy*8,wy=ux*8;
-    body+=`<line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(bx)}" y2="${f1(by)}" stroke="${INK}" stroke-width="7" stroke-linecap="round"/><line x1="${f1(x0)}" y1="${f1(y0)}" x2="${f1(bx)}" y2="${f1(by)}" stroke="${rc}" stroke-width="3.5" stroke-linecap="round"/><polygon points="${f1(x1)},${f1(y1)} ${f1(bx+wx)},${f1(by+wy)} ${f1(bx-wx)},${f1(by-wy)}" fill="${rc}" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>`;
-    placed.push([(x0+x1)/2,(y0+y1)/2,26])});
-   /* гибы и завальцовки: кружки с номерами */
-   let nn=1;
-   if(m.h1){const a=Q[0],b=Q[1],L=Math.hypot(b[0]-a[0],b[1]-a[1])||1,ux=(b[0]-a[0])/L,uy=(b[1]-a[1])/L;{const hx=a[0]-ux*24,hy=a[1]-uy*24,sx=(hx<W/2?-1:1)*38;body+=circ(hx,hy,nn++,PUR)+T(hx+sx,hy,'зав. '+m.hw,PUR,12);placed.push([hx+sx,hy,52])}}
-   for(let i=1;i<nq-1;i++){const p=Q[i],q0=Q[i-1],q1=Q[i+1],l0=Math.hypot(q0[0]-p[0],q0[1]-p[1])||1,l1=Math.hypot(q1[0]-p[0],q1[1]-p[1])||1;
-    let bx=(q0[0]-p[0])/l0+(q1[0]-p[0])/l1,by=(q0[1]-p[1])/l0+(q1[1]-p[1])/l1;const bl=Math.hypot(bx,by);
-    if(bl<.2){bx=(q1[1]-q0[1]);by=-(q1[0]-q0[0]);const z=Math.hypot(bx,by)||1;bx=bx/z;by=by/z}else{bx/=bl;by/=bl}
-    const ux=-bx,uy=-by;body+=circ(p[0]+ux*26,p[1]+uy*26,nn++,RED);const ag=m.sg[i-1].a;if(ag>0){body+=T(p[0]+ux*47,p[1]+uy*47,ag+'°',RED,13);placed.push([p[0]+ux*47,p[1]+uy*47,38])}}
-   if(m.h2){const a=Q[nq-1],b=Q[nq-2],L=Math.hypot(a[0]-b[0],a[1]-b[1])||1,ux=(a[0]-b[0])/L,uy=(a[1]-b[1])/L;{const hx=a[0]+ux*24,hy=a[1]+uy*24,sx=(hx<W/2?-1:1)*38;body+=circ(hx,hy,nn++,PUR)+T(hx+sx,hy,'зав. '+m.hw,PUR,12);placed.push([hx+sx,hy,52])}}
-  }
-  body+=`<circle cx="${f1(Q[0][0])}" cy="${f1(Q[0][1])}" r="6" fill="#1e7a46" stroke="#fff" stroke-width="2"/>`;
-  Q.slice(1).forEach(p=>{body+=`<circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="3" fill="${INK}"/>`});
-  /* подписи длин полок без наложений */
-  const cx=Q.reduce((u,p)=>u+p[0],0)/nq,cy=Q.reduce((u,p)=>u+p[1],0)/nq;
-  const dseg=(x,y)=>{let d=1e9;for(let j=0;j<nq-1;j++){const a=Q[j],b=Q[j+1],dx=b[0]-a[0],dy=b[1]-a[1],L2=dx*dx+dy*dy||1;let t=((x-a[0])*dx+(y-a[1])*dy)/L2;t=Math.max(0,Math.min(1,t));d=Math.min(d,Math.hypot(x-a[0]-t*dx,y-a[1]-t*dy))}return d};
-  m.sg.map((s,i)=>i).sort((i,j)=>m.sg[j].l-m.sg[i].l).forEach(i=>{const s=m.sg[i],a=Q[i],b=Q[i+1],dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy)||1,mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;
-   let nx=-dy/L,ny=dx/L;if(!m.tpl){const fc=m.face||1;nx=fc>0?dy/L:-dy/L;ny=fc>0?-dx/L:dx/L;nx=-nx;ny=-ny}else if(nx*(mx-cx)+ny*(my-cy)<0){nx=-nx;ny=-ny}
-   const tx=String(+s.l.toFixed(1)).replace('.',','),w=tx.length*9+6;let best=null,bs=1e9;
-   for(const d of [18,-18,30,-30,44,-44,58]){for(const sh of [0,.25,-.25]){const x=mx+nx*d+dx*sh,y=my+ny*d+dy*sh;let pen=0;
-    placed.forEach(q=>{if(Math.abs(q[0]-x)<(q[2]+w)/2&&Math.abs(q[1]-y)<17)pen+=100});
-    if(dseg(x,y)<11)pen+=60;pen+=Math.abs(d)*.1+Math.abs(sh)*10+(x<14||x>546||y<56||y>288?200:0);if(pen<bs){bs=pen;best=[x,y]}}}
-   placed.push([best[0],best[1],w]);body+=T(best[0],best[1],tx,INK)})}
- const hs=x=>x==='out'?'наружу':'внутрь',hl=m.ok?[m.h1?'начало, '+hs(m.s1):'',m.h2?'конец, '+hs(m.s2):''].filter(Boolean).join('; '):'',hm=m.ok&&(m.h1||m.h2)?` · завальцовка ${m.hw} мм (${hl})`:'',cm=m.ok&&m.col&&RAL[m.col]?` · RAL ${m.col}`:'';
- const title=m.ok?`Развёртка ${+m.dev.toFixed(1)} мм · длина ${m.len} мм · ${m.qty} шт.`:'Введите размеры',title2=(hm+cm).replace(/^ · /,'');
- return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" width="1120" height="600"><rect width="560" height="300" fill="#fff"/><text x="14" y="26" font-size="14" font-family="Arial,sans-serif" font-weight="700" fill="${INK}">${title}</text>${title2?`<text x="14" y="45" font-size="12" font-family="Arial,sans-serif" fill="#c4580e">${title2}</text>`:''}<text x="546" y="290" font-size="11" font-family="Arial,sans-serif" text-anchor="end" fill="#8a96a3">${esc(C.name)} · эскиз с сайта</text>${body}</svg>`}
-function bDraw(){const m=bModel();$('bsvg').innerHTML=bSvg(m);
- $('bout').innerHTML=m.ok?`Развёртка <b>${f2(m.dev)} мм</b> · площадь детали ${f2(m.area)} м²<br><b id="bbig">≈ ${money(m.tot)}</b> <small>за ${m.qty} шт. (${money(m.per)} за деталь, ориентировочно)</small>`:'<small>Укажите длины всех полок и длину изделия.</small>'}
-function bRows(){
- $('bpre').innerHTML=PRESETS.map((p,i)=>`<button type="button" data-p="${i}" class="${B.preset===i?'on':''}">${p.n}</button>`).join('');
- $('brows').innerHTML=B.segs.map((s,i)=>{const last=i===B.segs.length-1;return`<div class="brow"><div><label>Полка ${i+1}, мм</label><input inputmode="decimal" data-i="${i}" data-k="l" value="${esc(s.l)}"></div>`+(last?`<div class="na dd" style="grid-column:span 2">последняя полка</div>`:`<div><label>Загиб, °</label><input inputmode="decimal" data-i="${i}" data-k="a" value="${esc(s.a)}"></div><div class="dd"><label>Направление</label><select data-i="${i}" data-k="d"><option value="1"${s.d!==-1?' selected':''}>↑ вверх</option><option value="-1"${s.d===-1?' selected':''}>↓ вниз</option></select></div>`)+`<button class="rm" type="button" data-rm="${i}" aria-label="Убрать полку"${B.segs.length<2?' disabled':''}>×</button></div>`}).join('');
- bDraw()}
-function bmsg(t,err,goto){$('bmsg').innerHTML=`<div class="bmsg${err?' err':''}">${t}${goto?'<br><button class="btn sm" type="button" id="bto">Перейти к заявке →</button>':''}</div>`;if(goto)$('bto').onclick=()=>{openSec('s-form',true,true);setTimeout(()=>$('fn').focus({preventScroll:true}),420)}}
-$('bpre').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!b)return;const p=PRESETS[+b.dataset.p];B.segs=JSON.parse(JSON.stringify(p.s));B.item=p.item;B.preset=+b.dataset.p;B.tpl='';B.h0=null;$('bnote').innerHTML='';document.querySelectorAll('#bcat .on').forEach(x=>x.classList.remove('on'));bRows()});
 function thumb(sg,h0){const m={sg:sg.map(s=>({l:s.l,a:s.a||0,d:s.d||1}))};const th0=h0*Math.PI/180,P=geo(m.sg,th0).P;
  const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),mx=Math.min(...xs),Mx=Math.max(...xs),my=Math.min(...ys),My=Math.max(...ys),bw=Math.max(Mx-mx,1),bh=Math.max(My-my,1),k=Math.min(88/bw,40/bh),ox=(100-bw*k)/2-mx*k,oy=(50-bh*k)/2-my*k;
  return`<svg viewBox="0 0 100 50"><polyline points="${P.map(p=>(p[0]*k+ox).toFixed(1)+','+(p[1]*k+oy).toFixed(1)).join(' ')}" fill="none" stroke="#f07824" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
 function thumbFix(im){const b=im.closest('[data-t]'),t=b&&TPL.find(x=>x.id===b.dataset.t);if(t)im.outerHTML=thumb(tplSegs(t),t.s[0][1])}
-$('bcat').innerHTML=TPL.map(t=>`<button type="button" data-t="${t.id}" title="${esc(t.n)}"><img src="tpl/${t.id}.jpg" alt="${esc(t.n)}" loading="lazy" onerror="thumbFix(this)"><b>${esc(t.n)}</b><small>развёртка ${tplDev(t)} мм</small></button>`).join('');
-$('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=TPL.find(x=>x.id===b.dataset.t);
- B.segs=tplSegs(t).map(x=>Object.assign({},x));B.item=t.item;B.preset=-1;B.tpl=t.n;B.h0=t.s[0][1];
- document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x===b));
- $('bnote').innerHTML=`<div class="bmsg" style="background:#fff6ef;color:var(--ink)"><b>${esc(t.n)}</b> · развёртка ${tplDev(t)} мм<span class="nimgw"><img class="nimg" src="tpl/${t.id}.jpg" alt="" onerror="this.parentNode.remove()"><small>Эскиз с технологической карты. Чертёж ниже — упрощённый (без углов), по нему считаются развёртка и цена.</small></span>${t.note?'<br>'+esc(t.note):''}${t.cx?'<br>Сложное изделие: чертёж упрощённый, точные сгибы уточним по телефону.':''}<br><small>Размеры можно менять в полях ниже.</small></div>`;
- bRows();$('bsvg').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'})});
-$('brows').addEventListener('input',e=>{const i=e.target.dataset.i;if(i===undefined)return;const k=e.target.dataset.k;B.segs[i][k]=k==='d'?+e.target.value:e.target.value;B.preset=-1;bDraw()});
-$('brows').addEventListener('change',e=>{if(e.target.dataset.k==='d'){const i=e.target.dataset.i;B.segs[i].d=+e.target.value;bDraw()}});
-$('brows').addEventListener('click',e=>{const r=e.target.closest('[data-rm]');if(r&&B.segs.length>1){B.segs.splice(+r.dataset.rm,1);B.preset=-1;bRows()}});
-$('badd').onclick=()=>{if(B.segs.length>=8)return bmsg('Не больше 8 полок.',1);const last=B.segs[B.segs.length-1];if(last.a===undefined){last.a=90;last.d=1}B.segs.push({l:30});B.preset=-1;bRows()};
+/* ===== конструктор: тот же редактор и эскиз, что в приложении ===== */
+(function(){
+const fl=mm=>(Math.round(mm*10)/10).toLocaleString('ru-RU',{maximumFractionDigits:1}),fu=mm=>fl(mm)+' мм',inV=mm=>String(Math.round(mm*1e4)/1e4),f=()=>1;
+const r1=x=>Math.round(x*10)/10,hemName=h=>h.t==='open'?'открытая':'закрытая';
+const faceColor=p=>RAL[p.color]?RAL[p.color][1]:'#f07824',stripeDash=()=>'';
+const PRES={
+ ugol:{n:'Уголок',item:'Планки',segs:[{len:50,ang:90,dir:1},{len:50,ang:90,dir:-1}]},
+ z:{n:'Z-профиль',item:'Планки',segs:[{len:30,ang:0,dir:1},{len:60,ang:90,dir:1},{len:30,ang:90,dir:-1}]},
+ p:{n:'П-профиль',item:'Планки',segs:[{len:30,ang:0,dir:1},{len:60,ang:90,dir:-1},{len:30,ang:90,dir:-1}]},
+ otliv:{n:'Отлив',item:'Отливы',segs:[{len:20,ang:270,dir:1},{len:150,ang:80,dir:1},{len:25,ang:80,dir:-1}],hems:{e:{t:'closed',len:10}}}};
+const B={segs:[],hems:{},face:'L',color:'',tpl:'',tplId:'',item:'Планки',a:2000};let bn=0;
+function profPts(segs){const pts=[[0,0]];let x=0,y=0,h=0;segs.forEach(s=>{h+=s.ang*s.dir;const r=h*Math.PI/180;x+=s.len*Math.cos(r);y+=s.len*Math.sin(r);pts.push([x,y])});return pts}
+function getHems(p){const h=p.hems||{};return{s:Object.assign({t:'',len:10},h.s||{}),e:Object.assign({t:'',len:10},h.e||{}),side:h.side==='face'?'face':'back'}}
+function bendInfo(p){
+ const segs=p.segs||[],face=p.face==='R'?'R':'L',bend=0,H=getHems(p);
+ const hs=H.s.t&&H.s.len>0?H.s:null,he=H.e.t&&H.e.len>0?H.e:null,off=hs?1:0;
+ const items=[];if(hs)items.push({len:hs.len,hem:hs});segs.forEach(s=>items.push({len:s.len,hem:null}));if(he)items.push({len:he.len,hem:he});
+ const flats=[],bends=[];let acc=0,afterBend=false,hemFlat=null,cum=0;
+ const upHem=H.side==='face';
+ for(let k=0;k<items.length;k++){
+  acc+=items[k].len;if(items[k].hem)hemFlat=items[k].hem;
+  if(k<items.length-1){
+   let real,ang,up,hem=null,vi=-1;
+   if(items[k].hem||items[k+1].hem){real=true;ang=180;up=upHem;hem=items[k].hem||items[k+1].hem;vi=items[k].hem?0:segs.length}
+   else{const si=k-off+1,s=segs[si],d=s.ang*s.dir;real=s.ang>0.05;ang=s.ang;up=(face==='L'&&d>0)||(face==='R'&&d<0);vi=si}
+   if(real){const len=acc+(bend/2)*(afterBend?1:0)+bend/2;flats.push({len,hem:hemFlat});cum+=len;bends.push({no:bends.length+1,ang,pos:cum,up,hem,vi});acc=0;afterBend=true;hemFlat=null}
+  }else{flats.push({len:acc+(bend/2)*(afterBend?1:0),hem:hemFlat})}
+ }
+ return{flats,flat:flats.map(f=>f.len),bends,face,total:flats.reduce((a,f)=>a+f.len,0),hs,he}}
+
+function benderProfile(p,W,H){
+ const segs=p.segs;if(!segs||!segs.length)return'';
+ const info=bendInfo(p),pts=profPts(segs),xs=pts.map(a=>a[0]),ys=pts.map(a=>a[1]);
+ const minx=Math.min(...xs),maxx=Math.max(...xs),miny=Math.min(...ys),maxy=Math.max(...ys),pad=60;
+ const bw=Math.max(maxx-minx,1),bh=Math.max(maxy-miny,1),sc=Math.min((W-2*pad)/bw,(H-2*pad)/bh);
+ const ox=(W-bw*sc)/2-minx*sc,oy=(H+bh*sc)/2+miny*sc,P=pts.map(a=>[ox+a[0]*sc,oy-a[1]*sc]);
+ const Ls=info.face==='L'?1:-1,fc=faceColor(p),dash=stripeDash(p);
+ const U=pts.slice(0,-1).map((a,i)=>{const b=pts[i+1],l=Math.hypot(b[0]-a[0],b[1]-a[1])||1;return[(b[0]-a[0])/l,(b[1]-a[1])/l]});
+ const off=(u,k)=>[-u[1]*Ls*k,-u[0]*Ls*k];
+ const boxes=[],obs=[];
+ const addSeg=(a,b)=>{const n=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/3));for(let k=0;k<=n;k++)obs.push([a[0]+(b[0]-a[0])*k/n,a[1]+(b[1]-a[1])*k/n])};
+ const hit=b=>b.x<2||b.y<2||b.x+b.w>W-2||b.y+b.h>H-2||boxes.some(q=>b.x<q.x+q.w&&b.x+b.w>q.x&&b.y<q.y+q.h&&b.y+b.h>q.y)||obs.some(q=>q[0]>b.x-2&&q[0]<b.x+b.w+2&&q[1]>b.y-2&&q[1]<b.y+b.h+2);
+ const ring=(dir,ds)=>{const a0=Math.atan2(dir[1],dir[0]),r=[];ds.forEach(d=>[0,40,-40,80,-80,120,-120,160,180].forEach(da=>{const a=a0+da*Math.PI/180;r.push([Math.cos(a)*d,Math.sin(a)*d])}));return r};
+ const place=(cx,cy,w,h,c)=>{let f=null;for(const[dx,dy]of c){const b={x:cx+dx-w/2,y:cy+dy-h/2,w,h};if(!f)f=b;if(!hit(b)){boxes.push(b);return[cx+dx,cy+dy]}}boxes.push(f);return[f.x+w/2,f.y+h/2]};
+ const T=(x,y,t,col,fs,fw)=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="${fs}" font-weight="${fw}" fill="${col}" stroke="#fff" stroke-width="3" paint-order="stroke">${t}</text>`;
+ const tw=t=>String(t).length*7+6;
+ P.forEach((a,i)=>{if(i)addSeg(P[i-1],a)});boxes.push({x:P[0][0]-7,y:P[0][1]-7,w:14,h:14});
+ let geo=`<polyline points="${P.map(a=>a[0].toFixed(1)+','+a[1].toFixed(1)).join(' ')}" fill="none" stroke="#1f3a4d" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>`,lab='';
+ /* завальцовка */
+ const hemSign=getHems(p).side==='face'?1:-1,hemReq=[];
+ const drawHem=(h,atEnd)=>{
+  const i=atEnd?U.length-1:0,u=U[i],us=[u[0],-u[1]],ns=[-u[1]*Ls*hemSign,-u[0]*Ls*hemSign],g=h.t==='open'?12:4.5,Lh=Math.max(16,h.len*sc);
+  const A=atEnd?P[P.length-1]:P[0],B=[A[0]+ns[0]*g,A[1]+ns[1]*g],dir=atEnd?-1:1,bul=atEnd?1:-1,Tt=[B[0]+us[0]*dir*Lh,B[1]+us[1]*dir*Lh];
+  const c1=[A[0]+us[0]*bul*g*1.5,A[1]+us[1]*bul*g*1.5],c2=[B[0]+us[0]*bul*g*1.5,B[1]+us[1]*bul*g*1.5];
+  geo+=`<path d="M${A[0].toFixed(1)},${A[1].toFixed(1)} C${c1[0].toFixed(1)},${c1[1].toFixed(1)} ${c2[0].toFixed(1)},${c2[1].toFixed(1)} ${B[0].toFixed(1)},${B[1].toFixed(1)} L${Tt[0].toFixed(1)},${Tt[1].toFixed(1)}" fill="none" stroke="#1f3a4d" stroke-width="2.6" stroke-linecap="round"/>`;
+  addSeg(A,B);addSeg(B,Tt);hemReq.push({A,atEnd,us,ns,len:h.len})};
+ if(info.he)drawHem(info.he,true);if(info.hs)drawHem(info.hs,false);
+ /* стрелки лицевой стороны */
+ const segLen=U.map((u,i)=>Math.hypot(P[i+1][0]-P[i][0],P[i+1][1]-P[i][1]));
+ const order=segLen.map((l,i)=>i).sort((a,b)=>segLen[b]-segLen[a]);
+ order.forEach((i,rank)=>{if(segLen[i]<36&&rank>0)return;const n=off(U[i],1);
+  for(const t of [0.5,0.35,0.65,0.25,0.75]){const M=[P[i][0]+(P[i+1][0]-P[i][0])*t,P[i][1]+(P[i+1][1]-P[i][1])*t],cx=M[0]+n[0]*19,cy=M[1]+n[1]*19,b={x:cx-9,y:cy-9,w:18,h:18};
+   if(t!==0.25&&t!==0.75&&hit(b))continue;boxes.push(b);
+   const tail=[M[0]+n[0]*28,M[1]+n[1]*28],hd=[M[0]+n[0]*7,M[1]+n[1]*7],pp=[-n[1],n[0]],h1=[hd[0]+n[0]*10+pp[0]*5.5,hd[1]+n[1]*10+pp[1]*5.5],h2=[hd[0]+n[0]*10-pp[0]*5.5,hd[1]+n[1]*10-pp[1]*5.5];
+   const L=`${tail[0].toFixed(1)}`;
+   lab+=`<line x1="${tail[0].toFixed(1)}" y1="${tail[1].toFixed(1)}" x2="${(hd[0]+n[0]*8).toFixed(1)}" y2="${(hd[1]+n[1]*8).toFixed(1)}" stroke="#1f3a4d" stroke-width="6" stroke-linecap="round"/><polygon points="${hd[0].toFixed(1)},${hd[1].toFixed(1)} ${h1[0].toFixed(1)},${h1[1].toFixed(1)} ${h2[0].toFixed(1)},${h2[1].toFixed(1)}" fill="#1f3a4d" stroke="#1f3a4d" stroke-width="3" stroke-linejoin="round"/><line x1="${tail[0].toFixed(1)}" y1="${tail[1].toFixed(1)}" x2="${(hd[0]+n[0]*8).toFixed(1)}" y2="${(hd[1]+n[1]*8).toFixed(1)}" stroke="${fc}" stroke-width="3"${dash} stroke-linecap="round"/><polygon points="${hd[0].toFixed(1)},${hd[1].toFixed(1)} ${h1[0].toFixed(1)},${h1[1].toFixed(1)} ${h2[0].toFixed(1)},${h2[1].toFixed(1)}" fill="${fc}"/>`;
+   break}});
+ /* номера гибов */
+ const angReq=[];
+ info.bends.filter(b=>!b.hem).forEach(b=>{const i=b.vi,v=[U[i][0]-U[i-1][0],U[i][1]-U[i-1][1]],vl=Math.hypot(v[0],v[1]);
+  let out;if(vl<1e-6){const d=off(U[i],1);out=[-d[0],-d[1]]}else out=[-v[0]/vl,v[1]/vl];
+  const c=place(P[i][0],P[i][1],20,20,ring(out,[20,28,36,46]));
+  lab+=`<line x1="${P[i][0].toFixed(1)}" y1="${P[i][1].toFixed(1)}" x2="${c[0].toFixed(1)}" y2="${c[1].toFixed(1)}" stroke="#d93025" stroke-width="1"/><circle cx="${P[i][0].toFixed(1)}" cy="${P[i][1].toFixed(1)}" r="3.4" fill="#d93025"/><circle cx="${c[0].toFixed(1)}" cy="${c[1].toFixed(1)}" r="9" fill="#d93025"/><text x="${c[0].toFixed(1)}" y="${c[1].toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">${b.no}</text>`;
+  angReq.push({c,out,t:r1(b.ang)+'°'})});
+ info.bends.filter(b=>b.hem).forEach(b=>{const r=hemReq.find(q=>q.atEnd===(b.vi>0));if(!r)return;
+  const c=place(r.A[0],r.A[1],20,20,ring([-r.ns[0],-r.ns[1]],[22,30,40]));
+  lab+=`<circle cx="${c[0].toFixed(1)}" cy="${c[1].toFixed(1)}" r="9" fill="#6b3fa0"/><text x="${c[0].toFixed(1)}" y="${c[1].toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#fff">${b.no}</text>`});
+ hemReq.forEach(r=>{const t='зав. '+fl(r.len),c=place(r.A[0],r.A[1],tw(t),15,ring([r.us[0]*(r.atEnd?1:-1),r.us[1]*(r.atEnd?1:-1)],[18,26,36,46]));lab+=T(c[0],c[1],t,'#6b3fa0',10.5,700)});
+ angReq.forEach(a=>{const c=place(a.c[0],a.c[1],tw(a.t),15,ring(a.out,[22,30,40]));lab+=T(c[0],c[1],a.t,'#b3261e',11,700)});
+ segs.forEach((s,i)=>{const n=off(U[i],1),M=[(P[i][0]+P[i+1][0])/2,(P[i][1]+P[i+1][1])/2],t=fl(s.len),c=place(M[0],M[1],tw(t),15,ring([-n[0],-n[1]],[12,20,28,38,50]));lab+=T(c[0],c[1],t,'#18212b',12,700)});
+ return `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Профиль с торца">${geo}${lab}<circle cx="${P[0][0].toFixed(1)}" cy="${P[0][1].toFixed(1)}" r="4.5" fill="#1e7a46"/></svg>`}
+function benderFlat(p,W){
+ const info=bendInfo(p),B=info.total;if(!(B>0))return'';
+ const pad=34,padR=48,sc=(W-pad-padR)/B,hd=Math.min(120,Math.max(56,p.a*sc)),top=66,H=top+hd+74,fc=faceColor(p);
+ let o=`<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Развёртка"><defs><pattern id="hemp" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#efe8f7"/><line x1="0" y1="0" x2="0" y2="7" stroke="#b89ad8" stroke-width="2"/></pattern></defs><rect x="${pad}" y="${top}" width="${(B*sc).toFixed(1)}" height="${hd}" fill="#f4f7fa" stroke="#1f3a4d" stroke-width="2"/><rect x="${pad}" y="${top}" width="${(B*sc).toFixed(1)}" height="5" fill="${fc}"/><text x="${(pad+B*sc/2).toFixed(1)}" y="${top+hd/2}" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#8a97a4">вид со стороны лица</text>`;
+ o+=`<line x1="${pad}" y1="${top-48}" x2="${(pad+B*sc).toFixed(1)}" y2="${top-48}" stroke="#18212b"/><line x1="${pad}" y1="${top-53}" x2="${pad}" y2="${top-43}" stroke="#18212b"/><line x1="${(pad+B*sc).toFixed(1)}" y1="${top-53}" x2="${(pad+B*sc).toFixed(1)}" y2="${top-43}" stroke="#18212b"/><text x="${(pad+B*sc/2).toFixed(1)}" y="${top-54}" text-anchor="middle" font-size="12" font-weight="700" fill="#18212b">развёртка ${fl(B)}</text>`;
+ let x=0,nar=0;info.flats.forEach((f,i)=>{const a=pad+x*sc,b=pad+(x+f.len)*sc;x+=f.len;
+  if(f.hem)o+=`<rect x="${a.toFixed(1)}" y="${top}" width="${(b-a).toFixed(1)}" height="${hd}" fill="url(#hemp)" stroke="#8a64b5" stroke-dasharray="3 2"/>`;
+  const txt=fl(f.len),narrow=(b-a)<txt.length*6.6+6,row=narrow?(nar++%2):0;
+  o+=`<line x1="${a.toFixed(1)}" y1="${top-24}" x2="${b.toFixed(1)}" y2="${top-24}" stroke="#5b6672"/><line x1="${a.toFixed(1)}" y1="${top-27}" x2="${a.toFixed(1)}" y2="${top-21}" stroke="#5b6672"/><line x1="${b.toFixed(1)}" y1="${top-27}" x2="${b.toFixed(1)}" y2="${top-21}" stroke="#5b6672"/><text x="${((a+b)/2).toFixed(1)}" y="${top-30-row*12}" text-anchor="middle" font-size="11" fill="${f.hem?'#6b3fa0':'#18212b'}" font-weight="${f.hem?700:400}">${txt}</text>`;
+  if(f.hem&&(b-a)>40)o+=`<text x="${((a+b)/2).toFixed(1)}" y="${top+hd/2+16}" text-anchor="middle" font-size="10" fill="#6b3fa0">завальц.</text>`});
+ info.bends.forEach((b,i)=>{const bx=pad+b.pos*sc,ry=(i%2)*17,lab=b.hem?`зав. ${b.up?'↑':'↓'}`:`${r1(b.ang)}° ${b.up?'↑':'↓'}`,col=b.hem?'#6b3fa0':'#d93025';
+  o+=`<line x1="${bx.toFixed(1)}" y1="${top-8}" x2="${bx.toFixed(1)}" y2="${top+hd+6}" stroke="${col}" stroke-width="1.6" stroke-dasharray="7 4"/><circle cx="${bx.toFixed(1)}" cy="${top+hd+18+ry}" r="8" fill="${col}"/><text x="${bx.toFixed(1)}" y="${top+hd+18+ry}" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#fff">${b.no}</text><text x="${(bx+11).toFixed(1)}" y="${top+hd+18+ry}" dominant-baseline="central" font-size="10.5" fill="${col}" font-weight="700">${lab}</text>`});
+ o+=`<text x="${W-10}" y="${top+hd/2}" text-anchor="middle" font-size="11" fill="#445260" transform="rotate(90 ${W-10} ${top+hd/2})">A = ${fl(p.a)}</text></svg>`;
+ return o}
+
+let E=null;const EC=16,ER=12,CS=40,STEPS=[1,2,5,10,20,25,50,100,200,500,1000],rnd4=x=>Math.round(x*1e4)/1e4;
+function segsFromPts(pts){
+ const P=pts.filter((a,i)=>i===0||Math.hypot(a[0]-pts[i-1][0],a[1]-pts[i-1][1])>1e-6),segs=[];let ph=0;
+ for(let i=0;i<P.length-1;i++){const dx=P[i+1][0]-P[i][0],dy=P[i+1][1]-P[i][1],len=Math.round(Math.hypot(dx,dy)*10)/10,h=Math.atan2(dy,dx)*180/Math.PI;
+  if(i===0){segs.push({len,ang:Math.round(((h%360)+360)%360*10)/10,dir:1})}
+  else{let d=h-ph;while(d>180)d-=360;while(d<=-180)d+=360;segs.push({len,ang:Math.round(Math.abs(d)*10)/10,dir:d<0?-1:1})}
+  ph=h}
+ return segs}
+function edFit(){
+ const st=E.step;
+ if(E.pts.length){const xs=E.pts.map(a=>a[0]),ys=E.pts.map(a=>a[1]),cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;
+  E.ox=Math.round((cx-EC*st/2)/st)*st;E.oy=Math.round((cy-ER*st/2)/st)*st}
+ else{E.ox=-2*st;E.oy=-Math.floor(ER/2)*st}}
+const v2w=(vx,vy)=>[E.ox+vx/CS*E.step,E.oy+(ER*CS-vy)/CS*E.step],w2v=(wx,wy)=>[(wx-E.ox)/E.step*CS,ER*CS-(wy-E.oy)/E.step*CS];
+function edSnap(i,wx,wy){const st=E.step;
+ if(E.mode==='ang'&&i>0){const a=E.pts[i-1],dx=wx-a[0],dy=wy-a[1],d=Math.hypot(dx,dy),ang=Math.round(Math.atan2(dy,dx)*180/Math.PI/15)*15,len=Math.max(st,Math.round(d/st)*st),r=ang*Math.PI/180;
+  return[rnd4(a[0]+len*Math.cos(r)),rnd4(a[1]+len*Math.sin(r))]}
+ if(E.mode==='free')return[Math.round(wx),Math.round(wy)];
+ return[rnd4(Math.round(wx/st)*st),rnd4(Math.round(wy/st)*st)]}
+function edRender(){
+ if(!E)return;
+ const st=E.step,W=EC*CS,H=ER*CS,pts=E.pts,Ls=E.face==='L'?1:-1,EP=B,fc=faceColor(EP);
+ let o='';
+ const x0=E.ox,x1=E.ox+EC*st,y0=E.oy,y1=E.oy+ER*st,eps=st*1e-6,GX=[],GY=[];
+ for(let n=Math.ceil(x0/st-1e-9);n*st<=x1+eps;n++)GX.push(n);for(let n=Math.ceil(y0/st-1e-9);n*st<=y1+eps;n++)GY.push(n);
+ GX.forEach(n=>{const vx=(n*st-x0)/st*CS;o+=`<line x1="${vx.toFixed(1)}" y1="0" x2="${vx.toFixed(1)}" y2="${H}" stroke="${n%5===0?'#c5ced7':'#e3e8ed'}"/>`});
+ GY.forEach(n=>{const vy=H-(n*st-y0)/st*CS;o+=`<line x1="0" y1="${vy.toFixed(1)}" x2="${W}" y2="${vy.toFixed(1)}" stroke="${n%5===0?'#c5ced7':'#e3e8ed'}"/>`});
+ GX.forEach(nx=>GY.forEach(ny=>{o+=`<circle cx="${((nx*st-x0)/st*CS).toFixed(1)}" cy="${(H-(ny*st-y0)/st*CS).toFixed(1)}" r="1.6" fill="#9aa6b2"/>`}));
+ const V=pts.map(a=>w2v(a[0],a[1]));
+ for(let i=0;i<V.length-1;i++){const dx=V[i+1][0]-V[i][0],dy=V[i+1][1]-V[i][1],l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l;
+  // нормаль слева по ходу в мировых координатах (y вверх) -> экран: (-uy_w,ux_w)->(−uy_w, −ux_w) ; uy_w=-uy, ux_w=ux
+  const nlx=uy,nly=-ux;
+  o+=`<line x1="${V[i][0]+nlx*Ls*6}" y1="${V[i][1]+nly*Ls*6}" x2="${V[i+1][0]+nlx*Ls*6}" y2="${V[i+1][1]+nly*Ls*6}" stroke="${fc}" stroke-width="5" stroke-linecap="round" opacity=".85"${stripeDash(EP)}/>`}
+ if(V.length>1)o+=`<polyline points="${V.map(a=>a[0].toFixed(1)+','+a[1].toFixed(1)).join(' ')}" fill="none" stroke="#1f3a4d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+ let ph=0,total=0;
+ for(let i=0;i<pts.length-1;i++){const dx=pts[i+1][0]-pts[i][0],dy=pts[i+1][1]-pts[i][1],len=Math.hypot(dx,dy),h=Math.atan2(dy,dx)*180/Math.PI;total+=len;
+  const sx=V[i+1][0]-V[i][0],sy=V[i+1][1]-V[i][1],l=Math.hypot(sx,sy)||1;
+  const nlx=sy/l,nly=-sx/l,tx=(V[i][0]+V[i+1][0])/2-nlx*Ls*16,ty=(V[i][1]+V[i+1][1])/2-nly*Ls*16;
+  o+=`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-size="14" font-weight="700" fill="#18212b" stroke="#fff" stroke-width="4" paint-order="stroke">${fl(len)}</text>`;
+  if(i>0){let d=h-ph;while(d>180)d-=360;while(d<=-180)d+=360;const a=Math.abs(d);
+   if(a>0.05)o+=`<text x="${V[i][0].toFixed(1)}" y="${(V[i][1]-14).toFixed(1)}" text-anchor="middle" font-size="12" fill="#b3261e" font-weight="700" stroke="#fff" stroke-width="3" paint-order="stroke">${r1(a)}°</text>`}
+  ph=h}
+ V.forEach((a,i)=>{const sel=i===E.sel;o+=`<circle cx="${a[0].toFixed(1)}" cy="${a[1].toFixed(1)}" r="${sel?11:8}" fill="${i===0?'#1e7a46':sel?'#f07824':'#fff'}" stroke="#1f3a4d" stroke-width="2.5"/><text x="${a[0].toFixed(1)}" y="${a[1].toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="700" fill="${i===0||sel?'#fff':'#1f3a4d'}">${i+1}</text>`});
+ o+=`<text x="8" y="${H-8}" font-size="12" fill="#6b7785">клетка = ${fu(st)}</text>`;
+ $('edSvg').innerHTML=o;edPanel();
+ const nb=Math.max(0,pts.length-2),dev=total+nb*0;
+ $('edInfo').textContent=pts.length<2?'Поставьте минимум две точки. Первая точка — начало профиля (зелёная).':`Точек: ${pts.length} · полок: ${pts.length-1} · гибов: ${nb} · развёртка ≈ ${fu(dev)}`}
+
+function edHeading(i){const p=E.pts;return Math.atan2(p[i+1][1]-p[i][1],p[i+1][0]-p[i][0])*180/Math.PI}
+const normA=a=>{a=((a%360)+360)%360;return a>180?a-360:a};
+function edHead(i,d){edSeg(i,'head',String(Math.round(normA(edHeading(i)+d)*10)/10))}
+function edBend(i,mag){const d=normA(edHeading(i)-edHeading(i-1)),sg=d<-0.05?-1:1;edSeg(i,'head',String(Math.round(normA(edHeading(i-1)+sg*mag)*10)/10))}
+function edPanel(){
+ const el=$('edSegs');if(!el)return;const pts=E.pts,ul='мм';
+ if(pts.length<2){el.innerHTML='';return}
+ let ph=0,h='<h3 style="margin:6px 0">Точные размеры полок</h3><p class="muted">Направление: 0° — вправо, 90° — вверх, 180° — влево, −90° — вниз. Кнопки меняют угол на 1° или на 10°. Остальные полки сохраняют своё направление.</p>';
+ for(let i=0;i<pts.length-1;i++){const dx=pts[i+1][0]-pts[i][0],dy=pts[i+1][1]-pts[i][1],len=Math.hypot(dx,dy);let hd=Math.atan2(dy,dx)*180/Math.PI;
+  let bt='';if(i>0){let d=hd-ph;while(d>180)d-=360;while(d<=-180)d+=360;bt=Math.abs(d)>0.05?`гиб ${r1(Math.abs(d))}°`:'прямо'}
+  h+=`<div class="segc"><div class="seg" style="grid-template-columns:20px 1fr 1fr 70px"><span class="sn">${i+1}</span><div><label>Длина, ${ul}</label><input type="number" inputmode="decimal" step="any" min="0" value="${inV(len)}" onchange="edSeg(${i},'len',this.value)"></div><div><label>Направление, °</label><input type="number" inputmode="decimal" step="any" value="${r1(hd)}" onchange="edSeg(${i},'head',this.value)"></div><span class="muted" style="padding-bottom:12px">${bt}</span></div>
+  <div class="angrow"><button class="secondary" onclick="edHead(${i},-10)">−10°</button><button class="secondary" onclick="edHead(${i},-1)">−1°</button><button class="secondary" onclick="edHead(${i},1)">+1°</button><button class="secondary" onclick="edHead(${i},10)">+10°</button></div>
+  <div class="chips"><span class="muted">Направление:</span>${[[0,'→ 0°'],[90,'↑ 90°'],[180,'← 180°'],[-90,'↓ −90°']].map(c=>`<button class="secondary sm" onclick="edSeg(${i},'head','${c[0]}')">${c[1]}</button>`).join('')}</div>
+  ${i>0?`<div class="chips c6"><span class="muted">Угол гиба:</span>${[30,45,60,90,120,135].map(m=>`<button class="secondary sm" onclick="edBend(${i},${m})">${m}°</button>`).join('')}</div>`:''}</div>`;ph=hd}
+ el.innerHTML=h}
+function edSeg(i,k,v){
+ const pts=E.pts,x=num(v);if(!isFinite(x))return;
+ const vec=[];for(let j=0;j<pts.length-1;j++)vec.push([pts[j+1][0]-pts[j][0],pts[j+1][1]-pts[j][1]]);
+ const len=Math.hypot(...vec[i]),hd=Math.atan2(vec[i][1],vec[i][0]);
+ let nl=len,nh=hd;if(k==='len'){nl=x*f();if(!(nl>0))return edRender()}else nh=x*Math.PI/180;
+ vec[i]=[nl*Math.cos(nh),nl*Math.sin(nh)];
+ const np=[pts[0]];for(let j=0;j<vec.length;j++){const a=np[j];np.push([rnd4(a[0]+vec[j][0]),rnd4(a[1]+vec[j][1])])}
+ E.pts=np;
+ const st=E.step,xs=np.map(a=>a[0]),ys=np.map(a=>a[1]),w=Math.max(...xs)-Math.min(...xs),h=Math.max(...ys)-Math.min(...ys),out=np.some(a=>a[0]<E.ox||a[0]>E.ox+EC*st||a[1]<E.oy||a[1]>E.oy+ER*st);
+ if(w>(EC-2)*st||h>(ER-2)*st)edAutoStep();else if(out)edFit();edRender()}
+function edXY(ev){const r=$('edSvg').getBoundingClientRect(),k=EC*CS/r.width;return[(ev.clientX-r.left)*k,(ev.clientY-r.top)*k]}
+const ptrs=new Map();let pinch0=0;
+function syncStep(){$('edStep').value=String(E.step)}
+function edAutoStep(){
+ const pts=E.pts;
+ if(pts.length){const xs=pts.map(a=>a[0]),ys=pts.map(a=>a[1]),w=Math.max(...xs)-Math.min(...xs),h=Math.max(...ys)-Math.min(...ys);
+  E.step=STEPS.find(s=>w<=(EC-3)*s&&h<=(ER-3)*s)||STEPS[STEPS.length-1]}
+ edFit();syncStep()}
+function edZoom(dir){
+ const j=STEPS.indexOf(E.step)+(dir>0?-1:1);if(j<0||j>=STEPS.length)return;
+ const st=E.step,cx=E.ox+EC*st/2,cy=E.oy+ER*st/2,ns=STEPS[j];E.step=ns;E.ox=cx-EC*ns/2;E.oy=cy-ER*ns/2;syncStep();edRender()}
+function edDown(ev){
+ if(!E)return;ev.preventDefault();ptrs.set(ev.pointerId,[ev.clientX,ev.clientY]);
+ try{$('edSvg').setPointerCapture(ev.pointerId)}catch(e){}
+ if(ptrs.size===2){const a=[...ptrs.values()];pinch0=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);E.drag=-1;E.down=null;E.pan=null;return}
+ const[vx,vy]=edXY(ev);
+ if(E.panMode){E.pan={vx,vy,ox:E.ox,oy:E.oy};return}
+ let bi=-1,bd=CS*0.5;E.pts.forEach((a,i)=>{const v=w2v(a[0],a[1]),d=Math.hypot(v[0]-vx,v[1]-vy);if(d<bd){bd=d;bi=i}});
+ E.moved=false;
+ if(bi>=0){E.drag=bi;E.sel=bi;E.down=null}else{E.drag=-1;E.down=[vx,vy]}
+ edRender()}
+function edMove(ev){
+ if(!E)return;
+ if(ptrs.has(ev.pointerId))ptrs.set(ev.pointerId,[ev.clientX,ev.clientY]);
+ if(ptrs.size===2){ev.preventDefault();const a=[...ptrs.values()],d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);
+  if(pinch0>0){if(d/pinch0>1.45){edZoom(1);pinch0=d}else if(d/pinch0<0.69){edZoom(-1);pinch0=d}}return}
+ if(E.pan){ev.preventDefault();const[vx,vy]=edXY(ev);E.ox=E.pan.ox-(vx-E.pan.vx)/CS*E.step;E.oy=E.pan.oy+(vy-E.pan.vy)/CS*E.step;edRender();return}
+ if(E.drag<0)return;ev.preventDefault();const[vx,vy]=edXY(ev),w=v2w(Math.max(0,Math.min(EC*CS,vx)),Math.max(0,Math.min(ER*CS,vy)));
+ const q=edSnap(E.drag,w[0],w[1]);if(q[0]!==E.pts[E.drag][0]||q[1]!==E.pts[E.drag][1]){E.pts[E.drag]=q;E.moved=true;edRender()}}
+function edUp(ev){
+ if(!E)return;const was=ptrs.size;ptrs.delete(ev.pointerId);
+ if(was>=2){E.drag=-1;E.down=null;E.pan=null;if(ptrs.size===0)pinch0=0;return}
+ if(E.pan){E.pan=null;return}
+ if(E.drag<0&&E.down){const w=v2w(E.down[0],E.down[1]),q=edSnap(E.pts.length,w[0],w[1]),l=E.pts[E.pts.length-1];
+  if(!l||Math.hypot(q[0]-l[0],q[1]-l[1])>1e-6){E.pts.push(q);E.sel=E.pts.length-1}}
+ E.drag=-1;E.down=null;edRender()}
+
+const norm360=h=>((h%360)+360)%360;
+function tplToSegs(t){const hs=t.s.map(x=>x[1]);return t.s.map((p,i)=>{if(!i)return{len:p[0],ang:norm360(p[1]),dir:1};let d=p[1]-hs[i-1];while(d>180)d-=360;while(d<=-180)d+=360;return{len:p[0],ang:Math.abs(d),dir:d<0?-1:1}})}
+function setProfile(segs,hems,face,name,tid,item){B.segs=segs;B.hems=hems||{};B.face=face||'L';B.tpl=name||'';B.tplId=tid||'';if(item)B.item=item;pfRender()}
+function applyPreset(k){const p=PRES[k];if(p)setProfile(p.segs.map(s=>({...s})),JSON.parse(JSON.stringify(p.hems||{})),'L',p.n,'',p.item)}
+function applyTpl(id){const t=TPL.find(x=>x.id===id);if(t)setProfile(tplToSegs(t),{},'L',t.n,t.id,t.item)}
+function bModel(){
+ const len=num($('blen').value),qty=Math.max(1,Math.round(num($('bqty').value)||1));B.a=len>0?len:0;
+ const ok=B.segs.length>0&&B.segs.every(s=>s.len>0)&&len>0,info=bendInfo(B),dev=Math.round(info.total*10)/10,per=len*dev/1e6*C.ppm+C.make;
+ return{ok,info,len,qty,dev,area:len*dev/1e6,per,tot:per*qty}}
+function selCard(){
+ const ok=B.segs.length&&B.segs.every(s=>s.len>0),t=B.tplId&&TPL.find(x=>x.id===B.tplId);
+ let h='<div class="bsel"><div>Выбрано: <b>'+esc(B.tpl||(B.segs.length?'свой профиль':'пока ничего'))+'</b>'+(ok?' · развёртка <b>'+fl(bendInfo(B).total)+' мм</b>':'')+'</div>';
+ if(t){h+='<span class="nimgw"><img class="nimg" src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" onerror="this.parentNode.remove()"><small>Готовая схема из технологической карты мастерской. Размеры можно менять ниже или перерисовать на сетке.</small></span>';
+  if(t.note)h+='<br><small>'+esc(t.note)+'</small>';if(t.cx)h+='<br><small>Сложное изделие: точные сгибы уточним по телефону.</small>'}
+ else if(!B.segs.length)h+='<small>Выберите изделие в каталоге выше или нарисуйте профиль на сетке.</small>';
+ return h+'</div>'}
+function hemEditor(){
+ const H=getHems(B),row=(w,t,lab)=>'<div class="h2"><div><label>Завальцовка '+lab+'</label><select data-h="'+w+'" data-hk="t"><option value=""'+(!t.t?' selected':'')+'>нет</option><option value="closed"'+(t.t==='closed'?' selected':'')+'>закрытая (плотно)</option><option value="open"'+(t.t==='open'?' selected':'')+'>открытая (с зазором)</option></select></div><div><label>Полка, мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(t.len)+'" data-h="'+w+'" data-hk="len"'+(t.t?'':' disabled')+'></div></div>';
+ return '<div class="hemb">'+row('s',H.s,'в начале')+row('e',H.e,'в конце')+'<div style="margin-top:6px"><label>Куда заворачивать</label><select data-h="side" data-hk="side"><option value="back"'+(H.side==='back'?' selected':'')+'>на изнанку (лицо остаётся снаружи)</option><option value="face"'+(H.side==='face'?' selected':'')+'>на лицо</option></select></div></div>'}
+function pfControls(){
+ const segs=B.segs;
+ let h='<div class="actions" style="margin:0 0 6px"><button type="button" class="bigdraw" data-a="draw">✏ Нарисовать на сетке</button></div>'+
+ '<div style="margin:8px 0"><label>Шаблон изделия</label><select data-a="preset"><option value="">— выбрать шаблон —</option><optgroup label="Стандартные">'+Object.keys(PRES).map(k=>'<option value="p:'+k+'">'+PRES[k].n+'</option>').join('')+'</optgroup><optgroup label="Из технологической карты">'+TPL.map(t=>'<option value="t:'+t.id+'">'+esc(t.n)+'</option>').join('')+'</optgroup></select></div>';
+ h+=segs.map((s,i)=>'<div class="seg"><span class="sn">'+(i+1)+'</span><div><label>Полка, мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(s.len)+'" data-s="len" data-i="'+i+'"></div><div><label>'+(i?'Угол °':'Старт °')+'</label><input type="number" inputmode="numeric" min="0" max="'+(i?180:360)+'" value="'+s.ang+'" data-s="ang" data-i="'+i+'"></div><div><label>Куда</label><select data-s="dir" data-i="'+i+'"><option value="1"'+(s.dir>=0?' selected':'')+'>↰ лево</option><option value="-1"'+(s.dir<0?' selected':'')+'>↱ право</option></select></div><button type="button" class="danger" data-a="del" data-i="'+i+'" aria-label="Удалить полку">×</button></div>').join('');
+ h+='<div class="actions"><button type="button" class="secondary" data-a="add">+ Полка</button>'+(segs.length?'<button type="button" class="danger" style="flex:0 0 auto" data-a="clear">Убрать профиль</button>':'')+'</div>';
+ if(segs.length){const sum=segs.reduce((a,x)=>a+x.len,0);
+  h+='<p class="muted">Развёртка = <b>'+fu(bendInfo(B).total)+'</b> (сумма полок '+fl(sum)+'). «Старт» — куда направлена первая полка (0° — вправо, 90° — вверх), дальше угол поворота перед каждой полкой.</p><div style="margin-top:8px"><label>Лицо (окрашенная сторона)</label><select data-a="face"><option value="L"'+(B.face!=='R'?' selected':'')+'>Слева от линии</option><option value="R"'+(B.face==='R'?' selected':'')+'>Справа от линии</option></select></div>'+hemEditor()}
+ return h}
+function pfSketch(){
+ if(!B.segs.length||!B.segs.every(s=>s.len>0))return '';
+ const W=Math.round(Math.max(280,Math.min(540,($('bsk').clientWidth||340)-2))),info=bendInfo(B),m=bModel();
+ const rows=info.bends.map(b=>'<tr><td>'+b.no+'</td><td>'+(b.hem?'180°':r1(b.ang)+'°')+'</td><td>'+(b.up?'↑ вверх (к себе, лицо внутри)':'↓ вниз (от себя, лицо снаружи)')+(b.hem?'<br><b style="color:#6b3fa0">завальцовка '+hemName(b.hem)+', полка '+fl(b.hem.len)+' мм</b>':'')+'</td><td>'+fl(b.pos)+' мм</td></tr>').join('');
+ const hemTxt=[info.hs?'в начале — '+hemName(info.hs)+' '+fl(info.hs.len)+' мм':'',info.he?'в конце — '+hemName(info.he)+' '+fl(info.he.len)+' мм':''].filter(Boolean).join('; ');
+ return '<div class="bd"><div class="muted">Профиль с торца, размеры полок в мм. Стрелка цвета детали — лицевая (окрашенная) сторона, она указывает на лицо. Красные кружки — номера гибов и углы, фиолетовый — завальцовка. Зелёная точка — начало профиля.</div>'+benderProfile(B,W,Math.round(W*0.6))+
+ (m.len>0?'<div class="muted">Развёртка A × B — вид со стороны лица, по длине A без масштаба. Размеры — длины плоских участков между линиями гиба. ↑ согнуть к себе (лицо внутри), ↓ от себя (лицо снаружи). Штриховка — завальцовка.</div>'+benderFlat(B,W):'')+
+ (rows?'<table class="bt"><thead><tr><th>Гиб</th><th>Угол</th><th>Направление</th><th>Линия от начала</th></tr></thead><tbody>'+rows+'</tbody></table>':'')+
+ '<div class="muted">Заготовка '+fu(B.a)+' × '+fu(info.total)+(hemTxt?'. Завальцовка: '+hemTxt:'')+'.</div></div>'}
+function bDraw(){
+ const m=bModel();$('bnote').innerHTML=selCard();$('bsk').innerHTML=pfSketch();
+ $('bout').innerHTML=m.ok?'Развёртка <b>'+f2(m.dev)+' мм</b> · площадь детали '+f2(m.area)+' м²<br><b id="bbig">≈ '+money(m.tot)+'</b> <small>за '+m.qty+' шт. ('+money(m.per)+' за деталь, ориентировочно)</small>':'<small>Выберите изделие и укажите длину изделия.</small>'}
+function pfRender(){
+ const ae=document.activeElement,keep=ae&&ae.closest&&ae.closest('#bpf');
+ $('bpf').innerHTML=pfControls();bDraw()}
+window.bDraw=bDraw;
+/* события блока */
+$('bpf').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||b.tagName==='SELECT')return;const a=b.dataset.a;
+ if(a==='draw')openEd();
+ else if(a==='add'){if(B.segs.length>=14)return;B.segs.push({len:50,ang:B.segs.length?90:0,dir:1});pfRender()}
+ else if(a==='del'){B.segs.splice(+b.dataset.i,1);pfRender()}
+ else if(a==='clear'){B.segs=[];B.tpl='';B.tplId='';pfRender()}});
+$('bpf').addEventListener('change',e=>{const el=e.target;
+ if(el.dataset.s){const i=+el.dataset.i,s=B.segs[i];if(!s)return;
+  if(el.dataset.s==='len'){const x=num(el.value);if(x>0)s.len=Math.round(x*1e4)/1e4}
+  else if(el.dataset.s==='ang')s.ang=Math.min(i?180:360,Math.max(0,Math.round((num(el.value)||0)*10)/10));
+  else s.dir=+el.value>=0?1:-1;pfRender()}
+ else if(el.dataset.a==='face'){B.face=el.value==='R'?'R':'L';pfRender()}
+ else if(el.dataset.a==='preset'){const v=el.value;if(v.startsWith('p:'))applyPreset(v.slice(2));else if(v.startsWith('t:')){applyTpl(v.slice(2));document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x.dataset.t===v.slice(2)))}}
+ else if(el.dataset.h){const w=el.dataset.h,k=el.dataset.hk;B.hems=B.hems||{};
+  if(w==='side')B.hems.side=el.value==='face'?'face':'back';
+  else{B.hems[w]=B.hems[w]||{t:'',len:10};if(k==='t')B.hems[w].t=el.value;else{const x=num(el.value);if(x>0)B.hems[w].len=Math.round(x*1e4)/1e4}}
+  pfRender()}});
+/* каталог */
+$('bcat').innerHTML=TPL.map(t=>'<button type="button" data-t="'+t.id+'" title="'+esc(t.n)+'"><img src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" loading="lazy" onerror="thumbFix(this)"><b>'+esc(t.n)+'</b><small>развёртка '+tplDev(t)+' мм</small></button>').join('');
+$('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;
+ document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x===b));applyTpl(b.dataset.t);
+ $('bnote').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
 $('blen').addEventListener('input',bDraw);$('bqty').addEventListener('input',bDraw);
-function svgToJpeg(svg){return new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=1120;c.height=520;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);let q=.85,u=c.toDataURL('image/jpeg',q);while(u.length>200000&&q>.5){q-=.1;u=c.toDataURL('image/jpeg',q)}ok(u)};im.onerror=no;im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)})}
+/* цвет */
+$('bsw').innerHTML='<div data-k="" class="on"><i style="background:#f07824"></i>не выбран</div>'+C.colors.map(k=>{const r=RAL[k];return r?'<div data-k="'+esc(k)+'" tabindex="0" role="button"><i style="background:'+r[1]+'"></i>RAL '+esc(k)+' · '+r[0]+'</div>':''}).join('');
+function setColor(k){B.color=RAL[k]?k:'';document.querySelectorAll('#bsw>div').forEach(x=>x.classList.toggle('on',x.dataset.k===B.color));const r=RAL[B.color];$('bcn').textContent=r?'RAL '+B.color+' · '+r[0]:'';edRal();bDraw();if(E)edRender()}
+$('bsw').addEventListener('click',e=>{const d=e.target.closest('[data-k]');if(d)setColor(d.dataset.k)});
+$('bsw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d=e.target.closest('[data-k]');if(d){e.preventDefault();setColor(d.dataset.k)}}});
+/* редактор на сетке */
+document.body.insertAdjacentHTML('beforeend','<div id="ed" class="ed" hidden role="dialog" aria-label="Редактор профиля на сетке"><div class="edin"><div class="edh"><b>Рисуем профиль с торца</b><div><button type="button" class="secondary sm" id="edCancel">Отмена</button><button type="button" class="sm" id="edDone">Готово</button></div></div>'+
+'<div class="edt"><div><label>Шаг сетки (клетка)</label><select id="edStep"></select></div><div><label>Привязка точек</label><select id="edMode"><option value="grid">К узлам сетки</option><option value="ang">Углы 15° и длина по шагу</option><option value="free">Свободно (до 1 мм)</option></select></div><div><label>Лицо (окрашенная сторона)</label><select id="edFace"><option value="L">Слева от линии</option><option value="R">Справа от линии</option></select></div></div>'+
+'<div><label>Цвет детали</label><div id="edRal" class="ralrow"></div><div class="muted" id="edRalName" style="margin-top:4px"></div></div>'+
+'<div class="edb"><svg id="edSvg" viewBox="0 0 640 480" role="img" aria-label="Поле для рисования профиля"></svg></div>'+
+'<div class="tb tb4"><button type="button" class="secondary" id="edZm" style="font-size:24px" aria-label="Отдалить">−</button><button type="button" class="secondary" id="edZp" style="font-size:24px" aria-label="Приблизить">+</button><button type="button" class="secondary tgl" id="edPan">✋ Сдвиг</button><button type="button" class="secondary" id="edFit">Вписать</button></div>'+
+'<div class="tb tb3"><button type="button" class="secondary" id="edUndo">↶ Точку назад</button><button type="button" class="secondary" id="edDel">Удалить точку</button><button type="button" class="danger" id="edClear">Очистить</button></div>'+
+'<div class="muted" id="edInfo"></div><div id="edSegs"></div>'+
+'<p class="muted">Нажимайте на узлы сетки — рисуйте профиль от одного края к другому. Точку можно перетащить. Кнопки «−» и «+» (или щипок двумя пальцами) меняют масштаб, «✋ Сдвиг» двигает поле, «Вписать» подбирает масштаб под весь профиль. Режим «Углы 15°» удобен для наклонных отгибов: длина — кратна шагу, угол — кратен 15°. Точные числа потом можно поправить в полях под кнопкой «Нарисовать на сетке».</p></div></div>');
+function edRal(){const el=$('edRal');if(!el)return;const ks=C.colors.filter(k=>RAL[k]);
+ el.innerHTML='<button type="button" class="rb'+(!B.color?' on':'')+'" data-k="" aria-label="Без цвета"><i style="background:linear-gradient(135deg,#fff 45%,#cbd3dc 45% 55%,#fff 55%)"></i>нет</button>'+ks.map(k=>'<button type="button" class="rb'+(B.color===k?' on':'')+'" data-k="'+k+'" aria-label="RAL '+k+' '+RAL[k][0]+'"><i style="background:'+RAL[k][1]+'"></i>'+k+'</button>').join('');
+ const r=RAL[B.color];$('edRalName').textContent=r?'Выбрано: RAL '+B.color+' — '+r[0]+' (оттенок ориентировочный)':'Выбрано: без цвета'}
+$('edRal').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)setColor(b.dataset.k)});
+function openEd(){
+ const pts=B.segs.length?profPts(B.segs):[];let step=20;
+ if(pts.length){const xs=pts.map(a=>a[0]),ys=pts.map(a=>a[1]),w=Math.max(...xs)-Math.min(...xs),h=Math.max(...ys)-Math.min(...ys);step=STEPS.find(s=>w<=(EC-3)*s&&h<=(ER-3)*s)||500}
+ E={pts,step,mode:'grid',face:B.face==='R'?'R':'L',sel:-1,drag:-1,moved:false,down:null,ox:0,oy:0,pan:null,panMode:false};
+ $('edStep').innerHTML=STEPS.map(s=>'<option value="'+s+'">'+fu(s)+'</option>').join('');
+ $('edStep').value=String(step);$('edMode').value='grid';ptrs.clear();pinch0=0;$('edPan').classList.remove('on');$('edPan').textContent='✋ Сдвиг';$('edFace').value=E.face;
+ edFit();edRal();$('ed').hidden=false;document.body.style.overflow='hidden';$('ed').scrollTop=0;edRender()}
+function closeEd(){$('ed').hidden=true;document.body.style.overflow='';E=null}
+function edDone(){
+ if(!E)return;if(E.pts.length<2){alert('Поставьте минимум две точки.');return}
+ B.segs=segsFromPts(E.pts);B.face=E.face;B.tpl='';B.tplId='';document.querySelectorAll('#bcat .on').forEach(x=>x.classList.remove('on'));closeEd();pfRender();
+ $('bnote').scrollIntoView({behavior:'auto',block:'start'})}
+window.edSeg=edSeg;window.edHead=edHead;window.edBend=edBend;
+$('edSvg').addEventListener('pointerdown',edDown);$('edSvg').addEventListener('pointermove',edMove);$('edSvg').addEventListener('pointerup',edUp);$('edSvg').addEventListener('pointercancel',edUp);
+$('edCancel').onclick=closeEd;$('edDone').onclick=edDone;
+$('edUndo').onclick=()=>{if(E){E.pts.pop();E.sel=-1;edRender()}};
+$('edDel').onclick=()=>{if(E&&E.sel>=0){E.pts.splice(E.sel,1);E.sel=-1;edRender()}else alert('Сначала нажмите на точку, чтобы выбрать её.')};
+$('edClear').onclick=()=>{if(E){E.pts=[];E.sel=-1;edFit();edRender()}};
+$('edFit').onclick=()=>{if(E){edAutoStep();edRender()}};
+$('edZp').onclick=()=>{if(E)edZoom(1)};$('edZm').onclick=()=>{if(E)edZoom(-1)};
+$('edPan').onclick=()=>{if(E){E.panMode=!E.panMode;$('edPan').classList.toggle('on',E.panMode);$('edPan').textContent=E.panMode?'✋ Сдвиг: вкл':'✋ Сдвиг'}};
+$('edSvg').addEventListener('wheel',ev=>{if(!E)return;ev.preventDefault();edZoom(ev.deltaY<0?1:-1)},{passive:false});
+$('edStep').onchange=()=>{if(E){const st=E.step,cx=E.ox+EC*st/2,cy=E.oy+ER*st/2,ns=+$('edStep').value;E.step=ns;E.ox=cx-EC*ns/2;E.oy=cy-ER*ns/2;edRender()}};
+$('edMode').onchange=()=>{if(E){E.mode=$('edMode').value;edRender()}};
+$('edFace').onchange=()=>{if(E){E.face=$('edFace').value;edRender()}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&E)closeEd()});
+/* заявка */
+function svgToJpeg(svg,w,h){return new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=w*2;c.height=h*2;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);let q=.85,u=c.toDataURL('image/jpeg',q);while(u.length>240000&&q>.5){q-=.1;u=c.toDataURL('image/jpeg',q)}ok(u)};im.onerror=no;im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)})}
+function exportSvg(m){
+ const W=560,PH=340,hd=54,prof=benderProfile(B,W,PH).replace('<svg viewBox','<svg x="0" y="'+hd+'" height="'+PH+'" viewBox'),fh=(prof&&benderFlat(B,W))||'',fm=fh.match(/viewBox="0 0 \d+ (\d+)"/),FH=fm?+fm[1]:0;
+ const flat=fh?fh.replace('<svg viewBox','<svg x="0" y="'+(hd+PH+4)+'" height="'+FH+'" viewBox'):'',H=hd+PH+4+FH+26,ttl='Развёртка '+fl(m.info.total)+' мм · длина '+fl(m.len)+' мм · '+m.qty+' шт.';
+ const sub=[B.tpl,RAL[B.color]?'RAL '+B.color:''].filter(Boolean).join(' · ');
+ return '<svg xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'"><rect width="'+W+'" height="'+H+'" fill="#fff"/><text x="14" y="24" font-size="15" font-weight="700" fill="#18212b">'+esc(ttl)+'</text>'+(sub?'<text x="14" y="44" font-size="12" fill="#c4580e">'+esc(sub)+'</text>':'')+prof+flat+'<text x="'+(W-10)+'" y="'+(H-8)+'" font-size="11" text-anchor="end" fill="#8a96a3">'+esc(C.name)+' · эскиз с сайта</text></svg>'}
+function bmsg(t,err,goto){$('bmsg').innerHTML='<div class="bmsg'+(err?' err':'')+'">'+t+(goto?'<br><button class="btn sm" type="button" id="bto">Перейти к заявке →</button>':'')+'</div>';if(goto)$('bto').onclick=()=>{openSec('s-form',true,true);setTimeout(()=>$('fn').focus({preventScroll:true}),420)}}
 $('bgo').onclick=async()=>{
- const m=bModel();if(!m.ok)return bmsg('Заполните длины всех полок и длину изделия.',1);
- bn++;const ang=m.sg.slice(0,-1).map(s=>(+s.a)+'°').join(' / ');
- const text=`Изделие ${bn}${B.tpl?' «'+B.tpl+'»':''}: профиль ${m.sg.map(s=>s.l).join(' + ')} мм`+(ang&&!B.tpl?`, загибы ${ang}`:'')+`, длина ${m.len} мм, ${m.qty} шт.`+(m.h1||m.h2?` Завальцовка ${m.hw} мм: ${[m.h1?'начало ('+(m.s1==='out'?'наружу':'внутрь')+')':'',m.h2?'конец ('+(m.s2==='out'?'наружу':'внутрь')+')':''].filter(Boolean).join(', ')}.`:'')+(m.col?` Цвет RAL ${m.col}.`:'')+` Развёртка ${+m.dev.toFixed(1)} мм. Расчёт на сайте: ≈ ${money(m.tot)}`;
+ const m=bModel();if(!m.ok)return bmsg('Выберите изделие (или нарисуйте профиль) и укажите длину изделия.',1);
+ bn++;const info=m.info,ang=info.bends.map(b=>b.no+') '+(b.hem?'завальцовка':r1(b.ang)+'° '+(b.up?'вверх':'вниз'))).join(', ');
+ const hem=[info.hs?'начало — '+hemName(info.hs)+' '+fl(info.hs.len)+' мм':'',info.he?'конец — '+hemName(info.he)+' '+fl(info.he.len)+' мм':''].filter(Boolean).join('; ');
+ const text='Изделие '+bn+(B.tpl?' «'+B.tpl+'»':'')+': полки '+B.segs.map(s=>fl(s.len)).join(' + ')+' мм'+(ang?', гибы: '+ang:'')+', лицо '+(B.face==='R'?'справа':'слева')+' от линии, длина '+fl(m.len)+' мм, '+m.qty+' шт.'+(hem?' Завальцовка: '+hem+(getHems(B).side==='face'?' (на лицо)':' (на изнанку)')+'.':'')+(B.color?' Цвет RAL '+B.color+'.':'')+' Развёртка '+fl(m.dev)+' мм. Расчёт на сайте: ≈ '+money(m.tot);
  const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text;
  let note='Эскиз приложен к заявке.';
  try{
   if(files.length>=MAXF)note='Эскиз не приложен: уже максимум файлов ('+MAXF+'), но размеры записаны в текст заявки.';
-  else{const url=await svgToJpeg(bSvg(m));if(files.reduce((a,x)=>a+x.data.length,0)+url.length>MAXTOT)note='Эскиз не приложен (большой объём вложений), размеры записаны в текст заявки.';else{files.push({name:'eskiz-'+bn+'.jpg',type:'image/jpeg',data:url});drawFiles()}}
+  else{const svg=exportSvg(m),mm=svg.match(/ viewBox="0 0 (\d+) (\d+)"/),url=await svgToJpeg(svg,+mm[1],+mm[2]);if(files.reduce((a,x)=>a+x.data.length,0)+url.length>MAXTOT)note='Эскиз не приложен (большой объём вложений), размеры записаны в текст заявки.';else{files.push({name:'eskiz-'+bn+'.jpg',type:'image/jpeg',data:url});drawFiles()}}
  }catch(e){console.warn(e);note='Эскиз не удалось приложить, размеры записаны в текст заявки.'}
  if(B.color&&[...$('fc').options].some(o=>o.value==='RAL '+B.color))$('fc').value='RAL '+B.color;
  if(B.item&&[...$('fi').options].some(o=>o.value===B.item))$('fi').value=B.item;
  bmsg('Изделие '+bn+' добавлено в заявку. '+note+' Можно собрать ещё одно изделие.',0,1)};
-$('bsw').innerHTML='<div data-k="" class="on"><i style="background:#f07824"></i>не выбран</div>'+C.colors.map(k=>{const r=RAL[k];return r?`<div data-k="${esc(k)}" tabindex="0" role="button"><i style="background:${r[1]}"></i>RAL ${esc(k)} · ${r[0]}</div>`:''}).join('');
-function pickColor(d){B.color=d.dataset.k;document.querySelectorAll('#bsw>div').forEach(x=>x.classList.toggle('on',x===d));const r=RAL[B.color];$('bcn').textContent=r?'RAL '+B.color+' · '+r[0]:'';bDraw()}
-$('bsw').addEventListener('click',e=>{const d=e.target.closest('[data-k]');if(d)pickColor(d)});
-$('bsw').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const d=e.target.closest('[data-k]');if(d){e.preventDefault();pickColor(d)}}});
-['bh1','bh2','bh1s','bh2s','bface'].forEach(i=>$(i).addEventListener('change',bDraw));$('bhw').addEventListener('input',bDraw);
-bRows();
+/* перерисовка эскиза под ширину блока */
+let lastW=0;if(window.ResizeObserver)new ResizeObserver(()=>{const w=$('bsk').clientWidth;if(w&&Math.abs(w-lastW)>8){lastW=w;if(B.segs.length)$('bsk').innerHTML=pfSketch()}}).observe($('bsk'));
+applyPreset('p');
+})();
+
 
 /* ===== анимация «от листа до изделия» (canvas) ===== */
 (function(){const cv=$('proc');if(!cv||!cv.getContext)return;const c=cv.getContext('2d'),W=1200,H=430,D=4.6,TOT=D*4;
