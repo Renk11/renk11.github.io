@@ -287,6 +287,8 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 .catg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;padding:0 0 12px}
 .catg button{background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:8px 8px 10px;cursor:pointer;text-align:center;font:inherit;color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s}
 .catg button:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 6px 16px rgba(24,33,43,.1)}.catg button.on{border-color:var(--acc);background:#fff6ef}
+.catg:not(.all) button.x{display:none}.catmore{display:block;width:100%;margin:2px 0 12px;min-height:48px;border:2px dashed var(--acc);background:#fff6ef;color:var(--acc2);border-radius:12px;font:inherit;font-weight:800;font-size:15px;cursor:pointer}.catpop{font-size:12px;color:var(--mut);margin:0 0 6px;font-weight:700}
+@media(max-width:640px){.catg{grid-template-columns:1fr 1fr;gap:6px}.catg button{padding:5px 5px 7px;border-radius:10px}.catg b{font-size:12px}.catg small{font-size:11px}}
 .catg svg{width:100%;height:54px;display:block;margin-bottom:4px}.catg img{width:100%;height:auto;display:block;margin-bottom:4px;border-radius:6px;background:#fff}.nimgw{display:block;margin-top:6px}.nimg{width:100%;max-width:420px;height:auto;display:block;margin:8px 0 4px;border-radius:8px;background:#fff;border:1px solid var(--line)}.catg b{display:block;font-size:13px;line-height:1.25}.catg small{color:var(--mut);font-size:12px}
 /* ===== конструктор как в приложении ===== */
 #bnote{scroll-margin-top:84px;margin:10px 0}
@@ -459,7 +461,7 @@ const BUILD_H=`<p class="note" style="margin-top:0">Выберите готов�
 byId('s-steps').h=`<div class="proc"><canvas id="proc" role="img" aria-label="Как делаем: лист металла, раскрой по размеру, гибка на станке, готовое изделие"></canvas><div class="pc" id="pcap"></div></div>`+byId('s-steps').h;
 if(C.beforeAfter&&C.beforeAfter.length){
  SECS.push({id:'s-ba',ic:'🔍',t:'До и после',s:'потяните ползунок, чтобы сравнить',nav:'',h:C.beforeAfter.map(b=>`<figure class="baw"><div class="bab"><img class="ba-a" src="${esc(b.after)}" alt="После" onerror="baFail(this)"><img class="ba-b" src="${esc(b.before)}" alt="До" onerror="baFail(this)"><span class="bat l">ДО</span><span class="bat r">ПОСЛЕ</span><i class="bah"></i></div><input type="range" min="0" max="100" value="50" aria-label="Сравнить до и после"><figcaption>${esc(b.cap||'')}</figcaption></figure>`).join('')})}
-SECS.push({id:'s-cat',ic:'📚',t:'Каталог изделий',s:'готовые шаблоны из технологической карты',nav:'Каталог',h:'<p class="note" style="margin-top:0">Нажмите на изделие — оно откроется в конструкторе, где можно поменять размеры, цвет и сразу увидеть цену.</p><div class="catg" id="bcat"></div>'});
+SECS.push({id:'s-cat',ic:'📚',t:'Каталог изделий',s:'готовые шаблоны из технологической карты',nav:'Каталог',h:'<p class="note" style="margin-top:0">Нажмите на изделие — оно откроется в конструкторе, где можно поменять размеры, цвет и сразу увидеть цену.</p><div class="catpop" id="bcatpop">Популярные изделия</div><div class="catg" id="bcat"></div><button type="button" class="catmore" id="bcatmore"></button>'});
 SECS.push({id:'s-build',ic:'🧩',t:'Конструктор изделия',s:'соберите профиль — получите чертёж и цену',nav:'Конструктор',h:BUILD_H});
 SECS.push({id:'s-trust',ic:'⭐',t:'Нам доверяют',s:'отзывы и факты',nav:'',h:'<div class="facts" id="tfacts"></div><div class="revs" id="trevs"></div>'});
 const faq=[
@@ -483,7 +485,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 27 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 28 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -948,7 +950,10 @@ $('bpf').addEventListener('change',e=>{const el=e.target;
   else{B.hems[w]=B.hems[w]||{t:'',len:10};if(k==='t')B.hems[w].t=el.value;else{const x=num(el.value);if(x>0)B.hems[w].len=Math.round(x*1e4)/1e4}}
   pfRender()}});
 /* каталог */
-$('bcat').innerHTML=TPL.map(t=>'<button type="button" data-t="'+t.id+'" title="'+esc(t.n)+'"><img src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" loading="lazy" onerror="thumbFix(this)"><b>'+esc(t.n)+'</b><small>развёртка '+tplDev(t)+' мм</small></button>').join('');
+const POP=['konek','torc','karn','endv','ugn','primv'];
+$('bcat').innerHTML=TPL.map(t=>'<button type="button" class="'+(POP.includes(t.id)?'':'x')+'" data-t="'+t.id+'" title="'+esc(t.n)+'"><img src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" loading="lazy" onerror="thumbFix(this)"><b>'+esc(t.n)+'</b><small>развёртка '+tplDev(t)+' мм</small></button>').join('');
+function catMore(){const all=$('bcat').classList.contains('all');$('bcatmore').textContent=all?'Свернуть до популярных ▴':'Показать все изделия ('+TPL.length+') ▾';$('bcatpop').textContent=all?'Все изделия':'Популярные изделия'}
+$('bcatmore').onclick=()=>{$('bcat').classList.toggle('all');catMore()};catMore();
 $('bcat').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;
  document.querySelectorAll('#bcat button').forEach(x=>x.classList.toggle('on',x===b));applyTpl(b.dataset.t);
  openSec('s-build',true,true);setTimeout(()=>$('bnote').scrollIntoView({behavior:'auto',block:'start'}),480)});
