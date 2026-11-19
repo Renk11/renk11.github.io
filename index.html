@@ -456,7 +456,7 @@ const BUILD_H=`<p class="note" style="margin-top:0">Выберите готов�
 <div id="bnote"></div>
 <div class="pf" id="bpf"></div>
 <div class="pf" id="bsk"></div>
-<div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div>
+<div class="bopt"><label for="bcom"><b>Комментарий к заказу</b></label><textarea id="bcom" rows="2" maxlength="400" placeholder="Например: нужна другая длина полки, особые пожелания" style="width:100%;margin-bottom:12px"></textarea></div><div class="bopt"><b>Цвет</b> <small id="bcn"></small><div class="sw" id="bsw"></div></div>
 <div class="row" style="margin-top:12px"><div><label for="blen">Длина изделия, мм</label><input id="blen" class="bi" inputmode="numeric" value="2000"></div><div><label for="bqty">Количество, шт.</label><input id="bqty" class="bi" inputmode="numeric" value="1"></div></div>
 <div id="bout"></div><button class="btn sm" id="bgo" type="button" style="margin-top:10px;width:100%">Добавить изделие в заявку</button><div id="bmsg" role="status"></div>
 `;
@@ -487,7 +487,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 34 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 36 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -906,7 +906,7 @@ function bModel(){
 function selCard(){
  const ok=B.segs.length&&B.segs.every(s=>s.len>0),t=B.tplId&&TPL.find(x=>x.id===B.tplId);
  let h='<div class="bsel"><div>Выбрано: <b>'+esc(B.tpl||(B.segs.length?'свой профиль':'пока ничего'))+'</b>'+(ok?' · развёртка <b>'+fl(bendInfo(B).total)+' мм</b>':'')+'</div>';
- if(t){h+='<span class="nimgw"><img class="nimg" src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" onerror="this.parentNode.remove()"><small>Готовая схема из технологической карты мастерской. Размеры можно менять ниже или перерисовать на сетке.</small></span>';
+ if(t){h+='<span class="nimgw"><img class="nimg" src="tpl/'+t.id+'.jpg" alt="'+esc(t.n)+'" onerror="this.parentNode.remove()"><small>Готовая схема из технологической карты мастерской. Нужны другие размеры или форма — напишите в комментарии или нарисуйте на сетке.</small></span>';
   if(t.note)h+='<br><small>'+esc(t.note)+'</small>';if(t.cx)h+='<br><small>Сложное изделие: точные сгибы уточним по телефону.</small>'}
  else if(!B.segs.length)h+='<small>Выберите изделие в разделе «Каталог изделий» или нарисуйте профиль на сетке.</small>';
  return h+'</div>'}
@@ -914,7 +914,10 @@ function hemEditor(){
  const H=getHems(B),row=(w,t,lab)=>'<div class="h2"><div><label>Завальцовка '+lab+'</label><select data-h="'+w+'" data-hk="t"><option value=""'+(!t.t?' selected':'')+'>нет</option><option value="closed"'+(t.t==='closed'?' selected':'')+'>закрытая (плотно)</option><option value="open"'+(t.t==='open'?' selected':'')+'>открытая (с зазором)</option></select></div><div><label>Полка, мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(t.len)+'" data-h="'+w+'" data-hk="len"'+(t.t?'':' disabled')+'></div></div>';
  return '<div class="hemb">'+row('s',H.s,'в начале')+row('e',H.e,'в конце')+'<div style="margin-top:6px"><label>Куда заворачивать</label><select data-h="side" data-hk="side"><option value="back"'+(H.side==='back'?' selected':'')+'>на изнанку (лицо остаётся снаружи)</option><option value="face"'+(H.side==='face'?' selected':'')+'>на лицо</option></select></div></div>'}
 function pfControls(){
- const segs=B.segs;
+ const segs=B.segs,tp=B.tplId&&TPL.find(x=>x.id===B.tplId);
+ if(tp){const fr=tp.free||[];let h='<div class="actions" style="margin:0 0 6px"><button type="button" class="bigdraw" data-a="draw">✏ Нарисовать на сетке</button></div>';
+  if(fr.length){h+='<p class="muted" style="margin:8px 0 4px">'+esc(tp.note||'Укажите размеры')+'</p>'+fr.map(i=>segs[i]?'<div class="seg" style="grid-template-columns:1fr"><div><label>Полка '+(i+1)+', мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(segs[i].len)+'" data-s="len" data-i="'+i+'"></div></div>':'').join('')}
+  return h+'<div class="actions"><button type="button" class="danger" style="flex:0 0 auto" data-a="clear">Убрать изделие</button></div>'}
  let h='<div class="actions" style="margin:0 0 6px"><button type="button" class="bigdraw" data-a="draw">✏ Нарисовать на сетке</button></div>'+
  '<div style="margin:8px 0"><label>Шаблон изделия</label><select data-a="preset"><option value="">— выбрать шаблон —</option><optgroup label="Стандартные">'+Object.keys(PRES).map(k=>'<option value="p:'+k+'"'+(!B.tplId&&B.tpl&&B.tpl===PRES[k].n?' selected':'')+'>'+PRES[k].n+'</option>').join('')+'</optgroup><optgroup label="Из технологической карты">'+TPL.map(t=>'<option value="t:'+t.id+'"'+(B.tplId===t.id?' selected':'')+'>'+esc(t.n)+'</option>').join('')+'</optgroup></select></div>';
  h+=segs.map((s,i)=>'<div class="seg"><span class="sn">'+(i+1)+'</span><div><label>Полка, мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(s.len)+'" data-s="len" data-i="'+i+'"></div><div><label>'+(i?'Угол °':'Старт °')+'</label><input type="number" inputmode="numeric" min="0" max="'+(i?180:360)+'" value="'+s.ang+'" data-s="ang" data-i="'+i+'"></div><div><label>Куда</label><select data-s="dir" data-i="'+i+'"><option value="1"'+(s.dir>=0?' selected':'')+'>↰ лево</option><option value="-1"'+(s.dir<0?' selected':'')+'>↱ право</option></select></div><button type="button" class="danger" data-a="del" data-i="'+i+'" aria-label="Удалить полку">×</button></div>').join('');
@@ -930,7 +933,7 @@ function pfSketch(){
  return '<div class="bd"><div class="muted">Профиль с торца, размеры полок в мм. Стрелка цвета детали — лицевая (окрашенная) сторона, она указывает на лицо. Красные кружки — номера гибов и углы, фиолетовый — завальцовка. Зелёная точка — начало профиля.</div>'+benderProfile(B,W,Math.round(W*0.6))+'</div>'}
 function bDraw(){
  const m=bModel();$('bnote').innerHTML=selCard();$('bsk').innerHTML=pfSketch();
- $('bout').innerHTML=m.ok?'Развёртка <b>'+f2(m.dev)+' мм</b> · площадь детали '+f2(m.area)+' м² · металл '+m.ppm+' ₽/м²<br><b id="bbig">≈ '+money(m.tot)+'</b> <small>за '+m.qty+' шт. ('+money(m.per)+' за деталь, ориентировочно)</small>':'<small>Выберите изделие и укажите длину изделия.</small>'}
+ $('bout').innerHTML=m.ok?'Развёртка <b>'+f2(m.dev)+' мм</b> · площадь детали '+f2(m.area)+' м²<br><b id="bbig">≈ '+money(m.tot)+'</b> <small>за '+m.qty+' шт. ('+money(m.per)+' за деталь, ориентировочно)</small>':'<small>Выберите изделие и укажите длину изделия.</small>'}
 function pfRender(){
  const ae=document.activeElement,keep=ae&&ae.closest&&ae.closest('#bpf');
  $('bpf').innerHTML=pfControls();bDraw()}
@@ -1018,7 +1021,8 @@ $('bgo').onclick=async()=>{
  bn++;const info=m.info,ang=info.bends.map(b=>b.no+') '+(b.hem?'завальцовка':r1(b.ang)+'° '+(b.up?'вверх':'вниз'))).join(', ');
  const hem=[info.hs?'начало — '+hemName(info.hs)+' '+fl(info.hs.len)+' мм':'',info.he?'конец — '+hemName(info.he)+' '+fl(info.he.len)+' мм':''].filter(Boolean).join('; ');
  const text='Изделие '+bn+(B.tpl?' «'+B.tpl+'»':'')+': полки '+B.segs.map(s=>fl(s.len)).join(' + ')+' мм'+(ang?', гибы: '+ang:'')+'. Профиль (полка/угол°/куда л-право п): '+B.segs.map(s=>s.len+'/'+s.ang+'/'+(s.dir<0?'п':'л')).join('; ')+'. Лицо '+(B.face==='R'?'справа':'слева')+' от линии, длина '+fl(m.len)+' мм, '+m.qty+' шт.'+(hem?' Завальцовка: '+hem+(getHems(B).side==='face'?' (на лицо)':' (на изнанку)')+'.':'')+(B.color?' Цвет '+colLabel(B.color)+(C.cprice[B.color]>0?' ('+C.cprice[B.color]+' ₽/м²)':'')+'.':'')+' Развёртка '+fl(m.dev)+' мм. Металл '+colPpm(B.color)+' ₽/м², изготовление '+C.make+' ₽/шт. Расчёт на сайте: ≈ '+money(m.tot);
- const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text;
+ const cm=($('bcom').value||'').trim().replace(/\s*\n+\s*/g,' ');
+ const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text+(cm?'\nКомментарий к изделию '+bn+': '+cm:'');$('bcom').value='';
  let note='Эскиз приложен к заявке.';
  try{
   if(files.length>=MAXF)note='Эскиз не приложен: уже максимум файлов ('+MAXF+'), но размеры записаны в текст заявки.';
