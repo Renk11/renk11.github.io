@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Жестянщик — Сыктывкар: отливы, планки и доборные элементы на заказ</title>
 <meta name="description" content="Изготовление отливов, планок, коньков, откосов и других доборных элементов из металла по вашим размерам. От 600 ₽/м² + 100 ₽ за деталь. Калькулятор цены, примеры работ, заявка онлайн.">
@@ -488,7 +489,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 38 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 40 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -982,7 +983,7 @@ document.body.insertAdjacentHTML('beforeend','<div id="ed" class="ed" hidden rol
 '<div class="muted" id="edInfo"></div><div id="edSegs"></div>'+
 '<p class="muted">Нажимайте на узлы сетки — рисуйте профиль от одного края к другому. Точку можно перетащить. Кнопки «−» и «+» (или щипок двумя пальцами) меняют масштаб, «✋ Сдвиг» двигает поле, «Вписать» подбирает масштаб под весь профиль. Режим «Углы 15°» удобен для наклонных отгибов: длина — кратна шагу, угол — кратен 15°. Точные числа потом можно поправить в полях под кнопкой «Нарисовать на сетке».</p></div></div>');
 function edRal(){const el=$('edRal');if(!el)return;const ks=C.colors.filter(k=>RAL[k]);
- el.innerHTML='<button type="button" class="rb'+(!B.color?' on':'')+'" data-k="" aria-label="Без цвета"><i style="background:linear-gradient(135deg,#fff 45%,#cbd3dc 45% 55%,#fff 55%)"></i>нет</button>'+ks.map(k=>'<button type="button" class="rb'+(B.color===k?' on':'')+'" data-k="'+k+'" aria-label="'+esc(colLabel(k))+'"><i style="background:'+RAL[k][1]+'"></i>'+esc(/^\d{4}$/.test(k)?k:k.slice(0,7))+'</button>').join('');
+ el.innerHTML='<button type="button" class="rb'+(!B.color?' on':'')+'" data-k="" aria-label="Без цвета"><i style="background:linear-gradient(135deg,#fff 45%,#cbd3dc 45% 55%,#fff 55%)"></i>нет</button>'+ks.map(k=>'<button type="button" class="rb'+(B.color===k?' on':'')+'" data-k="'+esc(k)+'" aria-label="'+esc(colLabel(k))+'"><i style="background:'+RAL[k][1]+'"></i>'+esc(/^\d{4}$/.test(k)?k:k.slice(0,7))+'</button>').join('');
  const r=RAL[B.color];$('edRalName').textContent=r?'Выбрано: '+colLabel(B.color)+colName(B.color)+' (оттенок ориентировочный)':'Выбрано: без цвета'}
 $('edRal').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)setColor(b.dataset.k)});
 function openEd(){
@@ -1251,7 +1252,7 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
  if(PG){document.title=PG.title;const d=document.querySelector('meta[name=description]');if(d)d.content=PG.desc;
   $('h1').innerHTML=PG.h1;if(PG.text)$('tagline').textContent=PG.text;
   if(PG.item&&[...$('fi').options].some(o=>o.value===PG.item))$('fi').value=PG.item}
- const L=[['index.html','Главная'],['karta.html','Каталог'],['otlivy.html','Отливы'],['planki.html','Планки'],['konki.html','Коньки'],['endovy.html','Ендовы'],['zabornye.html','Заборные'],['karnizy.html','Карнизные'],['torcevye.html','Торцевые'],['primykaniya.html','Примыкания'],['ugolki.html','Углы'],['startovye.html','Для сайдинга'],['snegozaderzhateli.html','Снегозадержатели'],['otkosy.html','Откосы']];
+ const L=[['index.html','Главная'],['karta.html','Каталог'],['otlivy.html','Отливы'],['otlivy-na-okna.html','Отливы на окна'],['otlivy-na-cokol.html','Отливы на цоколь'],['konek-na-kryshu.html','Конёк на крышу'],['dobornye-elementy-krovli.html','Доборные элементы'],['planki.html','Планки'],['konki.html','Коньки'],['endovy.html','Ендовы'],['zabornye.html','Заборные'],['karnizy.html','Карнизные'],['torcevye.html','Торцевые'],['primykaniya.html','Примыкания'],['ugolki.html','Углы'],['startovye.html','Для сайдинга'],['snegozaderzhateli.html','Снегозадержатели'],['otkosy.html','Откосы']];
  const f=document.createElement('div');f.className='pgl';f.innerHTML=L.map(x=>`<a href="${x[0]}">${x[1]}</a>`).join(' · ');$('foot').appendChild(f)})();
 
 /* ===== версия 10: эффекты ===== */
