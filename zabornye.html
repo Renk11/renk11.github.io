@@ -440,6 +440,7 @@ const SECS=[
  {id:'s-form',ic:'✉️',t:'Оставить заявку',s:'перезвоним и назовём точную цену',nav:'',h:`<form id="f" novalidate><div class="pbox" id="pbox"></div>
   <div class="row"><div><label for="fn">Ваше имя *</label><input id="fn" name="name" autocomplete="name" maxlength="80" required></div><div><label for="fp">Телефон *</label><input id="fp" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 ___ ___-__-__" maxlength="30" required></div></div>
   <div class="row"><div><label for="fi">Что нужно изготовить</label><select id="fi" name="item">${C.items.map(x=>`<option>${esc(x)}</option>`).join('')}</select></div><div><label for="fc">Цвет</label><select id="fc" name="color"><option value="">Не знаю / без покраски</option>${fcOpts()}<option value="другой (напишу в комментарии)">Другой (напишу ниже)</option></select></div></div>
+  <div id="hl"></div>
   <div class="f"><label for="fs">Размеры и количество</label><textarea id="fs" name="text" maxlength="1500" placeholder="Например: отлив 2400×300 мм — 3 шт., планка 1180×200 мм — 4 шт. Если размеров нет — опишите задачу."></textarea></div>
   <div class="attach"><div class="hint">Для более точного изготовления детали пришлите схему или рисунок с точными размерами в мм и градусах для загибов.</div>
   <label class="filebtn" for="ff">📎 Прикрепить фото или файл</label><input type="file" id="ff" accept="image/*,application/pdf" multiple hidden>
@@ -488,7 +489,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 37 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 38 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -591,6 +592,8 @@ async function toJpeg(file){
   const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(bmp,0,0,c.width,c.height);url=c.toDataURL('image/jpeg',q);if(url.length<=280000)break;max*=.8;q=Math.max(.5,q-.07)}
  return url}
 const readURL=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(f)});
+var HID=[];function hidDraw(){const e=document.getElementById('hl');if(!e)return;e.innerHTML=HID.map((x,i)=>'<div class="hli" style="display:flex;gap:8px;align-items:center;justify-content:space-between;background:#fff7f0;border:1px solid #f3c9a6;border-radius:10px;padding:8px 10px;margin:0 0 6px;font-size:14px"><span>🧩 '+esc(x.s)+'</span><button type="button" data-hrm="'+i+'" aria-label="Убрать" style="border:0;background:none;font-size:20px;line-height:1;cursor:pointer;color:#b3261e">×</button></div>').join('')}
+document.addEventListener('click',e=>{const r=e.target.closest('[data-hrm]');if(r){HID.splice(+r.dataset.hrm,1);hidDraw()}});
 function drawFiles(){$('fl').innerHTML=files.map((f,i)=>`<div class="fi">${f.type.startsWith('image/')?`<img src="${f.data}" alt="">`:'<div class="doc">📄</div>'}<span>${esc(f.name)}<small>${kb(f.data.length*3/4)}</small></span><button type="button" data-rf="${i}" aria-label="Убрать файл">×</button></div>`).join('')}
 $('fl').addEventListener('click',e=>{const b=e.target.closest('[data-rf]');if(b){files.splice(+b.dataset.rf,1);drawFiles()}});
 $('ff').addEventListener('change',async e=>{
@@ -631,14 +634,14 @@ $('f').addEventListener('submit',async e=>{
  if(!$('fa').checked)return msg('Поставьте галочку согласия на обработку данных.');
  if(coolLeft())return msg('Заявка уже отправлена. Подождите минуту или позвоните нам.');
  if(!promoCheck())return msg('Акция закончилась или цены изменились — товары по акции убраны из заявки. Проверьте условия у нас по телефону: <a href="tel:'+tel+'">'+esc(C.phone)+'</a>.');
- const pt=promoText(),ut=$('fs').value.trim(),data={name:name.slice(0,80),phone:phone.slice(0,30),item:PS.length?'Акция':$('fi').value,color:$('fc').value,text:(pt?pt+(ut?'\n\n':''):'')+ut.slice(0,Math.max(0,1500-pt.length-2)),src:'site',status:'new'};data.text=data.text.slice(0,1500);
+ const pt=promoText(),ht=HID.map(x=>x.t).join('\n'),ut=[ht,$('fs').value.trim()].filter(Boolean).join('\n'),data={name:name.slice(0,80),phone:phone.slice(0,30),item:PS.length?'Акция':$('fi').value,color:$('fc').value,text:(pt?pt+(ut?'\n\n':''):'')+ut.slice(0,Math.max(0,1500-pt.length-2)),src:'site',status:'new'};data.text=data.text.slice(0,1500);
  if(files.length)data.files=files.map(f=>({name:f.name,type:f.type,data:f.data}));
  $('fb').disabled=true;$('fb').textContent='Отправляем…';
  try{
   await sendReq(data);
   const nf=files.length,est=sumEst(data.text);
-  $('f').reset();files=[];drawFiles();PS=[];promoBox();
-  $('fm').innerHTML=`<div class="msg ok done"><b>Заявка отправлена ✓</b><br>Мы получили: ${esc(data.item)}${data.color?', цвет '+esc(data.color):''}${nf?', файлов: '+nf:''}.${data.text?'<br>«'+esc(data.text.split('\n')[0].slice(0,110))+(data.text.length>110?'…':'')+'»':''}${est?'<br>Ваш расчёт на сайте: ≈ '+money(est)+' (точную цену назовём после проверки).':''}<br>Мы свяжемся с вами по номеру ${esc(data.phone)} в ближайшее время.<br><a class="btn sm" href="tel:${tel}">📞 Позвонить нам</a></div>`;
+  $('f').reset();files=[];drawFiles();PS=[];promoBox();HID=[];hidDraw();
+  $('fm').innerHTML=`<div class="msg ok done"><b>Заявка отправлена ✓</b><br>Мы получили: ${esc(data.item)}${data.color?', цвет '+esc(data.color):''}${nf?', файлов: '+nf:''}.<br>Точную цену назовём после проверки.<br>Мы свяжемся с вами по номеру ${esc(data.phone)} в ближайшее время.<br><a class="btn sm" href="tel:${tel}">📞 Позвонить нам</a></div>`;
  }catch(err){console.warn(err);msg('Не удалось отправить заявку. Пожалуйста, позвоните: <a href="tel:'+tel+'">'+esc(C.phone)+'</a>')}
  $('fb').disabled=false;$('fb').textContent='Отправить заявку'});
 /* быстрый перезвон */
@@ -1023,7 +1026,7 @@ $('bgo').onclick=async()=>{
  const hem=[info.hs?'начало — '+hemName(info.hs)+' '+fl(info.hs.len)+' мм':'',info.he?'конец — '+hemName(info.he)+' '+fl(info.he.len)+' мм':''].filter(Boolean).join('; ');
  const text='Изделие '+bn+(B.tpl?' «'+B.tpl+'»':'')+': полки '+B.segs.map(s=>fl(s.len)).join(' + ')+' мм'+(ang?', гибы: '+ang:'')+'. Профиль (полка/угол°/куда л-право п): '+B.segs.map(s=>s.len+'/'+s.ang+'/'+(s.dir<0?'п':'л')).join('; ')+'. Лицо '+(B.face==='R'?'справа':'слева')+' от линии, длина '+fl(m.len)+' мм, '+m.qty+' шт.'+(hem?' Завальцовка: '+hem+(getHems(B).side==='face'?' (на лицо)':' (на изнанку)')+'.':'')+(B.color?' Цвет '+colLabel(B.color)+(C.cprice[B.color]>0?' ('+C.cprice[B.color]+' ₽/м²)':'')+'.':'')+' Развёртка '+fl(m.dev)+' мм. Металл '+colPpm(B.color)+' ₽/м², изготовление '+C.make+' ₽/шт. Расчёт на сайте: ≈ '+money(m.tot);
  const cm=($('bcom').value||'').trim().replace(/\s*\n+\s*/g,' ');
- const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text+(cm?'\nКомментарий к изделию '+bn+': '+cm:'');$('bcom').value='';
+ HID.push({t:text+(cm?'\nКомментарий к изделию '+bn+': '+cm:''),s:(B.tpl||'Свой профиль')+' · '+fl(m.len)+' мм · '+m.qty+' шт.'+(cm?' · с комментарием':'')});hidDraw();$('bcom').value='';
  let note='Эскиз приложен к заявке.';
  try{
   if(files.length>=MAXF)note='Эскиз не приложен: уже максимум файлов ('+MAXF+'), но размеры записаны в текст заявки.';
