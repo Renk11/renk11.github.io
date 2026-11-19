@@ -488,7 +488,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 36 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 37 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -927,7 +927,7 @@ function pfControls(){
   h+='<p class="muted">Развёртка = <b>'+fu(bendInfo(B).total)+'</b> (сумма полок '+fl(sum)+'). «Старт» — куда направлена первая полка (0° — вправо, 90° — вверх), дальше угол поворота перед каждой полкой.</p><div style="margin-top:8px"><label>Лицо (окрашенная сторона)</label><select data-a="face"><option value="L"'+(B.face!=='R'?' selected':'')+'>Слева от линии</option><option value="R"'+(B.face==='R'?' selected':'')+'>Справа от линии</option></select></div>'+hemEditor()}
  return h}
 function pfSketch(){
- if(!B.segs.length||!B.segs.every(s=>s.len>0))return '';
+ if(B.tplId||!B.segs.length||!B.segs.every(s=>s.len>0))return '';
  const W=Math.round(Math.max(280,Math.min(540,($('bsk').clientWidth||340)-2))),info=bendInfo(B),m=bModel();
  const rows=info.bends.map(b=>'<tr><td>'+b.no+'</td><td>'+(b.hem?'180°':r1(b.ang)+'°')+'</td><td>'+(b.up?'↑ вверх (к себе, лицо внутри)':'↓ вниз (от себя, лицо снаружи)')+(b.hem?'<br><b style="color:#6b3fa0">завальцовка '+hemName(b.hem)+', полка '+fl(b.hem.len)+' мм</b>':'')+'</td><td>'+fl(b.pos)+' мм</td></tr>').join('');
  const hemTxt=[info.hs?'в начале — '+hemName(info.hs)+' '+fl(info.hs.len)+' мм':'',info.he?'в конце — '+hemName(info.he)+' '+fl(info.he.len)+' мм':''].filter(Boolean).join('; ');
