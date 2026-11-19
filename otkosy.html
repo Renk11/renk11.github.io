@@ -419,7 +419,7 @@ $('tagline').textContent=C.tagline;
 $('bPrice').textContent='от '+C.ppm+' ₽/м²';$('bMake').textContent='+ '+C.make+' ₽ за изготовление одной детали';
 ['heroCall','fabCall'].forEach(id=>$(id).href='tel:'+tel);
 const colSw=()=>C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?`<div><i style="background:${r[1]}"></i>${esc(colLabel(k))}${esc(colName(k))}</div>`:`<div>${esc(colLabel(k))}</div>`}).join('');
-const fcOpts=()=>C.colors.map(k=>`<option value="${esc(colLabel(k))}">${esc(colLabel(k))}${esc(colName(k))}</option>`).join('');
+const ccOpts=()=>C.colors.map(k=>`<option value="${esc(k)}">${esc(colLabel(k))}${esc(colName(k))}</option>`).join(''),fcOpts=()=>C.colors.map(k=>`<option value="${esc(colLabel(k))}">${esc(colLabel(k))}${esc(colName(k))}</option>`).join('');
 const ex=(()=>{const a=2000,b=300,m=a*b/1e6;return{m,p:m*C.ppm+C.make}})();
 const contacts=[`<a href="tel:${tel}"><b>Телефон</b><span>${esc(C.phone)}</span></a>`];
 if(C.telegram)contacts.push(`<a href="https://t.me/${esc(C.telegram)}" target="_blank" rel="noopener"><b>Telegram</b><span>@${esc(C.telegram)}</span></a>`);
@@ -432,7 +432,7 @@ const SECS=[
  {id:'s-price',ic:'💰',t:'Цены и калькулятор',s:'от '+C.ppm+' ₽/м² + '+C.make+' ₽ за деталь',nav:'Цены',h:`
   <div class="tiles"><div class="tile"><small>Металл</small><b>от ${C.ppm} ₽/м²</b><span>по площади развёртки</span></div><div class="tile"><small>Изготовление</small><b>+ ${C.make} ₽</b><span>за каждую деталь</span></div></div>
   <div class="ex"><b>Пример.</b> Деталь 2000 × 300 мм = ${f2(ex.m)} м² → ${f2(ex.m)} × ${C.ppm} + ${C.make} = <b>${money(ex.p)}</b></div>
-  <div class="calc"><h4>Калькулятор</h4><div id="crows"></div><button class="btn out sm" id="cadd" type="button">＋ Добавить деталь</button><div class="out" id="cout"></div><button class="btn sm" id="cgo" type="button" style="margin-top:10px;width:100%">Оформить заявку с этим расчётом</button></div>
+  <div class="calc"><h4>Калькулятор</h4><div style="margin-bottom:10px"><label for="ccol">Цвет</label><select id="ccol"><option value="">Без покраски / оцинковка</option>${ccOpts()}</select></div><div id="crows"></div><button class="btn out sm" id="cadd" type="button">＋ Добавить деталь</button><div class="out" id="cout"></div><button class="btn sm" id="cgo" type="button" style="margin-top:10px;width:100%">Оформить заявку с этим расчётом</button></div>
   ${C.priceNotes.map(n=>'<p class="note">'+esc(n)+'</p>').join('')}`},
  {id:'s-raboty',ic:'📷',t:'Примеры работ',s:'нажмите на фото, чтобы увеличить',nav:'Работы',h:`<div class="gal" id="gal">${C.works.map(w=>`<figure><div class="ph">Здесь будет фото<br>«${esc(w.cap||'работа')}»</div><img src="${esc(w.src)}" alt="${esc(w.cap||'Пример работы')}" loading="lazy" onerror="this.remove()"><figcaption>${esc(w.cap||'')}</figcaption></figure>`).join('')}</div>`},
  {id:'s-colors',ic:'🎨',t:'Цвета и покрытия',s:'окрашенный металл по каталогу RAL',nav:'',h:`<p class="note" style="margin-top:0">Любой цвет по каталогу RAL. Нужного нет в списке — укажите номер в заявке.</p><div class="sw" style="margin-top:10px">${colSw()}</div>`},
@@ -488,7 +488,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 29 · вложения: да</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">версия сайта 34 · вложения: да</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -514,13 +514,14 @@ window.scrollTo(0,0);
 /* калькулятор */
 const rows=[{a:'',b:'',q:1}];
 function calcDraw(){$('crows').innerHTML=rows.map((r,i)=>`<div class="crow"><div><label>Длина, мм</label><input inputmode="decimal" data-i="${i}" data-k="a" value="${esc(r.a)}" placeholder="2000"></div><div><label>Развёртка, мм</label><input inputmode="decimal" data-i="${i}" data-k="b" value="${esc(r.b)}" placeholder="300"></div><div><label>Шт.</label><input inputmode="numeric" data-i="${i}" data-k="q" value="${esc(r.q)}"></div><button class="rm" type="button" data-rm="${i}" aria-label="Удалить" ${rows.length<2?'hidden':''}>×</button></div>`).join('');calcOut()}
-function calcTot(){let t=0,m=0,n=0;rows.forEach(r=>{const a=+String(r.a).replace(',','.'),b=+String(r.b).replace(',','.'),q=Math.max(1,Math.round(+r.q||1));if(a>0&&b>0){const s=a*b/1e6*q;m+=s;n+=q;t+=s*C.ppm+q*C.make}});return{t,m,n}}
+function calcTot(){let t=0,m=0,n=0;rows.forEach(r=>{const a=+String(r.a).replace(',','.'),b=+String(r.b).replace(',','.'),q=Math.max(1,Math.round(+r.q||1));if(a>0&&b>0){const s=a*b/1e6*q;m+=s;n+=q;t+=s*colPpm((document.getElementById('ccol')||{}).value||'')+q*C.make}});return{t,m,n}}
 function calcOut(){const {t,m,n}=calcTot();const o0=$('cout');o0.classList.remove('flash');if(n){void o0.offsetWidth;o0.classList.add('flash')}$('cout').innerHTML=n?`Площадь ${f2(m)} м² · деталей ${n} шт.<br><b id="cbig">≈ ${money(t)}</b> <small>(ориентировочно, точнее — по заявке)</small>`:'<small>Введите размеры деталей — получите ориентировочную цену.</small>';if(n)tweenTotal(t);else lastTotal=0}
 $('crows').addEventListener('input',e=>{const i=e.target.dataset.i;if(i!==undefined){rows[i][e.target.dataset.k]=e.target.value;calcOut()}});
 $('crows').addEventListener('click',e=>{const r=e.target.closest('[data-rm]');if(r){rows.splice(+r.dataset.rm,1);calcDraw()}});
+$('ccol').addEventListener('change',calcOut);window.ccolRefresh=()=>{const c=$('ccol');if(!c)return;const v=c.value;c.innerHTML='<option value="">Без покраски / оцинковка</option>'+ccOpts();c.value=v;calcOut()};
 $('cadd').onclick=()=>{rows.push({a:'',b:'',q:1});calcDraw()};
 $('cgo').onclick=()=>{const {t,n}=calcTot();const ls=rows.filter(r=>+String(r.a).replace(',','.')>0&&+String(r.b).replace(',','.')>0).map((r,i)=>`${i+1}) ${r.a} × ${r.b} мм — ${Math.max(1,Math.round(+r.q||1))} шт.`);
- if(ls.length)$('fs').value=ls.join('\n')+'\nОриентировочный расчёт на сайте: '+money(t);openSec('s-form',true,true);setTimeout(()=>$('fn').focus({preventScroll:true}),420)};
+ const cc=$('ccol').value;if(ls.length){$('fs').value=ls.join('\n')+(cc?'\nЦвет: '+colLabel(cc)+' ('+colPpm(cc)+' ₽/м²)':'')+'\nОриентировочный расчёт на сайте: '+money(t);if(cc){const f=$('fc');if(f)f.value=colLabel(cc)}}openSec('s-form',true,true);setTimeout(()=>$('fn').focus({preventScroll:true}),420)};
 calcDraw();
 
 /* ===== эффекты: искры, подсветка, параллакс, слова, наклон карточек, прогресс ===== */
@@ -654,29 +655,29 @@ $('cbb').onclick=async()=>{
 /* ===== конструктор ===== */
 /* ===== шаблоны изделий (из технологической карты мастерской) ===== */
 const TPL=[
- {id:'konek',n:'Планка конька',item:'Коньки',t:417,s:[[17,200],[152,35],[18,90],[40,0],[18,-90],[152,-35],[20,160]]},
- {id:'torc',n:'Торцевая',item:'Планки',t:250,s:[[17,165],[115,0],[85,-90],[18,-90],[15,75]]},
- {id:'karn',n:'Карнизная',item:'Планки',t:178,s:[[95,-3],[65,-55],[18,105]]},
+ {id:'konek',n:'Планка конька',item:'Коньки',t:417,s:[[17,120],[152,35],[18,90],[40,0],[18,-90],[152,-35],[20,235]]},
+ {id:'torc',n:'Торцевая',item:'Планки',t:250,s:[[17,165],[115,0],[85,-90],[18,-40],[15,150]]},
+ {id:'karn',n:'Карнизная',item:'Планки',t:178,s:[[95,-3],[65,-55],[18,150]]},
  {id:'endv',n:'Ендова верхняя',item:'Коньки',t:312,s:[[16,132],[80,-28],[18,-90],[80,0],[18,90],[80,28],[20,226]]},
- {id:'endn',n:'Ендова нижняя',item:'Коньки',t:625,s:[[20,118],[293,-42],[293,42],[20,240]],tn:'на карте 0,625 (сумма 626)'},
+ {id:'endn',n:'Ендова нижняя',item:'Коньки',t:625,s:[[20,164],[293,-42],[293,42],[20,196]],tn:'на карте 0,625 (сумма 626)'},
  {id:'primv',n:'Примыкание верхнее',item:'Планки',t:417,s:[[20,100],[130,-90],[250,0],[17,200]]},
  {id:'ugn',n:'Угол наружный',item:'Планки',t:0,s:[[18,160],[100,0],[100,-90],[15,110]],free:[1,2],note:'длины полок — любые, укажите свои'},
  {id:'ugv',n:'Угол внутренний',item:'Планки',t:0,s:[[18,110],[100,-90],[100,0],[15,200]],free:[1,2],note:'длины полок — любые, укажите свои'},
- {id:'primn',n:'Примыкание нижнее',item:'Планки',t:417,s:[[20,100],[122,-90],[250,0],[25,200]]},
- {id:'ugns',n:'Угол наружный сложный',item:'Планки',t:0,s:[[22,15],[75,0],[75,-90],[40,98],[18,180]],free:[0],cx:1,note:'N зависит от обшивки'},
- {id:'ugvs',n:'Угол внутренний сложный',item:'Планки',t:0,s:[[40,-90],[75,-40],[40,0]],cx:1},
+ {id:'primn',n:'Примыкание нижнее',item:'Планки',t:417,s:[[20,0],[122,-90],[250,0],[25,160]]},
+ {id:'ugns',n:'Угол наружный сложный',item:'Планки',t:0,s:[[22,15],[75,0],[75,-90],[18,180],[40,90]],free:[0],cx:1,note:'N зависит от обшивки'},
+ {id:'ugvs',n:'Угол внутренний сложный',item:'Планки',t:0,s:[[40,-90],[75,-40],[18,180],[6,-90],[40,0]],cx:1},
  {id:'stks',n:'Стыковочная сложная',item:'Планки',t:0,s:[[40,0],[18,90],[75,0],[18,-90],[40,0]],cx:1},
  {id:'zav1',n:'Планка завершающая',item:'Планки',t:0,s:[[15,-100],[25,90],[22,0],[40,-90]],free:[2],note:'N (верхняя полка) зависит от обшивки'},
  {id:'stk',n:'Планка стыковочная',item:'Планки',t:90,s:[[15,170],[60,0],[15,190]]},
  {id:'snez',n:'Снегозадержатель',item:'Планки',t:208,s:[[30,0],[65,90],[95,-27],[18,0]]},
  {id:'otl',n:'Отлив',item:'Отливы',t:0,s:[[20,-90],[150,-13],[15,-90]],free:[1],note:'длина полки — любая, укажите свою'},
  {id:'zob',n:'Заборная планка',item:'Планки',t:85,s:[[15,-110],[20,90],[15,0],[20,-90],[15,110]]},
- {id:'torcg',n:'Торцевая ГЧ',item:'Планки',t:250,s:[[115,0],[20,55],[85,-82],[15,-90],[15,105]]},
+ {id:'torcg',n:'Торцевая ГЧ',item:'Планки',t:250,s:[[115,0],[20,55],[85,-90],[15,-40],[15,150]]},
  {id:'zav2',n:'Планка завершающая (блокхаус ИЖ)',item:'Планки',t:125,s:[[15,-100],[30,90],[30,0],[50,-90]]},
- {id:'st1',n:'Стартовая (экобрус GL/ИЖ, евробрус)',item:'Планки',t:115,s:[[60,-90],[20,50],[20,125],[15,165]],cx:1},
+ {id:'st1',n:'Стартовая (экобрус GL/ИЖ, евробрус)',item:'Планки',t:115,s:[[60,-90],[20,50],[20,125],[15,-100]],cx:1},
  {id:'st2',n:'Стартовая (блокхаус GL)',item:'Планки',t:75,s:[[60,-90],[15,75]]},
  {id:'st3',n:'Планка стартовая (кор. доска)',item:'Планки',t:75,s:[[40,-90],[20,-64],[15,98]]},
- {id:'st4',n:'Планка стартовая Т-сайдинг',item:'Планки',t:0,s:[[40,-90],[15,0],[15,90],[15,60]]},
+ {id:'st4',n:'Планка стартовая Т-сайдинг',item:'Планки',t:0,s:[[40,-90],[15,0],[15,90],[15,-110]]},
  {id:'vox',n:'VOX',item:'Планки',t:0,s:[[38,-90],[12,0],[15,90]]}
 ];
 function tplSegs(t){const s=t.s,n=s.length;return s.map((p,i)=>{if(i===n-1)return{l:p[0]};let d=s[i+1][1]-p[1];while(d>180)d-=360;while(d<=-180)d+=360;return{l:p[0],a:Math.abs(d),d:d>=0?1:-1}})}
@@ -916,7 +917,7 @@ function hemEditor(){
 function pfControls(){
  const segs=B.segs;
  let h='<div class="actions" style="margin:0 0 6px"><button type="button" class="bigdraw" data-a="draw">✏ Нарисовать на сетке</button></div>'+
- '<div style="margin:8px 0"><label>Шаблон изделия</label><select data-a="preset"><option value="">— выбрать шаблон —</option><optgroup label="Стандартные">'+Object.keys(PRES).map(k=>'<option value="p:'+k+'">'+PRES[k].n+'</option>').join('')+'</optgroup><optgroup label="Из технологической карты">'+TPL.map(t=>'<option value="t:'+t.id+'">'+esc(t.n)+'</option>').join('')+'</optgroup></select></div>';
+ '<div style="margin:8px 0"><label>Шаблон изделия</label><select data-a="preset"><option value="">— выбрать шаблон —</option><optgroup label="Стандартные">'+Object.keys(PRES).map(k=>'<option value="p:'+k+'"'+(!B.tplId&&B.tpl&&B.tpl===PRES[k].n?' selected':'')+'>'+PRES[k].n+'</option>').join('')+'</optgroup><optgroup label="Из технологической карты">'+TPL.map(t=>'<option value="t:'+t.id+'"'+(B.tplId===t.id?' selected':'')+'>'+esc(t.n)+'</option>').join('')+'</optgroup></select></div>';
  h+=segs.map((s,i)=>'<div class="seg"><span class="sn">'+(i+1)+'</span><div><label>Полка, мм</label><input type="number" inputmode="decimal" step="any" min="0" value="'+inV(s.len)+'" data-s="len" data-i="'+i+'"></div><div><label>'+(i?'Угол °':'Старт °')+'</label><input type="number" inputmode="numeric" min="0" max="'+(i?180:360)+'" value="'+s.ang+'" data-s="ang" data-i="'+i+'"></div><div><label>Куда</label><select data-s="dir" data-i="'+i+'"><option value="1"'+(s.dir>=0?' selected':'')+'>↰ лево</option><option value="-1"'+(s.dir<0?' selected':'')+'>↱ право</option></select></div><button type="button" class="danger" data-a="del" data-i="'+i+'" aria-label="Удалить полку">×</button></div>').join('');
  h+='<div class="actions"><button type="button" class="secondary" data-a="add">+ Полка</button>'+(segs.length?'<button type="button" class="danger" style="flex:0 0 auto" data-a="clear">Убрать профиль</button>':'')+'</div>';
  if(segs.length){const sum=segs.reduce((a,x)=>a+x.len,0);
@@ -1017,7 +1018,7 @@ $('bgo').onclick=async()=>{
  const m=bModel();if(!m.ok)return bmsg('Выберите изделие (или нарисуйте профиль) и укажите длину изделия.',1);
  bn++;const info=m.info,ang=info.bends.map(b=>b.no+') '+(b.hem?'завальцовка':r1(b.ang)+'° '+(b.up?'вверх':'вниз'))).join(', ');
  const hem=[info.hs?'начало — '+hemName(info.hs)+' '+fl(info.hs.len)+' мм':'',info.he?'конец — '+hemName(info.he)+' '+fl(info.he.len)+' мм':''].filter(Boolean).join('; ');
- const text='Изделие '+bn+(B.tpl?' «'+B.tpl+'»':'')+': полки '+B.segs.map(s=>fl(s.len)).join(' + ')+' мм'+(ang?', гибы: '+ang:'')+'. Профиль (полка/угол°/куда л-право п): '+B.segs.map(s=>s.len+'/'+s.ang+'/'+(s.dir<0?'п':'л')).join('; ')+'. Лицо '+(B.face==='R'?'справа':'слева')+' от линии, длина '+fl(m.len)+' мм, '+m.qty+' шт.'+(hem?' Завальцовка: '+hem+(getHems(B).side==='face'?' (на лицо)':' (на изнанку)')+'.':'')+(B.color?' Цвет '+colLabel(B.color)+(C.cprice[B.color]>0?' ('+C.cprice[B.color]+' ₽/м²)':'')+'.':'')+' Развёртка '+fl(m.dev)+' мм. Расчёт на сайте: ≈ '+money(m.tot);
+ const text='Изделие '+bn+(B.tpl?' «'+B.tpl+'»':'')+': полки '+B.segs.map(s=>fl(s.len)).join(' + ')+' мм'+(ang?', гибы: '+ang:'')+'. Профиль (полка/угол°/куда л-право п): '+B.segs.map(s=>s.len+'/'+s.ang+'/'+(s.dir<0?'п':'л')).join('; ')+'. Лицо '+(B.face==='R'?'справа':'слева')+' от линии, длина '+fl(m.len)+' мм, '+m.qty+' шт.'+(hem?' Завальцовка: '+hem+(getHems(B).side==='face'?' (на лицо)':' (на изнанку)')+'.':'')+(B.color?' Цвет '+colLabel(B.color)+(C.cprice[B.color]>0?' ('+C.cprice[B.color]+' ₽/м²)':'')+'.':'')+' Развёртка '+fl(m.dev)+' мм. Металл '+colPpm(B.color)+' ₽/м², изготовление '+C.make+' ₽/шт. Расчёт на сайте: ≈ '+money(m.tot);
  const ta=$('fs');ta.value=(ta.value.trim()?ta.value.trim()+'\n':'')+text;
  let note='Эскиз приложен к заявке.';
  try{
@@ -1217,7 +1218,7 @@ function renderPrices(){
  document.querySelectorAll('.v-ppm').forEach(x=>x.textContent=C.ppm);document.querySelectorAll('.v-make').forEach(x=>x.textContent=C.make);
  calcOut();bDraw()}
 function renderHours(){const h=document.querySelector('#s-contacts .contacts>div:last-child span');if(h)h.textContent=C.hours;document.querySelector('#s-contacts .acc-h small').textContent=C.phone+' · '+C.hours}
-function colRender(){const sw=document.querySelector('#s-colors .sw');if(sw)sw.innerHTML=colSw();const fc=$('fc');if(fc){const v=fc.value;fc.innerHTML='<option value="">Не знаю / без покраски</option>'+fcOpts()+'<option value="другой (напишу в комментарии)">Другой (напишу ниже)</option>';if([...fc.options].some(o=>o.value===v))fc.value=v}if(window.colRefresh)colRefresh()}
+function colRender(){if(window.ccolRefresh)window.ccolRefresh();const sw=document.querySelector('#s-colors .sw');if(sw)sw.innerHTML=colSw();const fc=$('fc');if(fc){const v=fc.value;fc.innerHTML='<option value="">Не знаю / без покраски</option>'+fcOpts()+'<option value="другой (напишу в комментарии)">Другой (напишу ниже)</option>';if([...fc.options].some(o=>o.value===v))fc.value=v}if(window.colRefresh)colRefresh()}
 function applySite(g){
  if(!g||typeof g!=='object')return;
  if(+g.ppm>0&&+g.ppm<1e6)C.ppm=Math.round(+g.ppm);
