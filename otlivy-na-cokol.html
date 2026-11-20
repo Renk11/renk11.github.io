@@ -408,7 +408,7 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 <h4>Как определить ширину цокольного отлива?</h4><p>Измерьте ширину верха цоколя и прибавьте вынос за стену и капельник. Если неудобно считать самому, пришлите фото или размеры, посчитаем развёртку.</p>
 <h4>Какой цвет выбрать?</h4><p>Часто берут цвет под цоколь, фасад или кровлю. В конструкторе можно выбрать цвет RAL или оставить оцинковку.</p>
 <h4>Можно ли сделать отлив на парапет?</h4><p>Да, форма похожа. Парапетные отливы тоже делаем по вашим размерам.</p>
-<h4>Сколько стоит?</h4><p>От 600 ₽ за м² плюс 100 ₽ за каждую деталь. Точную цену называем после заявки.</p>
+<h4>Сколько стоит?</h4><p>От <span class="v-ppm">600</span> ₽ за м² плюс 100 ₽ за каждую деталь. Точную цену называем после заявки.</p>
 <p>Цена считается по площади развёртки: стоимость за квадратный метр плюс изготовление каждой детали. Размеры, цвет RAL и количество можно указать в конструкторе на сайте или в заявке; можно приложить эскиз или фото. Работаем в Сыктывкаре, звоните или оставляйте заявку.</p>
 <p>Смотрите также: <a href="otlivy.html">Отливы</a> · <a href="otlivy-na-okna.html">Отливы на окна</a> · <a href="planki.html">Планки</a> · <a href="karta.html">Все изделия каталога</a> · <a href="index.html">Главная</a></p>
 </div>
@@ -424,18 +424,18 @@ main.wrap,.hero,header.top,footer,.ribbon{position:relative;z-index:1}header.top
 /* ================= дальше менять не нужно ================= */
 const RAL={'3005':['Винно-красный','#5e2129'],'3011':['Коричнево-красный','#781f19'],'5005':['Сигнальный синий','#1e2460'],'6005':['Зелёный мох','#2f4538'],'7004':['Сигнальный серый','#9b9b9b'],'7024':['Графитовый серый','#474b4e'],'8017':['Шоколад','#45322e'],'9003':['Сигнальный белый','#f4f4f4'],'9005':['Чёрный','#0e0e10'],'3003':['Рубиново-красный','#9b111e'],'8004':['Медно-коричневый','#8e402a'],'1014':['Слоновая кость','#dfce9d'],'6029':['Мятно-зелёный','#20603d'],'5021':['Водный синий','#256d7b'],'8019':['Серо-коричневый','#3b3332']};
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const C=CONFIG;C.cprice={};const colLabel=k=>/^\d{4}$/.test(String(k))?'RAL '+k:String(k),colName=k=>RAL[k]&&RAL[k][0]?' · '+RAL[k][0]:'',colPpm=k=>C.cprice[k]>0?C.cprice[k]:C.ppm;
+const C=CONFIG;C.cprice={};const colLabel=k=>/^\d{4}$/.test(String(k))?'RAL '+k:String(k),colName=k=>RAL[k]&&RAL[k][0]?' · '+RAL[k][0]:'',colPpm=k=>C.cprice[k]>0?C.cprice[k]:C.ppm,minPpm=()=>Math.min(C.ppm,...Object.values(C.cprice).filter(x=>x>0));
 const tel=C.phone.replace(/[^\d+]/g,''),money=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',f2=n=>(Math.round(n*100)/100).toLocaleString('ru-RU');
 document.title=C.name+' — '+C.city+': отливы, планки и доборные элементы на заказ';
 $('logo').innerHTML='<svg class="mark" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true"><defs><linearGradient id="lgS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd2ad"/><stop offset=".5" stop-color="#f07824"/><stop offset="1" stop-color="#c4580e"/></linearGradient><linearGradient id="lgB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#31445a"/><stop offset="1" stop-color="#121920"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="url(#lgB)"/><path d="M13 43V27H30V43H50V17" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(1.5 2.5)"/><path class="draw lm" pathLength="1" d="M13 43V27H30V43H50V17" fill="none" stroke="url(#lgS)" stroke-width="6.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 25.2H30" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-linecap="round"/></svg>'+'<span class="lt"><b>'+esc(C.name)+'</b><small>металл на заказ</small></span>';
 $('kicker').textContent=C.name+' · '+C.slogan;
 $('h1').innerHTML='Доборные элементы из металла <em>на заказ</em> — '+esc(C.city);
 $('tagline').textContent=C.tagline;
-$('bPrice').textContent='от '+C.ppm+' ₽/м²';$('bMake').textContent='+ '+C.make+' ₽ за изготовление одной детали';
+$('bPrice').textContent='от '+minPpm()+' ₽/м²';$('bMake').textContent='+ '+C.make+' ₽ за изготовление одной детали';
 ['heroCall','fabCall'].forEach(id=>$(id).href='tel:'+tel);
 const colSw=()=>C.colors.map(k=>{const r=RAL[k],p=C.cprice[k];return r?`<div><i style="background:${r[1]}"></i>${esc(colLabel(k))}${esc(colName(k))}</div>`:`<div>${esc(colLabel(k))}</div>`}).join('');
 const ccOpts=()=>C.colors.map(k=>`<option value="${esc(k)}">${esc(colLabel(k))}${esc(colName(k))}</option>`).join(''),fcOpts=()=>C.colors.map(k=>`<option value="${esc(colLabel(k))}">${esc(colLabel(k))}${esc(colName(k))}</option>`).join('');
-const ex=(()=>{const a=2000,b=300,m=a*b/1e6;return{m,p:m*C.ppm+C.make}})();
+const ex=(()=>{const a=2000,b=300,m=a*b/1e6;return{m,p:m*minPpm()+C.make}})();
 const contacts=[`<a href="tel:${tel}"><b>Телефон</b><span>${esc(C.phone)}</span></a>`];
 if(C.telegram)contacts.push(`<a href="https://t.me/${esc(C.telegram)}" target="_blank" rel="noopener"><b>Telegram</b><span>@${esc(C.telegram)}</span></a>`);
 if(C.whatsapp)contacts.push(`<a href="https://wa.me/${esc(C.whatsapp)}" target="_blank" rel="noopener"><b>WhatsApp</b><span>Написать</span></a>`);
@@ -444,9 +444,9 @@ if(C.address)contacts.push(`<div><b>Адрес</b><span>${esc(C.address)}</span>
 contacts.push(`<div><b>Часы работы</b><span>${esc(C.hours)}</span></div>`);
 const SECS=[
  {id:'s-uslugi',ic:'🛠',t:'Что изготавливаем',s:'отливы, планки, коньки, откосы…',nav:'Услуги',h:`<div class="grid">${C.services.map(s=>`<div class="mini"><i>${s.i}</i><b>${esc(s.t)}</b><p>${esc(s.d)}</p></div>`).join('')}</div>`},
- {id:'s-price',ic:'💰',t:'Цены и калькулятор',s:'от '+C.ppm+' ₽/м² + '+C.make+' ₽ за деталь',nav:'Цены',h:`
-  <div class="tiles"><div class="tile"><small>Металл</small><b>от ${C.ppm} ₽/м²</b><span>по площади развёртки</span></div><div class="tile"><small>Изготовление</small><b>+ ${C.make} ₽</b><span>за каждую деталь</span></div></div>
-  <div class="ex"><b>Пример.</b> Деталь 2000 × 300 мм = ${f2(ex.m)} м² → ${f2(ex.m)} × ${C.ppm} + ${C.make} = <b>${money(ex.p)}</b></div>
+ {id:'s-price',ic:'💰',t:'Цены и калькулятор',s:'от '+minPpm()+' ₽/м² + '+C.make+' ₽ за деталь',nav:'Цены',h:`
+  <div class="tiles"><div class="tile"><small>Металл</small><b>от ${minPpm()} ₽/м²</b><span>по площади развёртки</span></div><div class="tile"><small>Изготовление</small><b>+ ${C.make} ₽</b><span>за каждую деталь</span></div></div>
+  <div class="ex"><b>Пример.</b> Деталь 2000 × 300 мм = ${f2(ex.m)} м² → ${f2(ex.m)} × ${minPpm()} + ${C.make} = <b>${money(ex.p)}</b></div>
   <div class="calc"><h4>Калькулятор</h4><div style="margin-bottom:10px"><label for="ccol">Цвет</label><select id="ccol"><option value="">Без покраски / оцинковка</option>${ccOpts()}</select></div><div id="crows"></div><button class="btn out sm" id="cadd" type="button">＋ Добавить деталь</button><div class="out" id="cout"></div><button class="btn sm" id="cgo" type="button" style="margin-top:10px;width:100%">Оформить заявку с этим расчётом</button></div>
   ${C.priceNotes.map(n=>'<p class="note">'+esc(n)+'</p>').join('')}`},
  {id:'s-raboty',ic:'📷',t:'Примеры работ',s:'нажмите на фото, чтобы увеличить',nav:'Работы',h:`<div class="gal" id="gal">${C.works.map(w=>`<figure><div class="ph">Здесь будет фото<br>«${esc(w.cap||'работа')}»</div><img src="${esc(w.src)}" alt="${esc(w.cap||'Пример работы')}" loading="lazy" onerror="this.remove()"><figcaption>${esc(w.cap||'')}</figcaption></figure>`).join('')}</div>`},
@@ -487,7 +487,7 @@ const faq=[
  ['Как сделать замеры?','Нужны длина детали и ширина развёртки (сумма длин всех полок профиля), а также углы загибов. Если сомневаетесь — пришлите фото места или эскиз с размерами, либо позвоните.'],
  ['Что такое развёртка?','Это ширина плоской заготовки, из которой гнётся деталь: сумма длин всех полок. По ней считаются площадь и цена. Конструктор на сайте считает её автоматически.'],
  ['Что прислать для точного расчёта?','Схему или рисунок с размерами в мм и углами загибов, количество деталей и желаемый цвет по RAL. Можно собрать профиль в конструкторе — чертёж прикрепится сам.'],
- ['Как считается цена?','От <span class="v-ppm">'+C.ppm+'</span> ₽ за м² площади развёртки плюс <span class="v-make">'+C.make+'</span> ₽ за изготовление каждой детали. Итог зависит от металла, толщины, цвета и сложности профиля — точную цену называем после заявки.'],
+ ['Как считается цена?','От <span class="v-ppm">'+minPpm()+'</span> ₽ за м² площади развёртки плюс <span class="v-make">'+C.make+'</span> ₽ за изготовление каждой детали. Итог зависит от металла, толщины, цвета и сложности профиля — точную цену называем после заявки.'],
  ['Можно ли нестандартный профиль?','Да, изготавливаем по эскизу, чертежу или фото. Приложите файл к заявке или соберите профиль в конструкторе.'],
  ['Что будет после заявки?','Мы свяжемся с вами по указанному телефону, уточним детали, назовём цену и срок.']];
 SECS.push({id:'s-faq',ic:'❓',t:'Частые вопросы',s:'замеры, развёртка, цена',nav:'',h:'<div class="faq">'+faq.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join('')+'</div>'});
@@ -504,7 +504,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">V.40</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">V.41</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -587,8 +587,8 @@ function tweenTotal(to){const el=document.getElementById('cbig');if(!el)return;c
  if(matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent='≈ '+money(to);return}
  const t0=performance.now(),d=420;const st=t=>{const k=Math.min(1,(t-t0)/d),e=1-Math.pow(1-k,3);el.textContent='≈ '+money(from+(to-from)*e);if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)}
 /* счётчик цены в шапке */
-(function(){if(matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;const el=$('bPrice'),end=C.ppm,t0=performance.now()+350,fin='от '+end+' ₽/м²';el.textContent='от 0 ₽/м²';
- const step=t=>{const k=Math.min(1,Math.max(0,(t-t0)/1100)),v=Math.round(C.ppm*(1-Math.pow(1-k,3)));el.textContent='от '+v+' ₽/м²';if(k<1)requestAnimationFrame(step);else el.textContent='от '+C.ppm+' ₽/м²'};requestAnimationFrame(step)})();
+(function(){if(matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;const el=$('bPrice'),end=minPpm(),t0=performance.now()+350,fin='от '+end+' ₽/м²';el.textContent='от 0 ₽/м²';
+ const step=t=>{const k=Math.min(1,Math.max(0,(t-t0)/1100)),v=Math.round(minPpm()*(1-Math.pow(1-k,3)));el.textContent='от '+v+' ₽/м²';if(k<1)requestAnimationFrame(step);else el.textContent='от '+minPpm()+' ₽/м²'};requestAnimationFrame(step)})();
 /* галерея */
 const lb=$('lb'),lbi=lb.querySelector('img');
 document.addEventListener('click',e=>{const f=e.target.closest('.gal figure'),im=f&&f.querySelector('img');if(im){lbi.src=im.src;lb.classList.add('on')}});
@@ -1233,14 +1233,17 @@ function renderBanner(){promoSync();let p=$('promo');const t=(C.banner||'').trim
    pt.textContent=(d>0?d+' д '+pad2(h)+' ч '+pad2(m)+' мин '+pad2(c)+' с':pad2(h)+':'+pad2(m)+':'+pad2(c));pt.hidden=false};
   tick();promoTm=setInterval(tick,1000)}else pt.hidden=true;promoSync()}
 function renderPrices(){
- $('bPrice').textContent='от '+C.ppm+' ₽/м²';$('bMake').textContent='+ '+C.make+' ₽ за изготовление одной детали';
- const pr=$('s-price'),tb=pr.querySelectorAll('.tile b');if(tb[0])tb[0].textContent='от '+C.ppm+' ₽/м²';if(tb[1])tb[1].textContent='+ '+C.make+' ₽';
- pr.querySelector('.acc-h small').textContent='от '+C.ppm+' ₽/м² + '+C.make+' ₽ за деталь';
- const m=2000*300/1e6,e=pr.querySelector('.ex');if(e)e.innerHTML='<b>Пример.</b> Деталь 2000 × 300 мм = '+f2(m)+' м² → '+f2(m)+' × '+C.ppm+' + '+C.make+' = <b>'+money(m*C.ppm+C.make)+'</b>';
- document.querySelectorAll('.v-ppm').forEach(x=>x.textContent=C.ppm);document.querySelectorAll('.v-make').forEach(x=>x.textContent=C.make);
+ $('bPrice').textContent='от '+minPpm()+' ₽/м²';$('bMake').textContent='+ '+C.make+' ₽ за изготовление одной детали';
+ const pr=$('s-price'),tb=pr.querySelectorAll('.tile b');if(tb[0])tb[0].textContent='от '+minPpm()+' ₽/м²';if(tb[1])tb[1].textContent='+ '+C.make+' ₽';
+ pr.querySelector('.acc-h small').textContent='от '+minPpm()+' ₽/м² + '+C.make+' ₽ за деталь';
+ const m=2000*300/1e6,e=pr.querySelector('.ex');if(e)e.innerHTML='<b>Пример.</b> Деталь 2000 × 300 мм = '+f2(m)+' м² → '+f2(m)+' × '+minPpm()+' + '+C.make+' = <b>'+money(m*minPpm()+C.make)+'</b>';
+ document.querySelectorAll('.v-ppm').forEach(x=>x.textContent=minPpm());document.querySelectorAll('.v-make').forEach(x=>x.textContent=C.make);
  calcOut();bDraw()}
 function renderHours(){const h=document.querySelector('#s-contacts .contacts>div:last-child span');if(h)h.textContent=C.hours;document.querySelector('#s-contacts .acc-h small').textContent=C.phone+' · '+C.hours}
 function colRender(){if(window.ccolRefresh)window.ccolRefresh();const sw=document.querySelector('#s-colors .sw');if(sw)sw.innerHTML=colSw();const fc=$('fc');if(fc){const v=fc.value;fc.innerHTML='<option value="">Не знаю / без покраски</option>'+fcOpts()+'<option value="другой (напишу в комментарии)">Другой (напишу ниже)</option>';if([...fc.options].some(o=>o.value===v))fc.value=v}if(window.colRefresh)colRefresh()}
+function mpSync(){const n=minPpm(),re=/([Оо]т )\d[\d\u00a0 ]*(?= ₽(?:\/м²| за м²))/g,t1=/([Оо]т )\d[\d\u00a0 ]*(?= ₽(?:\/м²| за м²))/;
+ document.querySelectorAll('meta[name=description],meta[property="og:description"]').forEach(m=>{m.content=m.content.replace(re,'$1'+n)});
+ document.querySelectorAll('section.seo').forEach(sec=>{const w=document.createTreeWalker(sec,NodeFilter.SHOW_TEXT);let t;while(t=w.nextNode()){if(t1.test(t.nodeValue))t.nodeValue=t.nodeValue.replace(re,'$1'+n)}})}
 function applySite(g){
  if(!g||typeof g!=='object')return;
  if(+g.ppm>0&&+g.ppm<1e6)C.ppm=Math.round(+g.ppm);
@@ -1252,8 +1255,8 @@ function applySite(g){
  if(Array.isArray(g.promoItems))C.promoItems=g.promoItems.slice(0,12).filter(x=>x&&x.n&&+x.p>0).map(x=>({n:String(x.n).slice(0,60),p:Math.round(+x.p),c:String(x.c||'').slice(0,30),u:String(x.u||'шт').slice(0,10)}));
  if(Array.isArray(g.reviews))C.reviews=g.reviews.slice(0,12).filter(r=>r&&r.t).map(r=>({n:String(r.n||'').slice(0,60),t:String(r.t).slice(0,400)}));
  if(Array.isArray(g.facts))C.facts=g.facts.slice(0,6).filter(f=>f&&f.v).map(f=>({v:String(f.v).slice(0,20),l:String(f.l||'').slice(0,40)}));
- renderPrices();renderHours();renderBanner();renderTrust();if(window.__qd)__qd()}
-renderTrust();renderBanner();
+ renderPrices();renderHours();renderBanner();renderTrust();mpSync();if(window.__qd)__qd()}
+renderTrust();renderBanner();mpSync();
 try{const c=JSON.parse(localStorage.getItem('mc_site')||'null');if(c)applySite(c)}catch(_){}
 (window.requestIdleCallback||(f=>setTimeout(f,1500)))(async()=>{
  try{const {fs,db}=await fb();const s=await fs.getDoc(fs.doc(db,'site','main'));
@@ -1264,7 +1267,7 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
 
 /* ===== отдельные страницы для поиска (window.PAGE) ===== */
 (function(){const PG=window.PAGE;
- if(PG){document.title=PG.title;const d=document.querySelector('meta[name=description]');if(d)d.content=PG.desc;
+ if(PG){document.title=PG.title;const d=document.querySelector('meta[name=description]');if(d)d.content=PG.desc;mpSync();
   $('h1').innerHTML=PG.h1;if(PG.text)$('tagline').textContent=PG.text;
   if(PG.item&&[...$('fi').options].some(o=>o.value===PG.item))$('fi').value=PG.item}
  const L=[['index.html','Главная'],['karta.html','Каталог'],['otlivy.html','Отливы'],['otlivy-na-okna.html','Отливы на окна'],['otlivy-na-cokol.html','Отливы на цоколь'],['konek-na-kryshu.html','Конёк на крышу'],['dobornye-elementy-krovli.html','Доборные элементы'],['planki.html','Планки'],['konki.html','Коньки'],['endovy.html','Ендовы'],['zabornye.html','Заборные'],['karnizy.html','Карнизные'],['torcevye.html','Торцевые'],['primykaniya.html','Примыкания'],['ugolki.html','Углы'],['startovye.html','Для сайдинга'],['snegozaderzhateli.html','Снегозадержатели'],['otkosy.html','Откосы']];
@@ -1323,7 +1326,7 @@ if(C.metrika){(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[])
 (function(){const hero=document.querySelector('.hero'),wrap=hero&&hero.querySelector('.wrap');if(!hero||!wrap)return;
  const RM=matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
  const L=document.createElement('div'),R=document.createElement('div');L.className='bub l';R.className='bub r';L.setAttribute('aria-hidden','true');R.setAttribute('aria-hidden','true');hero.appendChild(L);hero.appendChild(R);
- const msgs=()=>Array.isArray(C.bubbles)&&C.bubbles.length?C.bubbles:['Сделаем за 1–3 дня','Любой размер и цвет RAL','Доставка по Сыктывкару','Цена от '+C.ppm+' ₽/м²','Изготовим по вашему эскизу или фото','Отливы, планки, коньки, откосы','Чертёж и цену — в конструкторе за минуту','Оцинковка и полимерное покрытие','Поможем с замерами','Оставьте заявку — перезвоним','Нужна нестандартная деталь? Сделаем'];
+ const msgs=()=>Array.isArray(C.bubbles)&&C.bubbles.length?C.bubbles:['Сделаем за 1–3 дня','Любой размер и цвет RAL','Доставка по Сыктывкару','Цена от '+minPpm()+' ₽/м²','Изготовим по вашему эскизу или фото','Отливы, планки, коньки, откосы','Чертёж и цену — в конструкторе за минуту','Оцинковка и полимерное покрытие','Поможем с замерами','Оставьте заявку — перезвоним','Нужна нестандартная деталь? Сделаем'];
  function place(){const g=Math.floor(wrap.getBoundingClientRect().left),wl=Math.max(0,Math.min(g-104,220)),wr=Math.max(0,Math.min(g-28,230));
   L.style.width=wl+'px';R.style.width=wr+'px';L.style.left='84px';R.style.right='14px';L.style.display=wl>=120?'':'none';R.style.display=wr>=120?'':'none';return wl>=120||wr>=120}
  let i=0,side=0,ok=place(),tm=0;
