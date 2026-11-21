@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Жестянщик — Сыктывкар: отливы, планки и доборные элементы на заказ</title>
-<meta name="description" content="Изготовление отливов, планок, коньков, откосов и других доборных элементов из металла по вашим размерам. От 600 ₽/м² + 100 ₽ за деталь. Калькулятор цены, примеры работ, заявка онлайн.">
+<meta name="description" content="Изготовление доборных элементов по вашим размерам из листового металла в Сыктывкаре: отливы, планки, коньки, откосы. От 600 ₽/м² + 100 ₽ за деталь.">
 <meta name="theme-color" content="#18212b">
 <link rel="canonical" href="https://xn--11-mlcdlmt5aj5e2c.xn--p1ai/">
 <!-- Подтверждение прав (вставьте код из Яндекс.Вебмастера / Google Search Console, см. инструкцию):
@@ -22,7 +22,7 @@
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:title" content="Жестянщик — гнём металл точно по вашим размерам">
-<meta property="og:description" content="От 600 ₽/м² + 100 ₽ за деталь. Рассчитайте стоимость онлайн.">
+<meta property="og:description" content="Изготовление доборных элементов по вашим размерам из листового металла. От 600 ₽/м² + 100 ₽ за деталь.">
 <meta property="og:type" content="website">
 <style>
 :root{--ink:#18212b;--ink2:#2b3948;--bg:#eef1f4;--card:#fff;--line:#dce2e8;--mut:#5b6672;--acc:#f07824;--acc2:#c4580e;--ok:#1e7a46;--bad:#b3261e}
@@ -489,7 +489,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">V.44</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">V.45</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -579,7 +579,7 @@ const lb=$('lb'),lbi=lb.querySelector('img');
 document.addEventListener('click',e=>{const f=e.target.closest('.gal figure'),im=f&&f.querySelector('img');if(im){lbi.src=im.src;lb.classList.add('on')}});
 lb.addEventListener('click',()=>lb.classList.remove('on'));addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
 /* разметка для поисковиков */
-try{const j={'@context':'https://schema.org','@type':'LocalBusiness',name:C.name,telephone:C.phone,areaServed:C.city,openingHours:'Mo-Su 08:00-20:00',description:C.tagline};if(C.address)j.address=C.address;const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(j);document.head.appendChild(s)}catch(e){}
+try{const j={'@context':'https://schema.org','@type':'LocalBusiness',name:C.name,telephone:C.phone,areaServed:C.city,openingHours:'Mo-Su 08:00-20:00',description:'Изготовление доборных элементов по вашим размерам из листового металла'};if(C.address)j.address=C.address;const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(j);document.head.appendChild(s)}catch(e){}
 
 /* заявка */
 const COOL=60000,LK='mc_last_req',MAXF=3,MAXTOT=900000,PDFMAX=600*1024;
