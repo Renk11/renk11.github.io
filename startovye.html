@@ -503,7 +503,7 @@ function baFail(el){const f=el.closest('.baw');if(f)f.remove();if(!document.quer
 $('acc').innerHTML=SECS.map(s=>`<section class="acc" id="${s.id}"><button class="acc-h" type="button" aria-expanded="false" aria-controls="${s.id}-p"><span class="ai">${s.ic}</span><span><b>${s.t}</b><small>${s.s}</small></span><span class="chev">▾</span></button><div class="acc-p" id="${s.id}-p" role="region"><div class="acc-i"><div class="acc-in">${s.h}</div></div></div></section>`).join('');
 document.querySelectorAll('.acc').forEach((a,i)=>a.style.animationDelay=(.4+i*.07)+'s');
 $('nav').innerHTML=SECS.filter(s=>s.nav).map(s=>`<button data-open="${s.id}">${s.nav}</button>`).join('');
-$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">V.47</small>';
+$('foot').innerHTML='© '+new Date().getFullYear()+' '+esc(C.name)+', '+esc(C.city)+'<br>'+esc(C.slogan)+'<br><small style="opacity:.55">V.48</small>';
 $('pdText').textContent='Отправляя форму, вы соглашаетесь, что «'+C.name+'» обработает указанные вами имя, телефон и текст заявки только для связи с вами и расчёта заказа. Данные не передаются третьим лицам и удаляются по вашему запросу — позвоните или напишите по контактам на сайте.';
 $('pdLink').onclick=e=>{e.preventDefault();$('pd').showModal()};
 /* прокрутка к открытому разделу (повтор после схлопывания предыдущего) и фокус на его заголовке */
@@ -1248,13 +1248,15 @@ function applySite(g){
  if(+g.ppm>0&&+g.ppm<1e6)C.ppm=Math.round(+g.ppm);
  if(+g.make>=0&&+g.make<1e6&&g.make!=='')C.make=Math.round(+g.make);
  if(typeof g.hours==='string'&&g.hours.trim())C.hours=g.hours.trim().slice(0,60);
- if(typeof g.banner==='string')C.banner=g.banner.trim().slice(0,200);
- if(typeof g.bannerUntil==='string')C.bannerUntil=g.bannerUntil.slice(0,40);
+ C.banner=typeof g.banner==='string'?g.banner.trim().slice(0,200):'';
+ C.bannerUntil=typeof g.bannerUntil==='string'?g.bannerUntil.slice(0,40):'';
+ if(!Array.isArray(g.promoItems))C.promoItems=[];
  if(Array.isArray(g.colors)&&g.colors.length){const ks=[];C.cprice={};g.colors.slice(0,40).forEach(c=>{const k=c&&String(c.k||'').trim().slice(0,30);if(!k||!/^#[0-9a-f]{6}$/i.test(c.h||''))return;RAL[k]=[String(c.n||(RAL[k]&&RAL[k][0])||'').slice(0,40),c.h];if(+c.p>0)C.cprice[k]=Math.round(+c.p);if(!ks.includes(k))ks.push(k)});if(ks.length){C.colors=ks;colRender()}}
  if(Array.isArray(g.promoItems))C.promoItems=g.promoItems.slice(0,12).filter(x=>x&&x.n&&+x.p>0).map(x=>({n:String(x.n).slice(0,60),p:Math.round(+x.p),c:String(x.c||'').slice(0,30),u:String(x.u||'шт').slice(0,10)}));
  if(Array.isArray(g.reviews))C.reviews=g.reviews.slice(0,12).filter(r=>r&&r.t).map(r=>({n:String(r.n||'').slice(0,60),t:String(r.t).slice(0,400)}));
  if(Array.isArray(g.facts))C.facts=g.facts.slice(0,6).filter(f=>f&&f.v).map(f=>({v:String(f.v).slice(0,20),l:String(f.l||'').slice(0,40)}));
  renderPrices();renderHours();renderBanner();renderTrust();mpSync();if(window.__qd)__qd()}
+C.banner='';C.bannerUntil='';C.promoItems=[];/* акция только из облака (приложение), не из config.js */
 renderTrust();renderBanner();mpSync();
 try{const c=JSON.parse(localStorage.getItem('mc_site')||'null');if(c)applySite(c)}catch(_){}
 (window.requestIdleCallback||(f=>setTimeout(f,1500)))(async()=>{
